@@ -50,19 +50,54 @@ header{
 .site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
 
 /* ✅ Hero：只有圖片、真正滿版（不會白底、不會圓角） */
-.hero{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  padding:0;
-  margin-top:0;
-  background:transparent;
+/* ✅ 修正後的 Hero：使用更簡單、穩定的方式達成滿版 */
+
+.hero {
+
+  width: 100%;
+
+  padding: 0;
+
+  margin: 0;
+
+  background: #f0f0f0; /* 增加灰色底色，如果圖片沒跑出來會看到灰塊 */
+
+  overflow: hidden;
+
+  line-height: 0;    /* 消除圖片下方微小的間隙 */
+
 }
-.hero img{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-  object-position:center;
+
+
+
+.hero img {
+
+  width: 100%;
+
+  height: auto;      /* 改為 auto 確保比例正確 */
+
+  max-height: 420px; /* 限制最大高度 */
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center;
+
+}
+
+
+
+/* Mobile 修正 */
+
+@media (max-width: 600px) {
+
+  .hero img {
+
+    height: 260px;   /* 手機端固定高度，確保視覺效果 */
+
+  }
+
 }
 
 /* Nav */
@@ -179,3 +214,4 @@ footer{
   nav a{font-size:15px;padding:9px 14px}
   table{font-size:16px}
 }
+
