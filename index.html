@@ -3,357 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>樂齡好食光</title>
-
-  <style>
-    :root{
-      --deep:#403A34;     /* 暖深棕灰 */
-      --bg:#D8D0C6;       /* 暖灰背景 */
-      --accent:#FFC857;   /* 蜂蜜黃 */
-      --card:#FFFFFF;     /* 卡片白 */
-      --text:#1F1F1F;
-      --line:#BEB5AA;
-    }
-
-    *{ box-sizing:border-box; }
-    html, body{ margin:0; padding:0; scroll-behavior:smooth; }
-    body{
-      font-family:"Noto Sans TC","微軟正黑體",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      font-size:18px;
-      line-height:1.75;
-      font-weight:500;
-    }
-
-    /* Header */
-    .topbar{
-      background:var(--deep);
-      color:#fff;
-      padding:18px 16px;
-    }
-    .topbar-inner{
-      max-width:980px;
-      margin:0 auto;
-      display:flex;
-      gap:14px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .logo-pill{
-      background:var(--accent);
-      color:var(--text);
-      padding:10px 16px;
-      border-radius:999px;
-      font-weight:900;
-      letter-spacing:.5px;
-      font-size:18px;
-      display:inline-block;
-      white-space:nowrap;
-    }
-    .title-wrap h1{
-      margin:0;
-      font-size:26px;
-      font-weight:900;
-      letter-spacing:.5px;
-    }
-    .title-wrap p{
-      margin:6px 0 0;
-      opacity:.92;
-      font-size:16px;
-    }
-
-    /* Full-bleed banner (只有圖片、滿版) */
-    .hero{
-      width:100vw;
-      margin-left:calc(50% - 50vw); /* 關鍵：解除任何寬度限制，真正滿版 */
-    }
-    .hero img{
-      width:100%;
-      height:460px;          /* 想更高：520 / 想更扁：380 */
-      display:block;
-      object-fit:cover;
-      object-position:center;
-    }
-
-    /* Nav */
-    nav{
-      background:var(--bg);
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-    }
-    .nav-inner{
-      max-width:980px;
-      margin:0 auto;
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      padding:12px 14px;
-    }
-    nav a{
-      text-decoration:none;
-      color:#5a5450;
-      font-weight:900;
-      padding:10px 16px;
-      border-radius:999px;
-    }
-    nav a:hover{
-      background:var(--accent);
-      color:var(--text);
-    }
-
-    /* Layout */
-    .container{
-      max-width:980px;
-      margin:0 auto;
-      padding:22px 16px 46px;
-    }
-    .section{
-      background:var(--card);
-      border-radius:16px;
-      padding:22px 18px;
-      margin-top:18px;
-      box-shadow:0 2px 8px rgba(0,0,0,.08);
-    }
-    .section h2{
-      margin:0 0 10px;
-      display:inline-block;
-      background:var(--accent);
-      border-radius:999px;
-      padding:7px 14px;
-      font-size:22px;
-      font-weight:900;
-    }
-    .section h3{
-      margin:16px 0 8px;
-      font-size:19px;
-      color:var(--deep);
-      font-weight:900;
-    }
-    p{ margin:10px 0; letter-spacing:0.2px; }
-    ul{ margin:10px 0; padding-left:22px; }
-    li{ margin:6px 0; }
-    a{ text-decoration:underline; text-underline-offset:3px; }
-    a:focus{ outline:3px solid var(--accent); outline-offset:2px; }
-
-    .highlight{
-      background:var(--accent);
-      border-radius:14px;
-      padding:12px 14px;
-      margin-top:10px;
-      color:#1e1e1e;
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:12px;
-      font-size:17px;
-    }
-    th, td{
-      border:1px solid #ddd;
-      padding:10px;
-      vertical-align:top;
-      background:#fff;
-    }
-    th{ background:#f3f3f3; font-weight:900; }
-    td{ line-height:1.85; }
-    tr:nth-child(even) td{ background:#fafafa; }
-
-    .backtop{
-      text-align:right;
-      margin-top:10px;
-    }
-    .backtop a{
-      text-decoration:none;
-      font-weight:900;
-      color:#5a5450;
-    }
-
-    footer{
-      text-align:center;
-      color:#5a5450;
-      font-size:14px;
-      padding:26px 12px 34px;
-    }
-
-    @media (max-width:600px){
-      body{ font-size:17px; }
-      .hero img{ height:280px; }
-      .title-wrap h1{ font-size:22px; }
-      nav a{ padding:9px 14px; }
-      .section h2{ font-size:20px; }
-    }
-  </style>
+  <title>樂齡好食光｜首頁</title>
+  <link rel="stylesheet" href="/project/style.css" />
 </head>
+<body>
 
-<body id="top">
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <span class="logo-pill">樂齡好食光</span>
-      <div class="title-wrap">
-        <h1>長輩友善飲食小幫手</h1>
-        <p>陪長輩一起，好好吃飯、好好生活</p>
-      </div>
+<header>
+  <div class="header-inner">
+    <span class="logo-tag">樂齡好食光</span>
+    <div>
+      <p class="site-title">長輩友善飲食小幫手</p>
+      <p class="site-subtitle">陪長輩一起，好好吃飯、好好生活</p>
     </div>
-  </header>
-
-  <!-- ✅ 滿版橫幅（只有圖片） -->
-  <!-- 圖片請放：images/hero.png ；或改成你的網址 -->
-  <div class="hero">
-    <img src="images/hero.png" alt="樂齡好食光封面橫幅">
   </div>
+</header>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="#aboutSite">網站理念</a>
-      <a href="#nutrition">營養小知識</a>
-      <a href="#menu">一日三餐</a>
-      <a href="#aboutUs">關於我們</a>
-      <a href="#refs">參考資料來源</a>
+<!-- 滿版橫幅（只有圖片） -->
+<section class="hero">
+  <img src="hero.png" alt="樂齡好食光封面橫幅">
+</section>
+
+
+
+<nav>
+  <div class="nav-inner">
+    <a class="active" href="index.html">首頁</a>
+    <a href="nutrition.html">營養小知識</a>
+    <a href="menu.html">一日三餐</a>
+    <a href="about.html">關於我們</a>
+    <a href="refs.html">參考資料來源</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section>
+    <h2>網站理念</h2>
+    <p>
+      「樂齡好食光」整理長輩常見的飲食與營養重點，用清楚的段落與大字體呈現，
+      讓家人與照顧者能快速找到方向，長輩也能自己慢慢閱讀。
+    </p>
+  </section>
+
+  <section>
+    <h2>為什麼要關心長輩飲食？</h2>
+    <ul>
+      <li>年紀增長後，食慾與咀嚼能力可能下降，吃得少但更要吃得對。</li>
+      <li>營養不足可能影響體力與行動力，增加跌倒與疲勞風險。</li>
+      <li>把飲食調整得「好入口、好消化」，能提升生活品質。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>網站內容導覽</h2>
+    <p>以下三個主題是本網站的核心內容，可快速前往：</p>
+
+    <div class="grid">
+      <a class="card-link" href="nutrition.html">
+        <div class="tag">🥗 營養小知識</div>
+        <div>認識蛋白質、鈣質、纖維與水分等長輩常見營養重點。</div>
+        <span class="go">前往 →</span>
+      </a>
+
+      <a class="card-link" href="menu.html">
+        <div class="tag">🍱 一日三餐示範</div>
+        <div>提供溫和、好入口的一天菜單參考，方便家人安排。</div>
+        <span class="go">查看 →</span>
+      </a>
+
+      <a class="card-link" href="about.html">
+        <div class="tag">ℹ️ 關於我們</div>
+        <div>介紹製作理念、專題背景與團隊分工。</div>
+        <span class="go">了解 →</span>
+      </a>
     </div>
-  </nav>
+  </section>
 
-  <main class="container">
-
-    <section class="section" id="aboutSite">
-      <h2>網站理念</h2>
-      <p>
-        「樂齡好食光」整理長輩常見的飲食與營養重點，用清楚的段落與大字體呈現，
-        讓家人與照顧者能快速找到方向，長輩也能自己慢慢閱讀。
-      </p>
-      <h3>為什麼要關心長輩飲食？</h3>
+  <section>
+    <h2>今日小提醒</h2>
+    <div class="highlight">
       <ul>
-        <li>年紀增長後，食慾與咀嚼能力可能下降，吃得少但更要吃得對。</li>
-        <li>營養不足可能影響體力與行動力，增加跌倒與疲勞風險。</li>
-        <li>把飲食調整得「好入口、好消化」，能提升生活品質。</li>
+        <li>🌱 每一餐都試著放進「一份蛋白質」。</li>
+        <li>💧 水不用一次喝很多，分成很多小口慢慢喝就好。</li>
+        <li>🍚 菜和肉煮軟一點、切小塊，牙口不好也能吃得安心。</li>
       </ul>
+    </div>
+  </section>
 
-      <div class="highlight">
-        <strong>今日小提醒：</strong>
-        <ul>
-          <li>🌱 每一餐都試著放進「一份蛋白質」。</li>
-          <li>💧 水不用一次喝很多，分成很多小口慢慢喝就好。</li>
-          <li>🍚 菜和肉煮軟一點、切小塊，牙口不好也能吃得安心。</li>
-        </ul>
-      </div>
+</main>
 
-      <div class="backtop"><a href="#top">▲ 回到頁首</a></div>
-    </section>
-
-    <section class="section" id="nutrition">
-      <h2>營養小知識</h2>
-
-      <h3>1. 蛋白質：維持肌肉與體力</h3>
-      <ul>
-        <li>豆漿、豆腐、豆干</li>
-        <li>雞蛋、蒸蛋</li>
-        <li>魚肉、雞肉、瘦豬肉</li>
-      </ul>
-
-      <h3>2. 鈣質：保護骨頭，減少跌倒風險</h3>
-      <ul>
-        <li>牛奶、優格、起司</li>
-        <li>小魚乾（注意鹽分）</li>
-        <li>深綠色蔬菜（地瓜葉、芥藍菜等）</li>
-      </ul>
-
-      <h3>3. 纖維＋水分：讓腸胃更順暢</h3>
-      <ul>
-        <li>蔬菜、水果、燕麥、全麥麵包</li>
-        <li>避免只吃白飯和肉、幾乎不吃菜</li>
-        <li>一整天多次少量補充水分</li>
-      </ul>
-
-      <div class="highlight">
-        <strong>常見 Q&A：</strong>
-        <ul>
-          <li><b>食慾不好？</b> 少量多餐，每次吃一點點即可。</li>
-          <li><b>牙口不好？</b> 蒸蛋、豆腐、燉軟蔬菜、魚肉或絞肉較好入口。</li>
-          <li><b>水喝太少？</b> 在常看的地方放小杯水，路過就喝一小口。</li>
-        </ul>
-      </div>
-
-      <div class="backtop"><a href="#top">▲ 回到頁首</a></div>
-    </section>
-
-    <section class="section" id="menu">
-      <h2>一日三餐示範</h2>
-      <p style="margin-top:6px; color:#5a5450; font-size:15px;">
-        每位長輩狀況不同，以下為一般示例；若有慢性疾病，仍建議依醫師或營養師指示調整。
-      </p>
-
-      <table>
-        <tr>
-          <th style="width:18%;">餐別</th>
-          <th style="width:42%;">餐點內容</th>
-          <th style="width:40%;">小提醒</th>
-        </tr>
-        <tr>
-          <td>早餐</td>
-          <td>無糖豆漿一杯<br>吐司一片（切小塊）<br>水煮蛋或蒸蛋一份</td>
-          <td>豆漿＋蛋提供蛋白質；牙口較弱可把吐司沾豆漿一起吃。</td>
-        </tr>
-        <tr>
-          <td>午餐</td>
-          <td>白飯半碗～一碗<br>清蒸魚或燉軟雞肉<br>軟煮青菜一碗<br>清湯一碗</td>
-          <td>調味不必太鹹；肉與菜煮軟，避免油炸與過油料理。</td>
-        </tr>
-        <tr>
-          <td>點心</td>
-          <td>優格或牛奶一杯<br>香蕉半根或切片蘋果</td>
-          <td>水果切小塊方便入口；若有糖尿病需依醫囑調整份量。</td>
-        </tr>
-        <tr>
-          <td>晚餐</td>
-          <td>稀飯或軟飯半碗～一碗<br>豆腐煲或絞肉料理<br>軟煮蔬菜一份</td>
-          <td>適合牙口較差或晚上不想吃太飽的長輩，以好消化為主。</td>
-        </tr>
-      </table>
-
-      <div class="backtop"><a href="#top">▲ 回到頁首</a></div>
-    </section>
-
-    <section class="section" id="aboutUs">
-      <h2>關於我們</h2>
-      <p>
-        「樂齡好食光」為課程期末專題作品，目標是以溫暖、清楚、易讀的方式整理長輩飲食重點，
-        讓長輩與家人都能更安心地規劃每一餐。
-      </p>
-      <h3>團隊分工（可自行替換）</h3>
-      <ul>
-        <li><b>企劃與內容整理：</b>主題發想、資料查找、文字整理與撰寫。</li>
-        <li><b>視覺與版面設計：</b>配色、字體、排版與長輩友善可讀性調整。</li>
-        <li><b>前端程式與製作：</b>HTML/CSS 實作、導覽跳轉、RWD 基本調整。</li>
-      </ul>
-
-      <div class="backtop"><a href="#top">▲ 回到頁首</a></div>
-    </section>
-
-    <section class="section" id="refs">
-      <h2>參考資料來源</h2>
-      <p>本網站內容為生活化整理與改寫，主要參考下列公開資料與健康衛教資訊：</p>
-      <ul>
-        <li>衛生福利部國民健康署：長者健康與飲食衛教資訊。</li>
-        <li>衛生福利部食品藥物管理署：均衡飲食與營養素相關宣導資料。</li>
-        <li>國內外健康資訊網站之營養專欄（例如 Healthline Nutrition）。</li>
-        <li>課堂講義與教師提供之參考教材。</li>
-      </ul>
-      <p style="color:#5a5450; font-size:15px;">
-        本網站僅作為課程專題與一般衛教參考；若長輩有慢性疾病或特殊狀況，建議依醫師或營養師專業建議調整飲食。
-      </p>
-
-      <div class="backtop"><a href="#top">▲ 回到頁首</a></div>
-    </section>
-
-  </main>
-
-  <footer>
-    本網站內容僅為一般營養觀念整理，若有特殊疾病或不適，建議諮詢醫師或營養師。<br>
-    © 2025 樂齡好食光 專題製作團隊
-  </footer>
+<footer>
+  本網站內容僅為一般營養觀念整理，若有特殊疾病或不適，建議諮詢醫師或營養師。<br />
+  © 2025 樂齡好食光 專題製作團隊
+</footer>
 
 </body>
 </html>
