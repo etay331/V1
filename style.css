@@ -1,0 +1,302 @@
+:root{
+  --deep-gray:#403A34;
+  --mid-gray:#D8D0C6;
+  --accent-yellow:#FFC857;
+  --card-bg:#FFFFFF;
+  --text-main:#1F1F1F;
+  --light-gray:#BEB5AA;
+}
+
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Noto Sans TC","微軟正黑體",sans-serif;
+  background:var(--mid-gray);
+  color:var(--text-main);
+  font-size:18px;
+  line-height:1.7;
+}
+/* 1) 讓文字更好讀：字更粗一點、字體更穩 */
+body{ font-weight: 500; }
+
+/* 2) 段落不要太擠 */
+p, li { letter-spacing: 0.2px; }
+
+/* 3) 連結要更清楚（長輩常看不出哪裡能點） */
+a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 4) 鍵盤/點選時的焦點提示（可讀性+可用性） */
+a:focus { outline: 3px solid var(--accent-yellow); outline-offset: 2px; }
+
+/* 5) 卡片行寬再友善一點（避免一行太長） */
+section { max-width: 900px; }
+.container { max-width: 900px; }
+
+/* 6) 黃色區塊文字稍微加深（避免黃底看久累） */
+.highlight { color: #1e1e1e; }
+
+
+.container{
+  max-width:900px;
+  margin:0 auto;
+  padding:20px 15px 40px;
+}
+
+/* Header */
+header{
+  background:var(--deep-gray);
+  color:#fff;
+  padding:18px 15px;
+}
+.header-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo-tag{
+  background:var(--accent-yellow);
+  color:var(--text-main);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+.site-title{
+  margin:0;
+  font-size:22px;
+  font-weight:800;
+}
+.site-subtitle{
+  margin:4px 0 0;
+  font-size:15px;
+  opacity:.92;
+}
+
+html, body { margin: 0; padding: 0; } /* 保證不會有預設留白 */
+
+.hero{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0;
+  margin-top: 0;
+}
+
+.hero img{
+  width: 100%;
+  height: 420px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+html, body { margin: 0; padding: 0; }
+
+
+
+
+
+.hero-card{
+  max-width: 900px;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+
+  background: rgba(0,0,0,0.35);  /* 文字區再加一層淡遮罩 */
+  border-radius: 18px;
+  padding: 70px 24px;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+
+.hero h1{
+  margin:0 0 10px;
+  font-size:36px;
+  letter-spacing:1px;
+}
+.hero p{
+  margin:0 0 22px;
+  font-size:20px;
+  opacity:.95;
+}
+.hero-btn{
+  display:inline-block;
+  background:var(--accent-yellow);
+  color:var(--text-main);
+  text-decoration:none;
+  padding:14px 26px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:18px;
+}
+.hero-btn:hover{filter:brightness(.95)}
+
+/* Nav */
+nav{
+  background:var(--mid-gray);
+  border-top:1px solid var(--light-gray);
+  border-bottom:1px solid var(--light-gray);
+}
+.nav-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px 16px;
+  flex-wrap:wrap;
+}
+nav a{
+  color:#646161;
+  text-decoration:none;
+  font-weight:800;
+  font-size:16px;
+  padding:8px 14px;
+  border-radius:999px;
+}
+nav a:hover,
+nav a.active{
+  background:var(--accent-yellow);
+  color:var(--text-main);
+}
+
+/* Cards */
+section{
+  background:var(--card-bg);
+  border-radius:14px;
+  padding:20px 18px;
+  margin-top:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+h2{
+  margin:0 0 10px;
+  font-size:22px;
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:var(--accent-yellow);
+  color:var(--text-main);
+  font-weight:900;
+}
+h3{
+  margin:16px 0 6px;
+  font-size:19px;
+  color:var(--deep-gray);
+}
+p{margin:10px 0}
+ul{padding-left:22px;margin:8px 0 10px}
+li{margin-bottom:6px}
+
+.highlight{
+  background:var(--accent-yellow);
+  border-radius:12px;
+  padding:12px 14px;
+  margin-top:10px;
+  font-size:17px;
+}
+
+/* Guide cards */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.card-link{
+  display:block;
+  border:2px solid #eee;
+  border-radius:14px;
+  padding:16px 14px;
+  text-decoration:none;
+  color:var(--text-main);
+  background:#fff;
+}
+.card-link:hover{border-color:#ddd}
+.card-link .tag{
+  display:inline-block;
+  background:var(--accent-yellow);
+  border-radius:999px;
+  padding:4px 10px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.card-link .go{
+  display:inline-block;
+  margin-top:10px;
+  font-weight:900;
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px;
+  font-size:17px;
+}
+td{ line-height: 1.8; }
+tr:nth-child(even) td{ background:#fafafa; }
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+  vertical-align:top;
+  background:#fff;
+}
+th{
+  background:#f3f3f3;
+  font-weight:900;
+}
+.small-note{font-size:15px;color:#555}
+
+/* Footer */
+footer{
+  color: #646161;
+  font-size:14px;
+  text-align:center;
+  padding:25px 10px 35px;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .hero{padding:55px 16px}
+  .hero h1{font-size:28px}
+  .hero p{font-size:18px}
+  h2{font-size:20px}
+  .site-title{font-size:20px}
+  nav a{font-size:15px;padding:8px 12px}
+  table{font-size:16px}
+ @media (max-width: 600px){
+  .hero img{
+    height: 260px;
+  }
+}
+
+
+}
+
+/* Hero：只顯示圖片、不要白底卡片 */
+section.hero{
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;   /* 你前面有 section { max-width:900px } */
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+}
+
+section.hero > img{
+  width: 100%;
+  height: 420px;      /* 想更高就改 480/520 */
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
