@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>樂齡好食光｜一日三餐</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>樂齡好食光</title>
+
+  <style>
+    /* ✅ 把我下面給你的 CSS 貼在這裡（不要放在 body） */
+    :root{
+  --deep-gray:#403A34;
+  --mid-gray:#D8D0C6;
+  --accent-yellow:#FFC857;
+  --card-bg:#FFFFFF;
+  --text-main:#1F1F1F;
+  --light-gray:#BEB5AA;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;scroll-behavior:smooth}
+
+body{
+  font-family:"Noto Sans TC","微軟正黑體",sans-serif;
+  background:var(--mid-gray);
+  color:var(--text-main);
+  font-size:18px;
+  line-height:1.7;
+  font-weight:500;
+}
+
+p,li{letter-spacing:.2px}
+a{text-decoration:underline;text-underline-offset:3px}
+a:focus{outline:3px solid var(--accent-yellow);outline-offset:2px}
+
+/* Header */
+header{
+  background:var(--deep-gray);
+  color:#fff;
+  padding:18px 15px;
+}
+.header-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo-tag{
+  background:var(--accent-yellow);
+  color:var(--text-main);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+.site-title{margin:0;font-size:22px;font-weight:900}
+.site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
+
+/* ✅ Hero：只有圖片、真正滿版（不會白底、不會圓角） */
+.hero{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  padding:0;
+  margin-top:0;
+  background:transparent;
+}
+.hero img{
+  width:100%;
+  height:420px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+/* Nav */
+nav{
+  background:var(--mid-gray);
+  border-top:1px solid var(--light-gray);
+  border-bottom:1px solid var(--light-gray);
+}
+.nav-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px 16px;
+  flex-wrap:wrap;
+}
+nav a{
+  color:#646161;
+  text-decoration:none;
+  font-weight:900;
+  font-size:16px;
+  padding:10px 16px;
+  border-radius:999px;
+}
+nav a:hover, nav a.active{
+  background:var(--accent-yellow);
+  color:var(--text-main);
+}
+
+/* Main */
+.container{
+  max-width:900px;
+  margin:0 auto;
+  padding:20px 15px 40px;
+}
+
+/* Cards（注意：只套用在 main 裡的 section，不會影響 hero） */
+main.container section{
+  background:var(--card-bg);
+  border-radius:14px;
+  padding:20px 18px;
+  margin-top:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+h2{
+  margin:0 0 10px;
+  font-size:22px;
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:var(--accent-yellow);
+  color:var(--text-main);
+  font-weight:900;
+}
+h3{margin:16px 0 6px;font-size:19px;color:var(--deep-gray);font-weight:900}
+p{margin:10px 0}
+ul{padding-left:22px;margin:8px 0 10px}
+li{margin-bottom:6px}
+
+.highlight{
+  background:var(--accent-yellow);
+  border-radius:12px;
+  padding:12px 14px;
+  margin-top:10px;
+  font-size:17px;
+  color:#1e1e1e;
+}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+.card-link{
+  display:block;
+  border:2px solid #eee;
+  border-radius:14px;
+  padding:16px 14px;
+  text-decoration:none;
+  color:var(--text-main);
+  background:#fff;
+}
+.card-link:hover{border-color:#ddd}
+.card-link .tag{
+  display:inline-block;
+  background:var(--accent-yellow);
+  border-radius:999px;
+  padding:4px 10px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.card-link .go{display:inline-block;margin-top:10px;font-weight:900}
+
+/* Table */
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:17px}
+th,td{border:1px solid #ddd;padding:10px;vertical-align:top;background:#fff}
+th{background:#f3f3f3;font-weight:900}
+td{line-height:1.8}
+tr:nth-child(even) td{background:#fafafa}
+
+/* Footer */
+footer{
+  color:#646161;
+  font-size:14px;
+  text-align:center;
+  padding:25px 10px 35px;
+}
+
+/* Mobile */
+@media (max-width:600px){
+  body{font-size:17px}
+  .hero img{height:260px}
+  .site-title{font-size:20px}
+  nav a{font-size:15px;padding:9px 14px}
+  table{font-size:16px}
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="logo-tag">樂齡好食光</span>
+    <div>
+      <p class="site-title">一日三餐示範</p>
+      <p class="site-subtitle">溫和、好入口的一天菜單參考</p>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">首頁</a>
+    <a href="nutrition.html">營養小知識</a>
+    <a class="active" href="menu.html">一日三餐</a>
+    <a href="about.html">關於我們</a>
+    <a href="refs.html">參考資料來源</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section>
+    <h2>示範菜單</h2>
+    <p class="small-note">
+      每位長輩狀況不同，以下為一般示例；若有慢性疾病，仍建議依醫師或營養師指示調整。
+    </p>
+
+    <table>
+      <tr>
+        <th style="width:20%;">餐別</th>
+        <th style="width:40%;">餐點內容</th>
+        <th style="width:40%;">小提醒</th>
+      </tr>
+      <tr>
+        <td>早餐</td>
+        <td>
+          ▸ 無糖豆漿一杯<br>
+          ▸ 吐司一片（切小塊）<br>
+          ▸ 水煮蛋或軟煎蛋一顆
+        </td>
+        <td>豆漿＋蛋提供蛋白質；牙口較弱可把吐司沾豆漿一起吃。</td>
+      </tr>
+      <tr>
+        <td>午餐</td>
+        <td>
+          ▸ 白飯半碗～一碗<br>
+          ▸ 清蒸魚或燉軟雞肉<br>
+          ▸ 軟煮青菜一碗<br>
+          ▸ 清湯一碗
+        </td>
+        <td>調味不必太鹹；肉與菜煮軟，避免油炸與過油料理。</td>
+      </tr>
+      <tr>
+        <td>下午點心</td>
+        <td>
+          ▸ 優格或牛奶一杯<br>
+          ▸ 香蕉半根或切片蘋果
+        </td>
+        <td>水果切小塊方便入口；若有糖尿病需依醫囑調整份量。</td>
+      </tr>
+      <tr>
+        <td>晚餐</td>
+        <td>
+          ▸ 稀飯或軟飯半碗～一碗<br>
+          ▸ 豆腐煲或絞肉料理<br>
+          ▸ 軟煮蔬菜一份
+        </td>
+        <td>適合牙口較差或晚上不想吃太飽的長輩，以好消化為主。</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>家人的小任務</h2>
+    <div class="highlight">
+      <ul>
+        <li>每週量一次體重，若連續下降要特別留意。</li>
+        <li>觀察最近食量是否變少、是否變得很挑食。</li>
+        <li>盡量一起吃飯、多聊天，氣氛常常比菜色更重要。</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 樂齡好食光 專題製作團隊
+</footer>
+
+</body>
+</html>
