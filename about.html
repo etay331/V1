@@ -3,209 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>樂齡好食光｜關於我們</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>樂齡好食光</title>
-
+  <title>樂齡好食光｜營養計算中心</title>
   <style>
-    /* ✅ 把我下面給你的 CSS 貼在這裡（不要放在 body） */
-    :root{
-  --deep-gray:#403A34;
-  --mid-gray:#D8D0C6;
-  --accent-yellow:#FFC857;
-  --card-bg:#FFFFFF;
-  --text-main:#1F1F1F;
-  --light-gray:#BEB5AA;
-}
+    /* 這裡保留你原本所有的 CSS 設定 */
+    :root {
+      --deep-gray: #403A34;
+      --mid-gray: #D8D0C6;
+      --accent-yellow: #FFC857;
+      --card-bg: #FFFFFF;
+      --text-main: #1F1F1F;
+      --light-gray: #BEB5AA;
+    }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;scroll-behavior:smooth}
+    * { box-sizing: border-box }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth }
 
-body{
-  font-family:"Noto Sans TC","微軟正黑體",sans-serif;
-  background:var(--mid-gray);
-  color:var(--text-main);
-  font-size:18px;
-  line-height:1.7;
-  font-weight:500;
-}
+    body {
+      font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+      background: var(--mid-gray);
+      color: var(--text-main);
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
 
-p,li{letter-spacing:.2px}
-a{text-decoration:underline;text-underline-offset:3px}
-a:focus{outline:3px solid var(--accent-yellow);outline-offset:2px}
+    header {
+      background: var(--deep-gray);
+      color: #fff;
+      padding: 18px 15px;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .logo-tag {
+      background: var(--accent-yellow);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .site-title { margin: 0; font-size: 22px; font-weight: 900 }
+    .site-subtitle { margin: 4px 0 0; font-size: 15px; opacity: .92 }
 
-/* Header */
-header{
-  background:var(--deep-gray);
-  color:#fff;
-  padding:18px 15px;
-}
-.header-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.logo-tag{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:.5px;
-}
-.site-title{margin:0;font-size:22px;font-weight:900}
-.site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
+    nav {
+      background: var(--mid-gray);
+      border-top: 1px solid var(--light-gray);
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #646161;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 10px 16px;
+      border-radius: 999px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--accent-yellow);
+      color: var(--text-main);
+    }
 
-/* ✅ Hero：只有圖片、真正滿版（不會白底、不會圓角） */
-.hero{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  padding:0;
-  margin-top:0;
-  background:transparent;
-}
-.hero img{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-  object-position:center;
-}
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 15px 40px;
+    }
 
-/* Nav */
-nav{
-  background:var(--mid-gray);
-  border-top:1px solid var(--light-gray);
-  border-bottom:1px solid var(--light-gray);
-}
-.nav-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:10px 16px;
-  flex-wrap:wrap;
-}
-nav a{
-  color:#646161;
-  text-decoration:none;
-  font-weight:900;
-  font-size:16px;
-  padding:10px 16px;
-  border-radius:999px;
-}
-nav a:hover, nav a.active{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-}
+    main.container section {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 25px 20px;
+      margin-top: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
 
-/* Main */
-.container{
-  max-width:900px;
-  margin:0 auto;
-  padding:20px 15px 40px;
-}
+    h2 {
+      margin: 0 0 15px;
+      font-size: 22px;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-yellow);
+      color: var(--text-main);
+      font-weight: 900;
+    }
 
-/* Cards（注意：只套用在 main 裡的 section，不會影響 hero） */
-main.container section{
-  background:var(--card-bg);
-  border-radius:14px;
-  padding:20px 18px;
-  margin-top:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-}
-h2{
-  margin:0 0 10px;
-  font-size:22px;
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  font-weight:900;
-}
-h3{margin:16px 0 6px;font-size:19px;color:var(--deep-gray);font-weight:900}
-p{margin:10px 0}
-ul{padding-left:22px;margin:8px 0 10px}
-li{margin-bottom:6px}
+    /* --- 以下是為計算器特別新增的整合樣式 --- */
+    .calc-input-area {
+      background-color: #FDF9F2; /* 淡淡的暖黃底色 */
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    .input-group label {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: var(--deep-gray);
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .btn-calc {
+      grid-column: span 2;
+      background: var(--accent-yellow);
+      color: var(--text-main);
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+    .btn-calc:hover { background: #eeb540; }
 
-.highlight{
-  background:var(--accent-yellow);
-  border-radius:12px;
-  padding:12px 14px;
-  margin-top:10px;
-  font-size:17px;
-  color:#1e1e1e;
-}
+    #result-wrapper {
+      display: none;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .result-card {
+      flex: 1;
+      min-width: 280px;
+      border: 2px solid var(--accent-yellow);
+      border-radius: 12px;
+      padding: 15px;
+      background: #fff;
+    }
+    .result-card h4 {
+      margin: 0 0 10px;
+      color: var(--deep-gray);
+      text-align: center;
+      border-bottom: 1px solid var(--mid-gray);
+      padding-bottom: 5px;
+    }
+    .res-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .res-val { font-weight: 900; color: #d35400; }
 
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:900px){.grid{grid-template-columns:1fr}}
+    footer {
+      color: #646161;
+      font-size: 14px;
+      text-align: center;
+      padding: 25px 10px 35px;
+    }
 
-.card-link{
-  display:block;
-  border:2px solid #eee;
-  border-radius:14px;
-  padding:16px 14px;
-  text-decoration:none;
-  color:var(--text-main);
-  background:#fff;
-}
-.card-link:hover{border-color:#ddd}
-.card-link .tag{
-  display:inline-block;
-  background:var(--accent-yellow);
-  border-radius:999px;
-  padding:4px 10px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-.card-link .go{display:inline-block;margin-top:10px;font-weight:900}
-
-/* Table */
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:17px}
-th,td{border:1px solid #ddd;padding:10px;vertical-align:top;background:#fff}
-th{background:#f3f3f3;font-weight:900}
-td{line-height:1.8}
-tr:nth-child(even) td{background:#fafafa}
-
-/* Footer */
-footer{
-  color:#646161;
-  font-size:14px;
-  text-align:center;
-  padding:25px 10px 35px;
-}
-
-/* Mobile */
-@media (max-width:600px){
-  body{font-size:17px}
-  .hero img{height:260px}
-  .site-title{font-size:20px}
-  nav a{font-size:15px;padding:9px 14px}
-  table{font-size:16px}
-}
-
+    @media (max-width:600px){
+      .calc-input-area { grid-template-columns: 1fr; }
+      .btn-calc { grid-column: span 1; }
+    }
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="header-inner">
     <span class="logo-tag">樂齡好食光</span>
     <div>
-      <p class="site-title">關於我們</p>
-      <p class="site-subtitle">專題背景、理念與分工</p>
+      <p class="site-title">健康精算</p>
+      <p class="site-subtitle">量身打造您的每日營養需求</p>
     </div>
   </div>
 </header>
@@ -220,254 +206,73 @@ footer{
 </nav>
 
 <main class="container">
-
-
-  <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>健康計算器 - 暖色風格版</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-yellow: #FFC107;      /* 你們網站的標誌黃色 */
-            --light-yellow: #FFF9E6;        /* 極淡黃背景 */
-            --input-bg: #FEF3CD;            /* 輸入區淡黃色 */
-            --accent-brown: #5D4037;        /* 深咖啡色文字/邊框，搭黃色最專業 */
-            --card-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: var(--light-yellow);
-            margin: 0;
-            padding: 40px 15px;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .main-container {
-            width: 100%;
-            max-width: 900px;
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--accent-brown);
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        /* --- 輸入區塊 --- */
-        .input-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: var(--card-shadow);
-            margin-bottom: 30px;
-            border: 1px solid #F7E7B4;
-        }
-
-        .input-grid {
-            background-color: var(--input-bg);
-            border-radius: 15px;
-            padding: 25px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: 700;
-            color: var(--accent-brown);
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            border: 1px solid #E9D79A;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            background-color: white;
-        }
-
-        .input-group input:focus {
-            border-color: var(--primary-yellow);
-            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
-        }
-
-        .full-width { grid-column: span 2; }
-
-        /* --- 跟你們網站一樣的黃色按鈕 --- */
-        button {
-            grid-column: span 2;
-            background-color: var(--primary-yellow);
-            color: var(--accent-brown); /* 深色文字搭配黃底 */
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 0 #E0A800; /* 按鈕立體感 */
-        }
-
-        button:hover {
-            background-color: #FFD54F;
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-
-        /* --- 結果並排區 --- */
-        #result-wrapper {
-            display: none;
-            gap: 20px;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .result-panel {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-            border-top: 6px solid var(--primary-yellow);
-            min-width: 300px;
-        }
-
-        .result-panel h3 {
-            margin-top: 0;
-            color: var(--accent-brown);
-            border-bottom: 2px solid var(--light-yellow);
-            padding-bottom: 12px;
-            text-align: center;
-        }
-
-        .data-line {
-            display: flex;
-            justify-content: space-between;
-            padding: 14px 0;
-            border-bottom: 1px solid #FFF9E6;
-        }
-
-        .label { color: #88746B; font-size: 0.95rem; }
-        .value { font-weight: 700; color: #222; }
-        .val-highlight { color: #D35400; font-size: 1.2rem; }
-
-        @media (max-width: 768px) {
-            .input-grid { grid-template-columns: 1fr; }
-            .full-width, button { grid-column: span 1; }
-            #result-wrapper { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="main-container">
-    <h1>🍯 營養健康精算中心</h1>
-
-    <div class="input-card">
-        <div class="input-grid">
-            <div class="input-group">
-                <label>您的性別</label>
-                <select id="gender">
-                    <option value="male">男性 (Male)</option>
-                    <option value="female">女性 (Female)</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>年齡 (歲)</label>
-                <input type="number" id="age" placeholder="例如: 25">
-            </div>
-            <div class="input-group">
-                <label>身高 (cm)</label>
-                <input type="number" id="height" placeholder="例如: 175">
-            </div>
-            <div class="input-group">
-                <label>體重 (kg)</label>
-                <input type="number" id="weight" placeholder="例如: 70">
-            </div>
-            <div class="input-group full-width">
-                <label>日常活動量</label>
-                <select id="activity">
-                    <option value="1.2">久坐 (不太運動)</option>
-                    <option value="1.375">輕度 (每週運動 1-3 天)</option>
-                    <option value="1.55">中度 (每週運動 3-5 天)</option>
-                    <option value="1.725">高度 (每週運動 6-7 天)</option>
-                </select>
-            </div>
-            <button onclick="calculate()">立即生成健康報告</button>
-        </div>
+  <section>
+    <h2>🥗 營養需求計算機</h2>
+    <p>請輸入您的基本資料，我們將為您算出每日所需的熱量、飲水量及三大營養素比例。</p>
+    
+    <div class="calc-input-area">
+      <div class="input-group">
+        <label>您的性別</label>
+        <select id="gender">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>年齡 (歲)</label>
+        <input type="number" id="age" placeholder="例如: 65">
+      </div>
+      <div class="input-group">
+        <label>身高 (cm)</label>
+        <input type="number" id="height" placeholder="例如: 165">
+      </div>
+      <div class="input-group">
+        <label>體重 (kg)</label>
+        <input type="number" id="weight" placeholder="例如: 60">
+      </div>
+      <div class="input-group" style="grid-column: span 2;">
+        <label>日常活動量</label>
+        <select id="activity">
+          <option value="1.2">久坐 (不太運動)</option>
+          <option value="1.375">輕度 (每週運動 1-3 天)</option>
+          <option value="1.55">中度 (每週運動 3-5 天)</option>
+          <option value="1.725">高度 (每週運動 6-7 天)</option>
+        </select>
+      </div>
+      <button class="btn-calc" onclick="calculateHealth()">開始生成分析報告</button>
     </div>
 
     <div id="result-wrapper">
-        <div class="result-panel">
-            <h3>📅 每日建議總計</h3>
-            <div class="data-line">
-                <span class="label">總熱量 (TDEE)</span>
-                <span class="value val-highlight" id="res-tdee">-- kcal</span>
-            </div>
-            <div class="data-line">
-                <span class="label">飲水量</span>
-                <span class="value" id="res-water">-- ml</span>
-            </div>
-            <div class="data-line">
-                <span class="label">蛋白質</span>
-                <span class="value" id="res-p">-- g</span>
-            </div>
-            <div class="data-line">
-                <span class="label">碳水化合物</span>
-                <span class="value" id="res-c">-- g</span>
-            </div>
-            <div class="data-line">
-                <span class="label">脂肪</span>
-                <span class="value" id="res-f">-- g</span>
-            </div>
-        </div>
+      <div class="result-card">
+        <h4>📅 每日建議總計</h4>
+        <div class="res-line"><span>總熱量 (TDEE)</span><span class="res-val" id="res-tdee">--</span></div>
+        <div class="res-line"><span>建議飲水量</span><span class="res-val" id="res-water">--</span></div>
+        <div class="res-line"><span>蛋白質</span><span class="res-val" id="res-p">--</span></div>
+        <div class="res-line"><span>碳水化合物</span><span class="res-val" id="res-c">--</span></div>
+        <div class="res-line"><span>脂肪</span><span class="res-val" id="res-f">--</span></div>
+      </div>
 
-        <div class="result-panel">
-            <h3>🍽️ 平均單餐建議</h3>
-            <div class="data-line">
-                <span class="label">每餐熱量</span>
-                <span class="value val-highlight" id="m-cal">-- kcal</span>
-            </div>
-            <div class="data-line">
-                <span class="label">單餐飲水</span>
-                <span class="value" id="m-water">-- ml</span>
-            </div>
-            <div class="data-line">
-                <span class="label">蛋白質</span>
-                <span class="value" id="m-p">-- g</span>
-            </div>
-            <div class="data-line">
-                <span class="label">碳水化合物</span>
-                <span class="value" id="m-c">-- g</span>
-            </div>
-            <div class="data-line">
-                <span class="label">脂肪</span>
-                <span class="value" id="m-f">-- g</span>
-            </div>
-        </div>
+      <div class="result-card">
+        <h4>🍽️ 平均單餐建議</h4>
+        <div class="res-line"><span>單餐熱量</span><span class="res-val" id="m-cal">--</span></div>
+        <div class="res-line"><span>單餐飲水</span><span class="res-val" id="m-water">--</span></div>
+        <div class="res-line"><span>蛋白質</span><span class="res-val" id="m-p">--</span></div>
+        <div class="res-line"><span>碳水化合物</span><span class="res-val" id="m-c">--</span></div>
+        <div class="res-line"><span>脂肪</span><span class="res-val" id="m-f">--</span></div>
+      </div>
     </div>
-</div>
+  </section>
+
+ </main>
+
+<footer>
+  <p>© 2025 樂齡好食光</p>
+  <p>此網頁為期末報告使用，若有侵權請告知</p>
+  <p>製作者：張OO(009)、林OO(030)</p>
+</footer>
 
 <script>
-    function calculate() {
+    function calculateHealth() {
         const gender = document.getElementById('gender').value;
         const age = parseFloat(document.getElementById('age').value);
         const height = parseFloat(document.getElementById('height').value);
@@ -479,6 +284,7 @@ footer{
             return;
         }
 
+        // BMR 計算
         let bmr = (gender === 'male')
             ? (10 * weight + 6.25 * height - 5 * age + 5)
             : (10 * weight + 6.25 * height - 5 * age - 161);
@@ -486,11 +292,12 @@ footer{
         const tdee = bmr * activity;
         const water = weight * 35;
 
-        // 分配比例: P:30%, C:40%, F:30%
-        const p = (tdee * 0.3) / 4;
-        const c = (tdee * 0.4) / 4;
+        // 營養比例: P:20% (銀髮族需求較高), C:50%, F:30%
+        const p = (tdee * 0.2) / 4;
+        const c = (tdee * 0.5) / 4;
         const f = (tdee * 0.3) / 9;
 
+        // 更新 UI
         document.getElementById('res-tdee').innerText = Math.round(tdee) + " kcal";
         document.getElementById('res-water').innerText = Math.round(water) + " ml";
         document.getElementById('res-p').innerText = Math.round(p) + " g";
@@ -511,19 +318,3 @@ footer{
 
 </body>
 </html>
-
-
-
-</main>
-
-<footer>
- <p> © 2025 樂齡好食光 </p>
-  <p>此網頁為期末報告使用，若有侵權請告知</p>
-  <p>製作者：張OO(009)、林OO(030)</p>
-</footer>
-
-</body>
-</html>
-
-
-
