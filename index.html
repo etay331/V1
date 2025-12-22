@@ -246,16 +246,18 @@ footer{
   margin-top: 6px;
 }
 
-/* 左側小標籤 */
+/* 今日小提醒標籤：拿掉黃底，只留描邊 */
 .tip-inline-title{
-  background: var(--accent-yellow);
-  color: var(--text-main);
+  background: transparent;              /* ❌ 不要黃底 */
+  color: var(--deep-gray);
+  border: 2px solid var(--light-gray);  /* ✅ 淡灰描邊 */
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 900;
   white-space: nowrap;
 }
+
 
 /* 右側輪播文字（完全透明背景） */
 .tip-inline-rotator{
@@ -413,6 +415,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
