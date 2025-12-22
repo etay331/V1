@@ -189,8 +189,72 @@ footer{
   table{font-size:16px}
 }
 
+.tip-rotator{
+  background: var(--accent-yellow);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 18px;
+  position: relative;
+  overflow: hidden;
+  min-height: 56px; /* 避免切換時高度跳動 */
+}
+
+.tip-item{
+  display: none;
+  opacity: 0;
+  transition: opacity .35s ease;
+  line-height: 1.7;
+}
+
+.tip-item.is-active{
+  display: block;
+  opacity: 1;
+}
+
+/* 減少動態（使用者系統若設定減少動畫，這裡會更舒服） */
+@media (prefers-reduced-motion: reduce){
+  .tip-item{ transition: none; }
+}
+
   </style>
 </head>
+<script>
+  (function () {
+    const rotator = document.getElementById("tipRotator");
+    if (!rotator) return;
+
+    const items = Array.from(rotator.querySelectorAll(".tip-item"));
+    if (items.length === 0) return;
+
+    let idx = 0;
+    let timer = null;
+
+    function show(i){
+      items.forEach(el => el.classList.remove("is-active"));
+      items[i].classList.add("is-active");
+    }
+
+    function start(){
+      if (timer) return;
+      timer = setInterval(() => {
+        idx = (idx + 1) % items.length;
+        show(idx);
+      }, 3000); // 每 3 秒換一則（可改 4000/5000）
+    }
+
+    function stop(){
+      clearInterval(timer);
+      timer = null;
+    }
+
+    show(idx);
+    start();
+
+    // 滑鼠移上去暫停（閱讀更友善）
+    rotator.addEventListener("mouseenter", stop);
+    rotator.addEventListener("mouseleave", start);
+  })();
+</script>
 
 <body>
 
@@ -259,16 +323,15 @@ footer{
     </div>
   </section>
 
-  <section>
-    <h2>今日小提醒</h2>
-    <div class="highlight">
-      <ul>
-        <li>🌱 每一餐都試著放進一份蛋白質。</li>
-        <li>💧 水不用一次喝很多，分成很多小口慢慢喝就好。</li>
-        <li>🍚 菜和肉煮軟一點、切小塊，牙口不好也能吃得安心。</li>
-      </ul>
-    </div>
-  </section>
+<section>
+  <h2>今日小提醒</h2>
+
+  <div class="tip-rotator" id="tipRotator" aria-live="polite">
+    <div class="tip-item">🌱 每一餐都試著放進「一份蛋白質」。</div>
+    <div class="tip-item">💧 水不用一次喝很多，分成很多小口慢慢喝就好。</div>
+    <div class="tip-item">🍚 菜和肉煮軟一點、切小塊，牙口不好也能吃得安心。</div>
+  </div>
+</section>
 
 </main>
 
@@ -281,6 +344,7 @@ footer{
 
 </body>
 </html>
+
 
 
 
