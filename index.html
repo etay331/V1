@@ -190,15 +190,21 @@ footer{
 }
 
 .tip-rotator{
-  background: var(--accent-yellow);
+  background: #FFE9B5;      /* 比原本黃更淡、更溫暖 */
+  border-left: 8px solid #FFC857; /* 保留品牌黃色作為重點 */
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 18px;
+  color: #3a2f1f;
+}
+
+    background: var(--accent-yellow);
   border-radius: 12px;
   padding: 14px 16px;
   font-size: 18px;
   position: relative;
   overflow: hidden;
-  min-height: 56px; /* 避免切換時高度跳動 */
-}
-
+  min-height: 56px;
 .tip-item{
   display: none;
   opacity: 0;
@@ -290,11 +296,19 @@ footer{
 <section>
   <h2>今日小提醒</h2>
 
-  <div class="tip-rotator" id="tipRotator" aria-live="polite">
-    <div class="tip-item">🌱 每一餐都試著放進「一份蛋白質」。</div>
-    <div class="tip-item">💧 水不用一次喝很多，分成很多小口慢慢喝就好。</div>
-    <div class="tip-item">🍚 菜和肉煮軟一點、切小塊，牙口不好也能吃得安心。</div>
-  </div>
+<div class="tip-rotator" id="tipRotator">
+  <div class="tip-item">🌱 每一餐都試著放進一份蛋白質，幫助維持體力。</div>
+  <div class="tip-item">💧 水不用一次喝很多，分成小口慢慢喝比較不嗆。</div>
+  <div class="tip-item">🍚 飯菜煮軟一點、切小塊，牙口不好也能安心吃。</div>
+  <div class="tip-item">🥣 早餐吃一點熱食，有助於腸胃啟動。</div>
+  <div class="tip-item">🥛 牛奶、豆漿、優格都是補充蛋白質的好選擇。</div>
+  <div class="tip-item">🕰 固定時間吃飯，有助於維持身體節奏。</div>
+  <div class="tip-item">🥕 深色蔬菜富含營養，每天記得吃一點。</div>
+  <div class="tip-item">🍎 水果切小塊或去皮，吃起來更輕鬆。</div>
+  <div class="tip-item">🧂 口味清淡一點，對身體負擔比較小。</div>
+  <div class="tip-item">😊 吃飯時保持心情放鬆，也能幫助消化。</div>
+</div>
+
 </section>
 
 </main>
@@ -346,6 +360,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
