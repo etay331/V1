@@ -6,292 +6,252 @@
   <title>樂齡好食光</title>
 
   <style>
-    /* ✅ 把我下面給你的 CSS 貼在這裡（不要放在 body） */
     :root{
-  --deep-gray:#403A34;
-  --mid-gray:#D8D0C6;
-  --accent-yellow:#FFC857;
-  --card-bg:#FFFFFF;
-  --text-main:#1F1F1F;
-  --light-gray:#BEB5AA;
-}
+      --deep-gray:#403A34;
+      --mid-gray:#D8D0C6;
+      --accent-yellow:#FFC857;
+      --card-bg:#FFFFFF;
+      --text-main:#1F1F1F;
+      --light-gray:#BEB5AA;
+    }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;scroll-behavior:smooth}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;scroll-behavior:smooth}
 
-body{
-  font-family:"Noto Sans TC","微軟正黑體",sans-serif;
-  background:var(--mid-gray);
-  color:var(--text-main);
-  font-size:18px;
-  line-height:1.7;
-  font-weight:500;
-}
+    body{
+      font-family:"Noto Sans TC","微軟正黑體",sans-serif;
+      background:var(--mid-gray);
+      color:var(--text-main);
+      font-size:18px;
+      line-height:1.7;
+      font-weight:500;
+    }
 
-p,li{letter-spacing:.2px}
-a{text-decoration:underline;text-underline-offset:3px}
-a:focus{outline:3px solid var(--accent-yellow);outline-offset:2px}
+    p,li{letter-spacing:.2px}
+    /* 全域連結預設移除底線 */
+    a{text-decoration:none}
+    a:focus{outline:3px solid var(--accent-yellow);outline-offset:2px}
 
-/* Header */
-header{
-  background:var(--deep-gray);
-  color:#fff;
-  padding:18px 15px;
-}
-.header-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.logo-tag{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:.5px;
-}
-.site-title{margin:0;font-size:22px;font-weight:900}
-.site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
+    /* Header */
+    header{
+      background:var(--deep-gray);
+      color:#fff;
+      padding:18px 15px;
+    }
+    .header-inner{
+      max-width:900px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .logo-tag{
+      background:var(--accent-yellow);
+      color:var(--text-main);
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:16px;
+      font-weight:800;
+      letter-spacing:.5px;
+    }
+    .site-title{margin:0;font-size:22px;font-weight:900}
+    .site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
 
-/* ✅ Hero：只有圖片、真正滿版（不會白底、不會圓角） */
-.hero{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  padding:0;
-  margin-top:0;
-  background:transparent;
-}
-.hero img{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-  object-position:center;
-}
+    /* Hero */
+    .hero{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      padding:0;
+      margin-top:0;
+      background:transparent;
+    }
+    .hero img{
+      width:100%;
+      height:420px;
+      display:block;
+      object-fit:cover;
+      object-position:center;
+    }
 
-/* Nav */
-nav{
-  background:var(--mid-gray);
-  border-top:1px solid var(--light-gray);
-  border-bottom:1px solid var(--light-gray);
-}
-.nav-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:10px 16px;
-  flex-wrap:wrap;
-}
-nav a{
-  color:#646161;
-  text-decoration:none;
-  font-weight:900;
-  font-size:16px;
-  padding:10px 16px;
-  border-radius:999px;
-}
-nav a:hover, nav a.active{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-}
+    /* Nav */
+    nav{
+      background:var(--mid-gray);
+      border-top:1px solid var(--light-gray);
+      border-bottom:1px solid var(--light-gray);
+    }
+    .nav-inner{
+      max-width:900px;
+      margin:0 auto;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:10px 16px;
+      flex-wrap:wrap;
+    }
+    nav a{
+      color:#646161;
+      text-decoration:none;
+      font-weight:900;
+      font-size:16px;
+      padding:10px 16px;
+      border-radius:999px;
+    }
+    nav a:hover, nav a.active{
+      background:var(--accent-yellow);
+      color:var(--text-main);
+    }
 
-/* Main */
-.container{
-  max-width:900px;
-  margin:0 auto;
-  padding:20px 15px 40px;
-}
+    /* Main Container */
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      padding:20px 15px 40px;
+    }
 
-/* Cards（注意：只套用在 main 裡的 section，不會影響 hero） */
-main.container section{
-  background:var(--card-bg);
-  border-radius:14px;
-  padding:20px 18px;
-  margin-top:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-}
-h2{
-  margin:0 0 10px;
-  font-size:22px;
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  font-weight:900;
-}
-h3{margin:16px 0 6px;font-size:19px;color:var(--deep-gray);font-weight:900}
-p{margin:10px 0}
-ul{padding-left:22px;margin:8px 0 10px}
-li{margin-bottom:6px}
+    /* Sections / Cards */
+    main.container section{
+      background:var(--card-bg);
+      border-radius:14px;
+      padding:20px 18px;
+      margin-top:20px;
+      box-shadow:0 2px 6px rgba(0,0,0,.08);
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:var(--accent-yellow);
+      color:var(--text-main);
+      font-weight:900;
+    }
+    h3{margin:16px 0 10px;font-size:19px;color:var(--deep-gray);font-weight:900}
 
-.highlight{
-  background:var(--accent-yellow);
-  border-radius:12px;
-  padding:12px 14px;
-  margin-top:10px;
-  font-size:17px;
-  color:#1e1e1e;
-}
+    /* Grid for Nav Cards */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card-link{
+      display:block;
+      border:2px solid #eee;
+      border-radius:14px;
+      padding:16px 14px;
+      text-decoration:none;
+      color:var(--text-main);
+      background:#fff;
+    }
+    .card-link .tag{
+      display:inline-block;
+      background:var(--accent-yellow);
+      border-radius:999px;
+      padding:4px 10px;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+    .card-link .go{display:inline-block;margin-top:10px;font-weight:900}
 
-.card-link{
-  display:block;
-  border:2px solid #eee;
-  border-radius:14px;
-  padding:16px 14px;
-  text-decoration:none;
-  color:var(--text-main);
-  background:#fff;
-}
-.card-link:hover{border-color:#ddd}
-.card-link .tag{
-  display:inline-block;
-  background:var(--accent-yellow);
-  border-radius:999px;
-  padding:4px 10px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-.card-link .go{display:inline-block;margin-top:10px;font-weight:900}
+    /* 今日小提醒 */
+    .tip-section{ background: transparent !important; box-shadow: none !important; padding: 0 !important; margin-top: 12px; }
+    .tip-inline{ display: flex; align-items: center; gap: 12px; margin: 0 auto; max-width: 760px; }
+    .tip-inline-title{ background: #FFC857; color: var(--text-main); padding: 6px 14px; border-radius: 999px; font-size: 15px; font-weight: 900; line-height: 1; white-space: nowrap; }
+    .tip-inline-rotator{ flex: 1; background: #F6F1E8; border-left: 4px solid var(--accent-yellow); border-radius: 12px; padding: 8px 14px; font-size: 17px; color: #3a2f1f; line-height: 1.7; }
+    .tip-item{ display: none; opacity: 0; transition: opacity .4s ease; }
+    .tip-item.is-active{ display: block; opacity: 1; }
 
-/* Table */
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:17px}
-th,td{border:1px solid #ddd;padding:10px;vertical-align:top;background:#fff}
-th{background:#f3f3f3;font-weight:900}
-td{line-height:1.8}
-tr:nth-child(even) td{background:#fafafa}
+    /* ------------------------------------------------ */
+    /* ✅ 延伸閱讀區塊 */
+    /* ------------------------------------------------ */
+    .reading-container {
+      display: flex;
+      flex-direction: column; 
+      gap: 16px;
+      margin-top: 15px;
+    }
+    .reading-box {
+      background: #F6F1E8; 
+      border-left: 4px solid var(--accent-yellow); 
+      padding: 20px;
+      border-radius: 12px;
+    }
 
-/* Footer */
-footer{
-  color:#646161;
-  font-size:14px;
-  text-align:center;
-  padding:25px 10px 35px;
-}
+    .works-split {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .work-item {
+      flex: 1;
+      text-align: center;
+    }
 
-/* Mobile */
-@media (max-width:600px){
-  body{font-size:17px}
-  .hero img{height:260px}
-  .site-title{font-size:20px}
-  nav a{font-size:15px;padding:9px 14px}
-  table{font-size:16px}
-}
+    /* 🎥 影片與輪播比例容器 */
+    .video-container, .slideshow-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; 
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: #FFF9C7; 
+    }
+    .video-container iframe, .slideshow-container img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
 
+    .slideshow-container img {
+      object-fit: contain; 
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .slideshow-container img.active {
+      opacity: 1;
+    }
 
-.tip-item{
-  display:none;
-  opacity:0;
-  transition:opacity .45s ease;
-  line-height:1.7;
-}
+    .reading-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .reading-list li { font-size: 17px; }
+    .reading-list a { color: var(--text-main); border-bottom: 1px solid var(--light-gray); }
+    .reading-list a:hover { background: var(--accent-yellow); }
 
-.tip-item.is-active{
-  display:block;
-  opacity:1;
-}
+    .item-caption {
+      display: block;
+      margin-top: 10px;
+      font-weight: 800;
+      color: var(--deep-gray);
+    }
+    
+    /* 下載連結專用樣式 */
+    .download-text-link {
+      text-decoration: underline !important;
+      color: var(--deep-gray);
+      margin-left: 4px;
+    }
+    .download-text-link:hover {
+      color: #000;
+    }
 
-@media (prefers-reduced-motion: reduce){
-  .tip-item{ transition:none; }
-}
+    /* Footer */
+    footer{
+      color:#646161;
+      font-size:14px;
+      text-align:center;
+      padding:25px 10px 35px;
+    }
 
-/* 今日小提醒：同一行排列 */
-.tip-row{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;              /* 手機會自動換行 */
-}
-
-/* 左側小標籤 */
-.tip-title{
-  background: var(--accent-yellow);
-  color: var(--text-main);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 900;
-  font-size: 16px;
-  white-space: nowrap;          /* 不要被擠斷 */
-}
-
-
-
-/* 減少動態（使用者系統若設定減少動畫，這裡會更舒服） */
-@media (prefers-reduced-motion: reduce){
-  .tip-item{ transition: none; }
-}
-/* ✅ 今日小提醒：不要白色底卡片 */
-.tip-section{
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin-top: 12px;
-}
-.tip-inline{
-  display: flex;
-  align-items: center;     /* 🔑 垂直對齊 */
-  gap: 12px;
-  margin: 0 auto;          /* 🔑 整條置中 */
-  max-width: 760px;
-}
-
-
-
-
-
-/* 今日小提醒標籤：黃底、無描邊、與提醒句對齊 */
-.tip-inline-title{
-  background: #FFC857;     /* 黃底 */
-  color: var(--text-main);
-  border: none;            /* ✅ 拿掉描邊 */
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 900;
-  line-height: 1;          /* 🔑 關鍵：讓高度不亂跑 */
-  white-space: nowrap;
-}
-
-
-
-.tip-inline-rotator{
-  flex: 1;
-  background: #F6F1E8;        
-  border-left: 4px solid var(--accent-yellow);
-  border-radius: 12px;
-  padding: 8px 14px;
-  font-size: 17px;
-  color: #3a2f1f;
-  line-height: 1.7;
-}
-
-
-/* 輪播控制 */
-.tip-item{
-  display: none;
-  opacity: 0;
-  transition: opacity .4s ease;
-}
-
-.tip-item.is-active{
-  display: block;
-  opacity: 1;
-}
-
+    @media (max-width:768px){
+      .works-split { flex-direction: column; }
+      .reading-list { flex-direction: column; gap: 8px; }
+    }
   </style>
 </head>
-
 
 <body>
 
@@ -305,12 +265,9 @@ footer{
   </div>
 </header>
 
-<!-- 滿版橫幅（只有圖片） -->
 <section class="hero">
   <img src="https://etay331.github.io/V1/hero.png" alt="樂齡好食光封面橫幅">
 </section>
-
-
 
 <nav>
   <div class="nav-inner">
@@ -323,127 +280,135 @@ footer{
 
 <main class="container">
 
-  <section>
-  <div class="tip-inline">
-    <span class="tip-inline-title">今日小提醒</span>
-<div class="tip-inline-rotator" id="tipRotator" aria-live="polite">
-  <div class="tip-item">🌱 每餐加一份蛋白質（豆腐、蛋、魚、肉），幫助維持體力。</div>
-  <div class="tip-item">💧 水分分次小口喝，避免一次太多不舒服。</div>
-  <div class="tip-item">🍚 飯菜煮軟、切小塊，牙口不好也能安心吃。</div>
-  <div class="tip-item">🥣 早上先吃一點溫熱食物，腸胃比較舒服。</div>
-  <div class="tip-item">🥛 牛奶、豆漿、優格可補蛋白質與鈣（依個人狀況選）。</div>
-  <div class="tip-item">🕰 固定時間吃飯，幫助維持身體作息。</div>
-  <div class="tip-item">🥕 深色蔬菜每天吃一點，營養更完整。</div>
-  <div class="tip-item">🍎 水果切小塊或去皮，吃起來更輕鬆。</div>
-  <div class="tip-item">🧂 口味清淡一點，身體負擔比較小。</div>
-  <div class="tip-item">😊 吃飯放慢速度、心情放鬆，幫助消化。</div>
-  <div class="tip-item">🍲 湯品少油少鹽，暖胃又好入口。</div>
-  <div class="tip-item">🥚 不想吃肉時，用蛋、豆製品補蛋白質也很方便。</div>
-  <div class="tip-item">🥔 根莖類（地瓜、南瓜）煮軟後更好吞嚥。</div>
-  <div class="tip-item">🍵 餐後別立刻躺下，先坐一會兒比較舒服。</div>
-  <div class="tip-item">🧃 甜飲少一點，用白開水或無糖茶更好。</div>
-  <div class="tip-item">🍽 份量不必一次吃很多，少量多餐也可以。</div>
-  <div class="tip-item">🧊 冰的刺激腸胃，怕不舒服就選常溫或溫熱。</div>
-  <div class="tip-item">🫶 有慢性病或特殊飲食需求，記得依醫師/營養師建議調整。</div>
-</div>
+  <section class="tip-section">
+    <div class="tip-inline">
+      <span class="tip-inline-title">今日小提醒</span>
+      <div class="tip-inline-rotator" id="tipRotator" aria-live="polite">
+        <div class="tip-item">🌱 每餐加一份蛋白質，幫助維持體力。</div>
+        <div class="tip-item">💧 水分分次小口喝，避免一次太多不舒服。</div>
+        <div class="tip-item">🍚 飯菜煮軟、切小塊，牙口不好也能安心吃。</div>
+        <div class="tip-item">🥣 早上先吃一點溫熱食物，腸胃比較舒服。</div>
+        <div class="tip-item">🥛 牛奶、豆漿、優格可補蛋白質與鈣。</div>
+        <div class="tip-item">😊 吃飯放慢速度、心情放鬆，幫助消化。</div>
+      </div>
+    </div>
+  </section>
 
-
-</section>
   <section>
     <h2>網站理念</h2>
     <p>樂齡好食光由學生團隊製作，整理長輩常見的飲食與營養重點，
       以清楚的段落與大字體呈現，讓家人與照顧者能快速找到方向，
       也讓長輩能夠自己慢慢閱讀、安心理解。
-      我們希望透過簡單易讀的網頁，陪伴家人一起守護長輩的每一餐，
+      我們希望透過簡單易讀網頁，陪伴家人一起守護長輩的每一餐，
       讓吃飯這件事，成為安心、溫柔、被好好照顧的日常。✨🫶🏻
     </p>
   </section>
 
-
-
   <section>
     <h2>網站內容導覽</h2>
     <p>以下三個主題是本網站的核心內容，可快速前往：</p>
-
     <div class="grid">
       <a class="card-link" href="nutrition.html">
         <div class="tag">🥗 營養小知識</div>
         <div>認識蛋白質、鈣質、纖維與水分等長輩常見營養重點。</div>
         <span class="go">前往 →</span>
       </a>
-
       <a class="card-link" href="menu.html">
         <div class="tag">🍱 一日三餐示範</div>
         <div>提供溫和、好入口的一天菜單參考，方便家人安排。</div>
         <span class="go">查看 →</span>
       </a>
-
       <a class="card-link" href="about.html">
-        <div class="tag">ℹ️ 營養計算小工具</div>
+        <div class="tag">ℹ️ 營養計算工具</div>
         <div>簡單輸入條件，快速估算長輩每日所需營養，作為飲食參考。</div>
         <span class="go">試算 →</span>
       </a>
     </div>
   </section>
 
+  <section>
+    <h2>延伸閱讀</h2>
+    <div class="reading-container">
+      
+      <div class="reading-box">
+        <h3>我們的作品</h3>
+        <div class="works-split">
+          <div class="work-item">
+            <div class="video-container">
+              <iframe 
+                src="https://www.youtube.com/embed/6SbnIm0ZrS4" 
+                title="樂齡飲食影片" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <span class="item-caption">🎥 樂齡飲食宣導影片</span>
+          </div>
+          <div class="work-item">
+            <div class="slideshow-container" id="manualSlideshow">
+              <img src="/三折頁1_0.png" alt="衛教手冊封面" class="active">
+              <img src="/三折頁2_0.png" alt="衛教手冊內頁">
+            </div>
+            <span class="item-caption">
+              <span>📘 營養衛教三折頁：重拾食慾</span>
+              <a href="/三折頁.pdf" download="樂齡營養三折頁.pdf" class="download-text-link">
+                (點擊下載)
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
 
+      <div class="reading-box">
+        <h3>補充資料</h3>
+        <ul class="reading-list">
+          <li><a href="https://www.hpa.gov.tw" target="_blank">🔗 國健署高齡營養專區</a></li>
+          <li><a href="https://www.nutri.jtf.org.tw/Article/Info/5125">🔗 董氏基金會食品營養專區</a></li>
+          <li><a href="https://elderhealthcare.ntunhs.edu.tw/tab/529/id/197">🔗 高齡健康與長期照顧知識網</a></li>
+      </ul>
+      </div>
+
+    </div>
+  </section>
 
 </main>
 
 <footer>
-  本網站內容僅為一般營養觀念整理，若有特殊疾病或不適，建議諮詢醫師或營養師。<br />
-   <p> © 2025 樂齡好食光 </p>
-  <p>此網頁為期末報告使用，若有侵權請告知</p>
+  本網站內容僅為一般營養觀念整理，若有特殊疾病，建議諮詢醫師或營養師。<br />
+  <p> © 2025 樂齡好食光 </p>
   <p>製作者：張OO(009)、林OO(030)</p>
 </footer>
+
 <script>
+  // 1. 今日小提醒輪播
   (function () {
     const rotator = document.getElementById("tipRotator");
     if (!rotator) return;
-
     const items = Array.from(rotator.querySelectorAll(".tip-item"));
-    if (items.length === 0) return;
-
     let idx = 0;
-
     function show(i){
       items.forEach(el => el.classList.remove("is-active"));
       items[i].classList.add("is-active");
     }
-
     show(idx);
-
     setInterval(() => {
       idx = (idx + 1) % items.length;
       show(idx);
-    }, 4500); // ✅ 建議 3.5 秒，長輩更好讀（想更慢改 4500/5000）
+    }, 4500);
+  })();
+
+  // 2. 作品圖片自動輪播
+  (function () {
+    const slideshow = document.getElementById("manualSlideshow");
+    if (!slideshow) return;
+    const images = Array.from(slideshow.querySelectorAll("img"));
+    let currentIdx = 0;
+    setInterval(() => {
+      images[currentIdx].classList.remove("active");
+      currentIdx = (currentIdx + 1) % images.length;
+      images[currentIdx].classList.add("active");
+    }, 3000);
   })();
 </script>
 
-
-
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
