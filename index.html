@@ -238,13 +238,13 @@ footer{
   padding: 0 !important;
   margin-top: 12px;
 }
-/* 今日小提醒：融入內容卡片（無底色） */
 .tip-inline{
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;   /* ⭐ 這行讓兩邊垂直置中對齊 */
+  gap: 12px;
   margin-top: 6px;
 }
+
 
 /* 今日小提醒標籤：拿掉黃底，只留描邊 */
 .tip-inline-title{
@@ -258,13 +258,12 @@ footer{
   white-space: nowrap;
 }
 
-/* 今日小提醒：內容區塊的淡黃底（你喜歡的那塊） */
 .tip-inline-rotator{
   flex: 1;
-  background: #F6F1E8;          /* 🌼 你現在喜歡的淡黃/米色 */
-  border-left: 5px solid var(--accent-yellow);
+  background: #F6F1E8;        /* 🌼 溫柔米色，不黃不白 */
+  border-left: 4px solid var(--accent-yellow);
   border-radius: 12px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-size: 17px;
   color: #3a2f1f;
   line-height: 1.7;
@@ -419,6 +418,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
