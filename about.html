@@ -103,9 +103,9 @@
       font-weight: 900;
     }
 
-    /* --- 以下是為計算器特別新增的整合樣式 --- */
+    /* --- 計算器整合樣式 --- */
     .calc-input-area {
-      background-color: #FDF9F2; /* 淡淡的暖黃底色 */
+      background-color: #FDF9F2;
       border-radius: 12px;
       padding: 20px;
       margin-top: 15px;
@@ -201,7 +201,7 @@
     <a href="index.html">首頁</a>
     <a href="nutrition.html">營養小知識</a>
     <a href="menu.html">一日三餐</a>
-    <a class="active" href="about.html">營養計算小工具</a>
+    <a class="active" href="about.html">關於我們</a>
   </div>
 </nav>
 
@@ -253,9 +253,8 @@
       </div>
 
       <div class="result-card">
-        <h4>🍽️ 平均單餐建議</h4>
-        <div class="res-line"><span>單餐熱量</span><span class="res-val" id="m-cal">--</span></div>
-        <div class="data-line"><span class="label">單餐飲水</span><span class="value" id="m-water">-- ml</span></div>
+        <h4>🍽️ 平均單餐建議 (3餐計)</h4>
+        <div class="res-line"><span>每餐熱量</span><span class="res-val" id="m-cal">--</span></div>
         <div class="res-line"><span>蛋白質</span><span class="res-val" id="m-p">--</span></div>
         <div class="res-line"><span>碳水化合物</span><span class="res-val" id="m-c">--</span></div>
         <div class="res-line"><span>脂肪</span><span class="res-val" id="m-f">--</span></div>
@@ -263,7 +262,11 @@
     </div>
   </section>
 
- </main>
+  <section>
+    <h2>📖 關於我們的理念</h2>
+    <p>致力於推廣銀髮族健康飲食，讓每一口食物都成為守護健康的屏障...</p>
+  </section>
+</main>
 
 <footer>
   <p>© 2025 樂齡好食光</p>
@@ -284,7 +287,6 @@
             return;
         }
 
-        // BMR 計算
         let bmr = (gender === 'male')
             ? (10 * weight + 6.25 * height - 5 * age + 5)
             : (10 * weight + 6.25 * height - 5 * age - 161);
@@ -292,20 +294,20 @@
         const tdee = bmr * activity;
         const water = weight * 35;
 
-        // 營養比例: P:20% (銀髮族需求較高), C:50%, F:30%
+        // 蛋白質 20%, 碳水 50%, 脂肪 30%
         const p = (tdee * 0.2) / 4;
         const c = (tdee * 0.5) / 4;
         const f = (tdee * 0.3) / 9;
 
-        // 更新 UI
+        // 更新每日
         document.getElementById('res-tdee').innerText = Math.round(tdee) + " kcal";
         document.getElementById('res-water').innerText = Math.round(water) + " ml";
         document.getElementById('res-p').innerText = Math.round(p) + " g";
         document.getElementById('res-c').innerText = Math.round(c) + " g";
         document.getElementById('res-f').innerText = Math.round(f) + " g";
 
+        // 更新單餐
         document.getElementById('m-cal').innerText = Math.round(tdee/3) + " kcal";
-        document.getElementById('m-water').innerText = Math.round(water/3) + " ml";
         document.getElementById('m-p').innerText = Math.round(p/3) + " g";
         document.getElementById('m-c').innerText = Math.round(c/3) + " g";
         document.getElementById('m-f').innerText = Math.round(f/3) + " g";
@@ -318,6 +320,3 @@
 
 </body>
 </html>
-
-
-
