@@ -241,16 +241,17 @@ footer{
 .tip-inline{
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 auto;        /* ✅ 水平置中 */
-  max-width: 760px;      /* ✅ 不要太寬，更像提示條 */
+  gap: 14px;          /* 比 12 稍微鬆一點 */
+  margin: 0 auto;
+  max-width: 760px;
 }
+
 
 
 
 /* 今日小提醒：有底色、無框線 */
 .tip-inline-title{
-  background: #FFF2CC;          /* 🌼 跟右邊一致的淡黃感 */
+  background: #FAF6EF;          /* 🌼 跟右邊一致的淡黃感 */
   color: var(--deep-gray);
   border: none;                 /* ❌ 拿掉框線 */
   padding: 6px 14px;
@@ -412,7 +413,7 @@ footer{
     setInterval(() => {
       idx = (idx + 1) % items.length;
       show(idx);
-    }, 3500); // ✅ 建議 3.5 秒，長輩更好讀（想更慢改 4500/5000）
+    }, 4500); // ✅ 建議 3.5 秒，長輩更好讀（想更慢改 4500/5000）
   })();
 </script>
 
@@ -421,6 +422,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
