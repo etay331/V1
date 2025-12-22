@@ -1,217 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>樂齡好食光｜營養小知識</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>樂齡好食光</title>
-
   <style>
-    /* ✅ 把我下面給你的 CSS 貼在這裡（不要放在 body） */
-    :root{
-  --deep-gray:#403A34;
-  --mid-gray:#D8D0C6;
-  --accent-yellow:#FFC857;
-  --card-bg:#FFFFFF;
-  --text-main:#1F1F1F;
-  --light-gray:#BEB5AA;
-}
+    :root {
+      --deep-gray: #403A34;
+      --mid-gray: #D8D0C6;
+      --accent-yellow: #FFC857;
+      --card-bg: #FFFFFF;
+      --text-main: #1F1F1F;
+      --light-gray: #BEB5AA;
+      --divider: #ECEAE7; /* 分隔線顏色 */
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+      background: var(--mid-gray);
+      color: var(--text-main);
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 500;
+    }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;scroll-behavior:smooth}
+    /* Header & Nav */
+    header { background: var(--deep-gray); color: #fff; padding: 18px 15px; }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .logo-tag { background: var(--accent-yellow); color: var(--text-main); padding: 6px 12px; border-radius: 999px; font-size: 16px; font-weight: 800; }
+    .site-title { margin: 0; font-size: 22px; font-weight: 900; }
+    .site-subtitle { margin: 4px 0 0; font-size: 15px; opacity: .92; }
+    
+    nav { background: var(--mid-gray); border-top: 1px solid var(--light-gray); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; gap: 10px; padding: 10px 16px; flex-wrap: wrap; }
+    nav a { color: #646161; text-decoration: none; font-weight: 900; font-size: 16px; padding: 10px 16px; border-radius: 999px; }
+    nav a:hover, nav a.active { background: var(--accent-yellow); color: var(--text-main); }
 
-body{
-  font-family:"Noto Sans TC","微軟正黑體",sans-serif;
-  background:var(--mid-gray);
-  color:var(--text-main);
-  font-size:18px;
-  line-height:1.7;
-  font-weight:500;
-}
+    /* Main Container */
+    .container { max-width: 900px; margin: 0 auto; padding: 20px 15px 40px; }
+    section { background: var(--card-bg); border-radius: 16px; padding: 30px 25px; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,.05); }
+    
+    /* 文字樣式 */
+    h2, h4 { margin: 0 0 15px; font-size: 22px; display: inline-block; padding: 6px 16px; border-radius: 999px; background: var(--accent-yellow); color: var(--text-main); font-weight: 900; }
+    h3 { margin: 0 0 10px; font-size: 19px; color: var(--deep-gray); font-weight: 900; border-left: 5px solid var(--accent-yellow); padding-left: 12px; }
+    .red-bold { color: #AB2328; font-weight: bold; }
+    .highlight { background: var(--accent-yellow); border-radius: 12px; padding: 15px; margin-top: 10px; font-size: 17px; }
+    ul { padding-left: 20px; margin: 0; }
+    li { margin-bottom: 6px; }
 
-p,li{letter-spacing:.2px}
-a{text-decoration:underline;text-underline-offset:3px}
-a:focus{outline:3px solid var(--accent-yellow);outline-offset:2px}
+    /* ✨ 左右佈局：調整圖片往右移動 */
+    .content-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 50px;              /* 增加間距，讓圖片往右移 */
+      padding: 25px 0;        /* 增加上下內距 */
+    }
 
-/* Header */
-header{
-  background:var(--deep-gray);
-  color:#fff;
-  padding:18px 15px;
-}
-.header-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.logo-tag{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:.5px;
-}
-.site-title{margin:0;font-size:22px;font-weight:900}
-.site-subtitle{margin:4px 0 0;font-size:15px;opacity:.92}
+    /* 增加分隔線樣式 */
+    .divider {
+      border: 0;
+      height: 1px;
+      background: var(--divider);
+      margin: 0;
+    }
 
-/* ✅ Hero：只有圖片、真正滿版（不會白底、不會圓角） */
-.hero{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  padding:0;
-  margin-top:0;
-  background:transparent;
-}
-.hero img{
-  width:100%;
-  height:420px;
-  display:block;
-  object-fit:cover;
-  object-position:center;
-}
+    .content-text {
+      flex: 0 0 55%;          /* 固定文字佔 55% 寬度，確保整齊 */
+      min-width: 250px;
+    }
 
-/* Nav */
-nav{
-  background:var(--mid-gray);
-  border-top:1px solid var(--light-gray);
-  border-bottom:1px solid var(--light-gray);
-}
-.nav-inner{
-  max-width:900px;
-  margin:0 auto;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:10px 16px;
-  flex-wrap:wrap;
-}
-nav a{
-  color:#646161;
-  text-decoration:none;
-  font-weight:900;
-  font-size:16px;
-  padding:10px 16px;
-  border-radius:999px;
-}
-nav a:hover, nav a.active{
-  background:var(--accent-yellow);
-  color:var(--text-main);
-}
+    .content-side-img {
+      width: 240px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
 
-/* Main */
-.container{
-  max-width:900px;
-  margin:0 auto;
-  padding:20px 15px 40px;
-}
+    /* 手機版適配 */
+    @media (max-width: 650px) {
+      .content-row { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .content-side-img { width: 100%; height: auto; }
+      .content-text { flex: none; width: 100%; }
+    }
 
-/* Cards（注意：只套用在 main 裡的 section，不會影響 hero） */
-main.container section{
-  background:var(--card-bg);
-  border-radius:14px;
-  padding:20px 18px;
-  margin-top:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-}
-h2{
-  margin:0 0 10px;
-  font-size:22px;
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  font-weight:900;
-}
-h3{margin:16px 0 6px;font-size:19px;color:var(--deep-gray);font-weight:900}
-p{margin:10px 0}
-ul{padding-left:22px;margin:8px 0 10px}
-li{margin-bottom:6px}
-
-.highlight{
-  background:var(--accent-yellow);
-  border-radius:12px;
-  padding:12px 14px;
-  margin-top:10px;
-  font-size:17px;
-  color:#1e1e1e;
-}
-h4{
-  margin:0 0 10px;
-  font-size:22px;
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:var(--accent-yellow);
-  color:var(--text-main);
-  font-weight:900;
-}
-
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:900px){.grid{grid-template-columns:1fr}}
-
-.card-link{
-  display:block;
-  border:2px solid #eee;
-  border-radius:14px;
-  padding:16px 14px;
-  text-decoration:none;
-  color:var(--text-main);
-  background:#fff;
-}
-.card-link:hover{border-color:#ddd}
-.card-link .tag{
-  display:inline-block;
-  background:var(--accent-yellow);
-  border-radius:999px;
-  padding:4px 10px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-.card-link .go{display:inline-block;margin-top:10px;font-weight:900}
-
-/* Table */
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:17px}
-th,td{border:1px solid #ddd;padding:10px;vertical-align:top;background:#fff}
-th{background:#f3f3f3;font-weight:900}
-td{line-height:1.8}
-tr:nth-child(even) td{background:#fafafa}
-
-/* Footer */
-footer{
-  color:#646161;
-  font-size:14px;
-  text-align:center;
-  padding:25px 10px 35px;
-}
-
-/* Mobile */
-@media (max-width:600px){
-  body{font-size:17px}
-  .hero img{height:260px}
-  .site-title{font-size:20px}
-  nav a{font-size:15px;padding:9px 14px}
-  table{font-size:16px}
-}
-      .red{color:#AB2328; font-weight:bold}
-      .bold{font-weight:bold;}
-
-      
+    footer { color: #646161; font-size: 14px; text-align: center; padding: 30px 10px; }
   </style>
 </head>
 <body>
@@ -236,46 +112,57 @@ footer{
 </nav>
 
 <main class="container">
-
-      <section>
-    <h4 class="bold">為什麼要關心長輩飲食？</h4>
+  <section>
+    <h4>為什麼要關心長輩飲食？</h4>
     <ul>
       <li>年紀增長後，食慾與咀嚼能力可能下降，吃得少但更要吃得對。</li>
       <li>營養不足可能影響體力與行動力，增加跌倒與疲勞風險。</li>
-      <li>把飲食調整得<span style="color: #AB2328; font-weight: bold;">好入口、好消化</span>，能提升生活品質。</li>
+      <li>把飲食調整得<span style="color: #AB2328; font-weight: bold;">
+        好入口、好消化</span>，能提升生活品質。</li>
     </ul>
   </section>
-
-
     
-
   <section>
     <h2>長輩飲食重點</h2>
-    <p class=red>
-      年紀變大後，身體狀況會慢慢改變，飲食不一定要吃很多，
-      但要<strong>吃得剛剛好、吃得均衡</strong>，精神與體力才會跟著好起來。
+    <p class="red-bold" style="margin-bottom: 10px;">
+      飲食不一定要吃很多，但要吃得剛剛好、吃得均衡。
     </p>
 
-    <h3>1. 蛋白質：維持肌肉與體力</h3>
-    <ul>
-      <li>豆漿、豆腐、豆干</li>
-      <li>雞蛋、蒸蛋</li>
-      <li>魚肉、雞肉、瘦豬肉</li>
-    </ul>
+    <div class="content-row">
+      <div class="content-text">
+        <h3>1. 蛋白質：維持肌肉與體力</h3>
+        <ul>
+          <li>豆漿、豆腐、豆干</li>
+          <li>雞蛋、蒸蛋</li>
+          <li>魚肉、雞肉、瘦豬肉</li>
+        </ul>
+      </div>
+      <img src="https://etay331.github.io/V1/one.png" alt="蛋白質食物" class="content-side-img">
+    </div>
 
-    <h3>2. 鈣質：保護骨頭，減少跌倒風險</h3>
-    <ul>
-      <li>牛奶、優格、起司</li>
-      <li>小魚乾（注意鹽分）</li>
-      <li>深綠色蔬菜（地瓜葉、芥藍菜等）</li>
-    </ul>
+    <hr class="divider"> <div class="content-row">
+      <div class="content-text">
+        <h3>2. 鈣質：保護骨頭，減少跌倒風險</h3>
+        <ul>
+          <li>牛奶、優格、起司</li>
+          <li>小魚乾(注意鹽分)</li>
+          <li>深綠色蔬菜(地瓜葉、芥藍菜等)</li>
+        </ul>
+      </div>
+      <img src="https://etay331.github.io/V1/two.png" alt="鈣質食物" class="content-side-img">
+    </div>
 
-    <h3>3. 纖維＋水分：讓腸胃更順暢</h3>
-    <ul>
-      <li>蔬菜、水果、燕麥、全麥麵包</li>
-      <li>避免只吃白飯和肉、幾乎不吃菜</li>
-      <li>一整天多次少量補充水分</li>
-    </ul>
+    <hr class="divider"> <div class="content-row">
+      <div class="content-text">
+        <h3>3. 纖維＋水分：讓腸胃更順暢</h3>
+        <ul>
+          <li>蔬菜、水果、燕麥、全麥麵包</li>
+          <li>避免只吃白飯、肉或幾乎不吃菜</li>
+          <li>一整天多次少量補充水分</li>
+        </ul>
+      </div>
+      <img src="https://etay331.github.io/V1/three.png" alt="纖維食物" class="content-side-img">
+    </div>
   </section>
 
   <section>
@@ -288,11 +175,10 @@ footer{
       </ul>
     </div>
   </section>
-
 </main>
 
 <footer>
-  本網站內容僅為一般營養觀念整理，若有特殊疾病或不適，建議諮詢醫師或營養師。<br />
+    本網站內容僅為一般營養觀念整理，若有特殊疾病或不適，建議諮詢醫師或營養師。<br />
    <p> © 2025 樂齡好食光 </p>
   <p>此網頁為期末報告使用，若有侵權請告知</p>
   <p>製作者：張OO(009)、林OO(030)</p>
@@ -300,18 +186,3 @@ footer{
 
 </body>
 </html>
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-
-</html>
-
-
-
-
-
-
-
-
