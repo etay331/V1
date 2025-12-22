@@ -216,6 +216,37 @@ footer{
   .tip-item{ transition:none; }
 }
 
+/* 今日小提醒：同一行排列 */
+.tip-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;              /* 手機會自動換行 */
+}
+
+/* 左側小標籤 */
+.tip-title{
+  background: var(--accent-yellow);
+  color: var(--text-main);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 16px;
+  white-space: nowrap;          /* 不要被擠斷 */
+}
+
+/* 右側輪播內容（再瘦一點） */
+.tip-rotator{
+  flex: 1;
+  background: #F6F1E8;
+  border-left: 5px solid var(--accent-yellow);
+  border-radius: 12px;
+  padding: 8px 12px;            /* ✅ 更小 */
+  font-size: 17px;
+  color: #3a2f1f;
+  min-height: 40px;
+}
+
 
 /* 減少動態（使用者系統若設定減少動畫，這裡會更舒服） */
 @media (prefers-reduced-motion: reduce){
@@ -257,8 +288,8 @@ footer{
 <main class="container">
 
   <section>
-  <h2>今日小提醒</h2>
-
+    <div class="tip-row">
+    <span class="tip-title">今日小提醒</span>
 <div class="tip-rotator" id="tipRotator" aria-live="polite">
   <div class="tip-item">🌱 每餐加一份蛋白質（豆腐、蛋、魚、肉），幫助維持體力。</div>
   <div class="tip-item">💧 水分分次小口喝，避免一次太多不舒服。</div>
@@ -358,6 +389,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
