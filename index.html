@@ -240,23 +240,26 @@ footer{
 }
 .tip-inline{
   display: flex;
-  align-items: center;   /* ⭐ 這行讓兩邊垂直置中對齊 */
+  align-items: center;
   gap: 12px;
-  margin-top: 6px;
+  margin: 0 auto;        /* ✅ 水平置中 */
+  max-width: 760px;      /* ✅ 不要太寬，更像提示條 */
 }
 
 
-/* 今日小提醒標籤：拿掉黃底，只留描邊 */
+
+/* 今日小提醒：有底色、無框線 */
 .tip-inline-title{
-  background: transparent;              /* ❌ 不要黃底 */
+  background: #FFF2CC;          /* 🌼 跟右邊一致的淡黃感 */
   color: var(--deep-gray);
-  border: 2px solid var(--light-gray);  /* ✅ 淡灰描邊 */
-  padding: 4px 12px;
+  border: none;                 /* ❌ 拿掉框線 */
+  padding: 6px 14px;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 900;
   white-space: nowrap;
 }
+
 
 .tip-inline-rotator{
   flex: 1;
@@ -418,6 +421,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
