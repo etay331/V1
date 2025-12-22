@@ -189,16 +189,6 @@ footer{
   table{font-size:16px}
 }
 
-/* ===== 今日小提醒：小一點、淡色、輪播 ===== */
-.tip-rotator{
-  background:#F6F1E8;                 /* 比較不黃、偏米色 */
-  border-left:6px solid var(--accent-yellow);
-  border-radius:12px;
-  padding:10px 14px;                  /* ✅ 縮小 */
-  font-size:17px;                     /* ✅ 縮小 */
-  color:#3a2f1f;
-  min-height:44px;                    /* ✅ 變矮 */
-}
 
 .tip-item{
   display:none;
@@ -235,17 +225,6 @@ footer{
   white-space: nowrap;          /* 不要被擠斷 */
 }
 
-/* 右側輪播內容（再瘦一點） */
-.tip-rotator{
-  flex: 1;
-  background: #F6F1E8;
-  border-left: 5px solid var(--accent-yellow);
-  border-radius: 12px;
-  padding: 8px 12px;            /* ✅ 更小 */
-  font-size: 17px;
-  color: #3a2f1f;
-  min-height: 40px;
-}
 
 
 /* 減少動態（使用者系統若設定減少動畫，這裡會更舒服） */
@@ -258,6 +237,44 @@ footer{
   box-shadow: none !important;
   padding: 0 !important;
   margin-top: 12px;
+}
+/* 今日小提醒：融入內容卡片（無底色） */
+.tip-inline{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* 左側小標籤 */
+.tip-inline-title{
+  background: var(--accent-yellow);
+  color: var(--text-main);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* 右側輪播文字（完全透明背景） */
+.tip-inline-rotator{
+  flex: 1;
+  font-size: 17px;
+  color: #3a2f1f;
+  line-height: 1.7;
+}
+
+/* 輪播控制 */
+.tip-item{
+  display: none;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+.tip-item.is-active{
+  display: block;
+  opacity: 1;
 }
 
   </style>
@@ -294,10 +311,10 @@ footer{
 
 <main class="container">
 
-  <section class="tip-section">
-    <div class="tip-row">
-    <span class="tip-title">今日小提醒</span>
-<div class="tip-rotator" id="tipRotator" aria-live="polite">
+  <section>
+  <div class="tip-inline">
+    <span class="tip-inline-title">今日小提醒</span>
+<div class="tip-inline-rotator" id="tipRotator" aria-live="polite">
   <div class="tip-item">🌱 每餐加一份蛋白質（豆腐、蛋、魚、肉），幫助維持體力。</div>
   <div class="tip-item">💧 水分分次小口喝，避免一次太多不舒服。</div>
   <div class="tip-item">🍚 飯菜煮軟、切小塊，牙口不好也能安心吃。</div>
@@ -396,6 +413,7 @@ footer{
   
 </body>
 </html>
+
 
 
 
