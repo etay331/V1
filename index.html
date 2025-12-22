@@ -189,30 +189,33 @@ footer{
   table{font-size:16px}
 }
 
+/* ===== 今日小提醒：小一點、淡色、輪播 ===== */
 .tip-rotator{
-  background: #FFE9B5;      /* 比原本黃更淡、更溫暖 */
-  border-left: 8px solid #FFC857; /* 保留品牌黃色作為重點 */
-  border-radius: 12px;
-  padding: 16px 18px;
-  font-size: 18px;
-  color: #3a2f1f;
-  min-height:64px; /* 避免換句時高度跳動 */
+  background:#F6F1E8;                 /* 比較不黃、偏米色 */
+  border-left:6px solid var(--accent-yellow);
+  border-radius:12px;
+  padding:10px 14px;                  /* ✅ 縮小 */
+  font-size:17px;                     /* ✅ 縮小 */
+  color:#3a2f1f;
+  min-height:44px;                    /* ✅ 變矮 */
 }
-.tip-item{ display:none; }
-.tip-item.active{ display:block; }
-    
 
 .tip-item{
-  display: none;
-  opacity: 0;
-  transition: opacity .35s ease;
-  line-height: 1.7;
+  display:none;
+  opacity:0;
+  transition:opacity .45s ease;
+  line-height:1.7;
 }
 
 .tip-item.is-active{
-  display: block;
-  opacity: 1;
+  display:block;
+  opacity:1;
 }
+
+@media (prefers-reduced-motion: reduce){
+  .tip-item{ transition:none; }
+}
+
 
 /* 減少動態（使用者系統若設定減少動畫，這裡會更舒服） */
 @media (prefers-reduced-motion: reduce){
@@ -257,17 +260,26 @@ footer{
   <h2>今日小提醒</h2>
 
 <div class="tip-rotator" id="tipRotator" aria-live="polite">
-  <div class="tip-item">🌱 每一餐都試著放進一份蛋白質，幫助維持體力。</div>
-  <div class="tip-item">💧 水不用一次喝很多，分成小口慢慢喝比較不嗆。</div>
-  <div class="tip-item">🍚 飯菜煮軟一點、切小塊，牙口不好也能安心吃。</div>
-  <div class="tip-item">🥣 早餐吃一點熱食，有助於腸胃啟動。</div>
-  <div class="tip-item">🥛 牛奶、豆漿、優格都是補充蛋白質的好選擇。</div>
-  <div class="tip-item">🕰 固定時間吃飯，有助於維持身體節奏。</div>
-  <div class="tip-item">🥕 深色蔬菜富含營養，每天記得吃一點。</div>
+  <div class="tip-item">🌱 每餐加一份蛋白質（豆腐、蛋、魚、肉），幫助維持體力。</div>
+  <div class="tip-item">💧 水分分次小口喝，避免一次太多不舒服。</div>
+  <div class="tip-item">🍚 飯菜煮軟、切小塊，牙口不好也能安心吃。</div>
+  <div class="tip-item">🥣 早上先吃一點溫熱食物，腸胃比較舒服。</div>
+  <div class="tip-item">🥛 牛奶、豆漿、優格可補蛋白質與鈣（依個人狀況選）。</div>
+  <div class="tip-item">🕰 固定時間吃飯，幫助維持身體作息。</div>
+  <div class="tip-item">🥕 深色蔬菜每天吃一點，營養更完整。</div>
   <div class="tip-item">🍎 水果切小塊或去皮，吃起來更輕鬆。</div>
-  <div class="tip-item">🧂 口味清淡一點，對身體負擔比較小。</div>
-  <div class="tip-item">😊 吃飯時保持心情放鬆，也能幫助消化。</div>
+  <div class="tip-item">🧂 口味清淡一點，身體負擔比較小。</div>
+  <div class="tip-item">😊 吃飯放慢速度、心情放鬆，幫助消化。</div>
+  <div class="tip-item">🍲 湯品少油少鹽，暖胃又好入口。</div>
+  <div class="tip-item">🥚 不想吃肉時，用蛋、豆製品補蛋白質也很方便。</div>
+  <div class="tip-item">🥔 根莖類（地瓜、南瓜）煮軟後更好吞嚥。</div>
+  <div class="tip-item">🍵 餐後別立刻躺下，先坐一會兒比較舒服。</div>
+  <div class="tip-item">🧃 甜飲少一點，用白開水或無糖茶更好。</div>
+  <div class="tip-item">🍽 份量不必一次吃很多，少量多餐也可以。</div>
+  <div class="tip-item">🧊 冰的刺激腸胃，怕不舒服就選常溫或溫熱。</div>
+  <div class="tip-item">🫶 有慢性病或特殊飲食需求，記得依醫師/營養師建議調整。</div>
 </div>
+
 
 </section>
   <section>
@@ -328,8 +340,8 @@ footer{
     let idx = 0;
 
     function show(i){
-      items.forEach(el => el.classList.remove("active"));
-      items[i].classList.add("active");
+      items.forEach(el => el.classList.remove("is-active"));
+      items[i].classList.add("is-active");
     }
 
     show(idx);
@@ -337,14 +349,16 @@ footer{
     setInterval(() => {
       idx = (idx + 1) % items.length;
       show(idx);
-    }, 3000); // 3 秒換一則（想慢一點改 4000/5000）
+    }, 3500); // ✅ 建議 3.5 秒，長輩更好讀（想更慢改 4500/5000）
   })();
 </script>
+
 
 
   
 </body>
 </html>
+
 
 
 
