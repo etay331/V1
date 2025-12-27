@@ -436,15 +436,78 @@ function setupModal(){
 
   const modalData = {
     m1: {
-      zh: {
-        title: "重拾食慾，重拾活力｜老年人營養三折頁與動畫",
-        body: "用插畫式視覺與生活化情境整理年長者飲食困擾與改善策略，搭配三折頁重點與動畫分鏡，讓內容更好吸收、更願意分享。"
-      },
-      en: {
-        title: "Bring Back Appetite, Bring Back Energy (Nutrition Brochure + Animation)",
-        body: "Illustration-driven, scenario-based content that highlights common eating challenges for older adults and practical ways to improve appetite—paired with a tri-fold brochure and short animation storyboard."
-      }
-    },
+  zh: {
+    title: "重拾食慾，重拾活力｜老年人營養三折頁與動畫",
+    body: `
+      <!-- Video -->
+      <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+          title="老年人營養動畫示範"
+          style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Images -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <img src="assets/nutrition-1.jpg" alt="營養三折頁設計" style="width:100%;border-radius:12px;">
+        <img src="assets/nutrition-2.jpg" alt="動畫畫面" style="width:100%;border-radius:12px;">
+      </div>
+
+      <!-- Description -->
+      <p>
+        本作品以<strong>年長者常見的食慾下降情境</strong>為出發點，
+        將營養專業內容轉化為<strong>插畫式三折頁</strong>與<strong>短動畫</strong>，
+        協助一般民眾與照護者在日常生活中理解並實際應用。
+      </p>
+
+      <ul>
+        <li>📌 內容形式：插畫三折頁＋動畫</li>
+        <li>📌 設計重點：情境化、好讀、好記</li>
+        <li>📌 適合對象：年長者、照護者、一般民眾</li>
+      </ul>
+    `
+  },
+
+  en: {
+    title: "Bring Back Appetite, Bring Back Energy",
+    body: `
+      <!-- Video -->
+      <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+          title="Older Adult Nutrition Animation"
+          style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Images -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <img src="assets/nutrition-1.jpg" style="width:100%;border-radius:12px;">
+        <img src="assets/nutrition-2.jpg" style="width:100%;border-radius:12px;">
+      </div>
+
+      <!-- Description -->
+      <p>
+        This project translates nutrition knowledge for older adults into
+        <strong>illustrated brochures</strong> and <strong>short animations</strong>,
+        helping caregivers and the general public understand and apply the ideas
+        in everyday life.
+      </p>
+
+      <ul>
+        <li>📌 Format: Illustrated brochure + animation</li>
+        <li>📌 Focus: Scenario-based, easy to understand</li>
+        <li>📌 Audience: Older adults, caregivers, general public</li>
+      </ul>
+    `
+  }
+},
+
     m2: {
       zh: { title:"預立醫療電子書", body:"把較難讀的內容重新整理：分層、改寫、配圖與版面，讓讀者在有限時間內抓到重點。" },
       en: { title:"ACP E-book", body:"Re-structured and redesigned for clarity: better hierarchy, friendlier wording, and visual guidance for quick understanding." }
@@ -663,4 +726,5 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
