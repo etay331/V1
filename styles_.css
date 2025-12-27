@@ -779,3 +779,64 @@ p, li {
 .cre-tag.tech { border-color: #89cff0; background: #f0f8ff; } /* 藍色 - 科技 */
 .cre-tag.mkt  { border-color: #ffd700; background: #fffff0; } /* 黃色 - 行銷 */
 
+/* 讓右邊的區塊專注於展示這張圖 */
+.hero__right {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* 圖片本體：加上圓角、陰影、還有微微的傾斜讓它看起來像擺在桌上的作品 */
+.hero__visual img {
+  width: 100%;
+  max-width: 500px; /* 限制最大寬度，避免太大 */
+  border-radius: 24px;
+  box-shadow: 20px 20px 60px rgba(18, 18, 30, 0.15); /* 漂亮的長陰影 */
+  transform: rotate(-2deg); /* 微微傾斜，看起來比較活潑 */
+  transition: transform 0.5s ease;
+  border: 4px solid rgba(255, 255, 255, 0.6); /* 半透明白框 */
+}
+
+/* 滑鼠移上去回正 */
+.hero__visual img:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* 那個浮動的小標籤 */
+.floating-badge {
+  position: absolute;
+  bottom: 20px;
+  right: -10px; /* 稍微突出去一點 */
+  background: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  animation: float 3s ease-in-out infinite; /* 上下漂浮動畫 */
+}
+
+.floating-badge .emoji {
+  font-size: 18px;
+}
+
+/* 簡單的漂浮動畫 */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* 手機版調整 */
+@media (max-width: 900px) {
+  .hero__visual img {
+    max-width: 100%; /* 手機版佔滿 */
+    transform: rotate(0deg); /* 手機版不要傾斜，比較整齊 */
+  }
+  .floating-badge {
+    right: 0;
+  }
+}
