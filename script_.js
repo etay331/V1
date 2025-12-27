@@ -2,7 +2,6 @@
 const $ = (q, el=document) => el.querySelector(q);
 const $$ = (q, el=document) => [...el.querySelectorAll(q)];
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
-
 /* ========= i18n dictionary ========= */
 const i18n = {
   zh: {
@@ -51,7 +50,7 @@ const i18n = {
     "about.noteT":"給實習單位：",
     "about.noteP":"看「作品集」了解成品，看「專案與研究」了解流程與角色。",
 
-    "sec.portfolio":"Featured Work",
+    "sec.portfolio":"作品集",
     "sec.portfolio.sub":"用卡片式案例快速了解我的作品與角色。",
     "pf.all":"全部",
     "pf.health":"衛教內容",
@@ -664,3 +663,4 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
