@@ -436,23 +436,19 @@ function setupModal(){
   if(!modal || !closeBtn || !content) return;
 
   const modalData = {
-    m1: {
-  zh: {
-    title: "重拾食慾，重拾活力｜老年人營養三折頁與動畫",
-    body: `
-      <!-- Video -->
-body: `
-  <!-- Video -->
-  <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
-    <iframe
-      src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-      title="老年人營養動畫示範"
-      style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+   body: `
+  <div class="mcar" data-mcar="m1">
+    <div class="mcar__track">
+      <div class="mcar__slide">
+        <img src="assets/p1.jpg" alt="demo image">
+      </div>
+      <div class="mcar__slide">
+        <video src="assets/p1.mp4" controls></video>
+      </div>
+    </div>
   </div>
-  `
+`
+
       
   <!-- Modal Image Carousel -->
   <div class="mcar" data-mcar="m1">
@@ -817,6 +813,7 @@ function init(console.log("✅ init running");
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
