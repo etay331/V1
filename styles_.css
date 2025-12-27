@@ -1,815 +1,628 @@
-console.log("✅ script loaded");
-
-/* ========= helpers ========= */
-const $ = (q, el = document) => el.querySelector(q);
-const $$ = (q, el = document) => [...el.querySelectorAll(q)];
-const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
-
-/* ========= i18n dictionary ========= */
-const i18n = {
-  zh: {
-    "nav.about": "關於我",
-    "nav.portfolio": "作品集",
-    "nav.projects": "專案與研究",
-    "nav.resources": "資源/Blog",
-    "nav.interactive": "互動Demo",
-    "nav.contact": "聯絡我",
-    "hero.pill": "張煒䕒的個人網頁",
-    "hero.h1": "用健康教育與數位互動<br/>把「難懂」變成「好懂、想學、會用」",
-    "hero.lead": "我做的是：可視化衛教、多媒體教材、互動測驗、AR/遊戲化學習設計，讓知識更貼近日常、也更容易被記住。",
-    "hero.cta.portfolio": "看作品集",
-    "hero.cta.demo": "玩互動小遊戲",
-    "carousel.badge": "精選",
-    "carousel.s1.title": "把健康知識做成看得懂、用得上的內容",
-    "carousel.s1.desc": "Vivian｜健康教育 × 數位互動設計",
-    "carousel.s2.title": "衛教不只是「告訴你」，而是「陪你理解」",
-    "carousel.s2.desc": "用插畫、動態與互動，降低理解門檻",
-    "carousel.s3.title": "想找願意一起把內容做好的夥伴",
-    "carousel.s3.desc": "實習、專案合作、教材設計都歡迎",
-    "sec.about": "關於我",
-    "about.cta": "Let’s Chat →",
-    "about.name": "Vivian｜健康教育 × 數位互動",
-    "about.intro": "具護理背景，喜歡把專業知識做成「好懂、好記、願意分享」的內容。",
-    "about.tag1": "互動式衛教",
-    "about.tag2": "多媒體教材",
-    "about.tag3": "AR / 體驗設計",
-    "about.tag4": "研究與成效評估",
-    "about.li1": "<strong>我擅長：</strong>把抽象概念變成圖像、情境與互動任務。",
-    "about.li2": "<strong>我重視：</strong>可理解性、可使用性、與真實情境連結。",
-    "about.li3": "<strong>我提供：</strong>教材設計、互動Demo、專案支援與簡報呈現。",
-    "about.map": "能力地圖",
-    "about.mapSub": "用很直覺的方式，快速看到我能幫上什麼。",
-    "about.skill1": "衛教內容設計",
-    "about.skill2": "互動教材/測驗",
-    "about.skill3": "多媒體設計（動畫/影片）",
-    "about.skill4": "研究方法與成效評估",
-    "about.noteT": "給實習單位：",
-    "about.noteP": "看「作品集」了解成品，看「專案與研究」了解流程與角色。",
-    "sec.portfolio": "作品集",
-    "sec.portfolio.sub": "用卡片式案例快速了解我的作品與角色。",
-    "pf.all": "全部",
-    "pf.health": "衛教內容",
-    "pf.interactive": "互動教材",
-    "pf.research": "研究",
-    "pf.searchPh": "搜尋作品：例如「動畫」「預立醫療」「失智症」",
-    "work1.t": "重拾食慾，重拾活力｜老年人營養三折頁與動畫",
-    "work1.p": "把專業變成看得懂的內容",
-    "work2.t": "預立醫療電子書",
-    "work2.p": "讓內容更好讀、更好看",
-    "work3.t": "國科會大專生研究計畫｜12月衛教內容與前後測題目",
-    "work3.p": "在細節裡把關品質",
-    "work4.t": "Lumi 失智症衛教互動教材",
-    "work4.p": "在思考裡讓內容更有意義",
-    "common.more": "看更多",
-    "common.contact": "想合作",
-    "common.design": "看設計",
-    "common.try": "試玩",
-    "sec.projects": "專案與研究",
-    "sec.projects.sub": "更正式的呈現方式：背景、目標、方法、成果、我的角色。",
-    "proj1.t": "國科會大專生研究計畫",
-    "proj1.p": "將健康識能內容轉化為可互動學習素材，並評估成效。",
-    "proj1.li1": "<strong>目標：</strong>提升理解與可用性。",
-    "proj1.li2": "<strong>方法：</strong>情境化內容＋互動教材與前後測。",
-    "proj1.li3": "<strong>成果：</strong>教材成品、活動實施與成效指標。",
-    "proj2.t": "實習／參訪與跨文化經驗",
-    "proj2.p": "將現場觀察轉為可改進的內容設計與溝通策略。",
-    "proj2.li1": "<strong>我做了什麼：</strong>紀錄、整理、產出教材與簡報。",
-    "proj2.li2": "<strong>我學到：</strong>流程理解、跨文化溝通、使用者思維。",
-    "sec.resources": "資源 / Blog",
-    "sec.resources.sub": "這區是流量引擎：用長尾關鍵字文章讓網站被搜尋到。",
-    "resources.tip": "小技巧",
-    "resources.tip2": "每篇文末加「下載/小測驗」提升停留時間",
-    "blog1.t": "如何把衛教做得更好懂？3個情境化技巧",
-    "blog1.p": "從日常情境切入，把抽象概念變成可理解、可使用的行動建議。",
-    "blog2.t": "互動測驗為什麼能提升停留時間？",
-    "blog2.p": "用小成本互動做出大差異：增加參與感、分享、回訪。",
-    "blog3.t": "新手也能做的AR展示：從故事到Demo",
-    "blog3.p": "用最簡單的流程，把你的內容變成可展示、可理解的體驗。",
-    "blog.btn": "閱讀摘要",
-    "sec.interactive": "互動Demo",
-    "sec.interactive.sub": "讓訪客動手玩：停留更久、也更容易分享。",
-    "quiz.badge": "小測驗",
-    "quiz.t": "健康小測驗（示範）",
-    "quiz.p": "你可以把題目改成：失智症/口腔保健/營養/傷口照護…任何主題。",
-    "quiz.reset": "重來一次",
-    "tool.badge": "小工具",
-    "tool.t": "我是哪種學習者？（超短小互動）",
-    "tool.p": "選一個你最常用的方法，我給你一個「最適合的內容呈現方式」建議。",
-    "tool.opt1": "看圖比較快",
-    "tool.opt2": "故事更有感",
-    "tool.opt3": "步驟最實用",
-    "tool.hintT": "提示：",
-    "tool.hintP": "點上面按鈕試試看 ✨",
-    "sec.contact": "聯絡我",
-    "sec.contact.sub": "實習洽談、專案合作或一般詢問都歡迎。",
-    "contact.mailto": "寄信給我 →",
-    "contact.info.t": "聯絡資訊",
-    "contact.info.email": "Email：",
-    "contact.info.role": "<strong>合作方向：</strong>衛教內容、互動教材、研究專案、AR/體驗設計",
-    "contact.info.note": "<strong>適合對象：</strong>實習單位、學校、非營利組織、一般民眾",
-    "contact.tip.t": "給實習單位：",
-    "contact.tip.p": "想快速看成果→作品集；想看流程→專案與研究。",
-    "contact.form.t": "快速聯絡（示範）",
-    "contact.form.name": "你的稱呼",
-    "contact.form.namePh": "例如：王小姐 / 某某單位",
-    "contact.form.email": "Email",
-    "contact.form.emailPh": "example@mail.com",
-    "contact.form.msg": "想說的話",
-    "contact.form.msgPh": "例如：想了解作品、想談實習、想合作…",
-    "contact.form.submit": "送出（示範）",
-    "contact.form.note": "此表單為前端示範：目前不會真的寄出信件。",
-    "footer.top": "回到頂部 ↑",
-  },
-  en: {
-    "nav.about": "ABOUT",
-    "nav.portfolio": "WORK",
-    "nav.projects": "PROJECTS",
-    "nav.resources": "BLOG",
-    "nav.interactive": "DEMO",
-    "nav.contact": "CONTACT",
-    "hero.pill": "For internship units & the general public",
-    "hero.h1": "Health education + digital interaction<br/>Make complex ideas easy, usable, and shareable",
-    "hero.lead": "I create visual health education, multimedia learning materials, interactive quizzes, and playful AR/gamified experiences—so knowledge feels closer to daily life and easier to remember.",
-    "hero.cta.portfolio": "See Work",
-    "hero.cta.demo": "Play the Demo",
-    "carousel.badge": "FEATURED",
-    "carousel.s1.title": "Turning health knowledge into content you can actually use",
-    "carousel.s1.desc": "Vivian | Health Education × Digital Interaction",
-    "carousel.s2.title": "Not just “telling”—but helping people truly understand",
-    "carousel.s2.desc": "Illustration, motion, and interaction reduce the learning barrier",
-    "carousel.s3.title": "Looking for partners who love making content better",
-    "carousel.s3.desc": "Internships, collaborations, and learning design—welcome",
-    "sec.about": "About",
-    "sec.about.sub": "A quick overview: who I am, what I do, and what I care about.",
-    "about.cta": "Let’s Chat →",
-    "about.name": "Vivian | Health Education × Digital Interaction",
-    "about.intro": "Nursing background. I love translating professional knowledge into content that feels clear, friendly, and worth sharing.",
-    "about.tag1": "Interactive Health Education",
-    "about.tag2": "Multimedia Learning",
-    "about.tag3": "AR / Experience Design",
-    "about.tag4": "Research & Evaluation",
-    "about.li1": "<strong>Strength:</strong> Turning abstract concepts into visuals, scenarios, and interactive tasks.",
-    "about.li2": "<strong>Focus:</strong> Clarity, usability, and real-life relevance.",
-    "about.li3": "<strong>I can help with:</strong> Learning materials, interactive demos, and project support.",
-    "about.map": "Skill Map",
-    "about.mapSub": "A quick glance at where I can contribute.",
-    "about.skill1": "Health Education Design",
-    "about.skill2": "Interactive Learning & Quizzes",
-    "about.skill3": "Multimedia (Motion/Video)",
-    "about.skill4": "Research & Outcome Evaluation",
-    "about.noteT": "For internship units:",
-    "about.noteP": "Check “Work” for outputs and “Projects” for process & role.",
-    "sec.portfolio": "Featured Work",
-    "sec.portfolio.sub": "Case cards that show what I made and what role I played.",
-    "pf.all": "ALL",
-    "pf.health": "HEALTH",
-    "pf.interactive": "INTERACTIVE",
-    "pf.research": "RESEARCH",
-    "pf.searchPh": "Search: animation, ACP, dementia…",
-    "work1.t": "Bring Back Appetite, Bring Back Energy | Older Adult Nutrition (Brochure + Animation)",
-    "work1.p": "Making professional content easy to understand",
-    "work2.t": "Advance Care Planning (ACP) E-book",
-    "work2.p": "Better structure + visuals for smoother reading",
-    "work3.t": "NSTC Undergraduate Research | Health Education Content + Pre/Post Tests",
-    "work3.p": "Quality in the details—from content to assessment",
-    "work4.t": "LUMI Interactive Dementia Health Education",
-    "work4.p": "Meaningful learning through guided interaction",
-    "common.more": "Learn more",
-    "common.contact": "Collaborate",
-    "common.design": "See process",
-    "common.try": "Try it",
-    "sec.projects": "Projects",
-    "sec.projects.sub": "Background, goals, methods, outcomes, and my role.",
-    "proj1.t": "NSTC Undergraduate Research Project",
-    "proj1.p": "Transforming health literacy content into interactive learning materials and evaluating outcomes.",
-    "proj1.li1": "<strong>Goal:</strong> Improve understanding and usability.",
-    "proj1.li2": "<strong>Method:</strong> Scenario-based content + interactive materials and pre/post tests.",
-    "proj1.li3": "<strong>Outcome:</strong> Learning outputs, activities, and evaluation indicators.",
-    "proj2.t": "Internship / Field Visits & Cross-cultural Experience",
-    "proj2.p": "Turning on-site observations into better content design and communication strategies.",
-    "proj2.li1": "<strong>What I did:</strong> Documentation, organization, and material creation.",
-    "proj2.li2": "<strong>What I learned:</strong> Workflow thinking, cross-cultural communication, and user-centered design.",
-    "sec.resources": "Blog",
-    "sec.resources.sub": "A traffic engine: long-tail keywords help people find your work.",
-    "resources.tip": "Tip",
-    "resources.tip2": "Add a quiz or download at the end to boost time-on-page",
-    "blog1.t": "Make Health Education Easier: 3 Scenario-based Tricks",
-    "blog1.p": "Start from daily life and turn abstract ideas into actionable suggestions.",
-    "blog2.t": "Why Quizzes Increase Time-on-Page",
-    "blog2.p": "Low-cost interaction creates engagement, sharing, and return visits.",
-    "blog3.t": "Beginner-friendly AR: From Story to Demo",
-    "blog3.p": "A simple workflow to turn content into a showable experience.",
-    "blog.btn": "Read summary",
-    "sec.interactive": "Demo",
-    "sec.interactive.sub": "Let visitors play—stay longer and remember more.",
-    "quiz.badge": "Quiz",
-    "quiz.t": "Mini Health Quiz (Demo)",
-    "quiz.p": "Swap the topic anytime: dementia, oral care, nutrition, wound care…",
-    "quiz.reset": "Restart",
-    "tool.badge": "Tool",
-    "tool.t": "What kind of learner are you?",
-    "tool.p": "Pick what you use most. I’ll suggest the best way to present content.",
-    "tool.opt1": "I learn fast with visuals",
-    "tool.opt2": "Stories help me feel it",
-    "tool.opt3": "Steps are the most useful",
-    "tool.hintT": "Hint:",
-    "tool.hintP": "Tap a button to see a suggestion ✨",
-    "sec.contact": "Contact",
-    "sec.contact.sub": "Internships, collaborations, or questions—welcome.",
-    "contact.mailto": "Email me →",
-    "contact.info.t": "Contact Info",
-    "contact.info.email": "Email:",
-    "contact.info.role": "<strong>Collaboration:</strong> Health education, interactive learning, research projects, AR experiences",
-    "contact.info.note": "<strong>For:</strong> Internship units, schools, NGOs, and the general public",
-    "contact.tip.t": "For internship units:",
-    "contact.tip.p": "Quick results → Work. Process & role → Projects.",
-    "contact.form.t": "Quick Message (Demo)",
-    "contact.form.name": "Name",
-    "contact.form.namePh": "e.g., organization / your name",
-    "contact.form.email": "Email",
-    "contact.form.emailPh": "example@mail.com",
-    "contact.form.msg": "Message",
-    "contact.form.msgPh": "I’d like to know more about your work / internship / collaboration…",
-    "contact.form.submit": "Send (Demo)",
-    "contact.form.note": "Front-end demo only. This form does not send emails.",
-    "footer.top": "Back to top ↑",
-  }
-};
-
-let lang = "zh";
-
-function applyI18n() {
-  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
-  $$("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (i18n[lang]?.[key] != null) el.textContent = i18n[lang][key];
-  });
-  $$("[data-i18n-html]").forEach(el => {
-    const key = el.getAttribute("data-i18n-html");
-    if (i18n[lang]?.[key] != null) el.innerHTML = i18n[lang][key];
-  });
-  $$("[data-i18n-ph]").forEach(el => {
-    const key = el.getAttribute("data-i18n-ph");
-    if (i18n[lang]?.[key] != null) el.setAttribute("placeholder", i18n[lang][key]);
-  });
-
-  const btn = $("#langToggle");
-  if (btn) btn.textContent = lang === "zh" ? "EN" : "中文";
+/* ✅ 讓 HTML 的 hidden 一定會隱藏（避免被 reset 影響） */
+[hidden] { 
+  display: none !important; 
 }
 
-/* ========= header mobile nav ========= */
-function setupNav() {
-  const burger = $("#burger");
-  const mobile = $("#mobileNav");
-  if (!burger || !mobile) return;
+:root{
+  --bg:#fff8fb;
+  --ink:#121212;
+  --muted:#6b6b6b;
+  --line:rgba(18,18,18,.10);
 
-  burger.addEventListener("click", () => {
-    const open = mobile.hasAttribute("hidden");
-    if (open) {
-      mobile.removeAttribute("hidden");
-      burger.setAttribute("aria-expanded", "true");
-    } else {
-      mobile.setAttribute("hidden", "");
-      burger.setAttribute("aria-expanded", "false");
-    }
-  });
+  --card:#ffffffcc;
+  --shadow: 0 18px 40px rgba(18,18,18,.10);
 
-  // close after click
-  mobile.addEventListener("click", (e) => {
-    if (e.target.matches("a")) {
-      mobile.setAttribute("hidden", "");
-      burger.setAttribute("aria-expanded", "false");
-    }
-  });
+  --a:#bdf6ff;  /* mint-cyan */
+  --b:#ffd6f0;  /* pink */
+  --c:#fff0b8;  /* soft yellow */
+  --d:#d7ddff;  /* periwinkle */
+  --btn:#dffbff;
+
+  --radius:26px;
+  --radius2:18px;
 }
 
-/* ========= progress bar ========= */
-function setupProgress() {
-  const bar = $("#progress");
-  if (!bar) return;
-  window.addEventListener("scroll", () => {
-    const h = document.documentElement;
-    const scrolled = h.scrollTop;
-    const max = (h.scrollHeight - h.clientHeight) || 1;
-    bar.style.width = (scrolled / max * 100) + "%";
-  });
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,214,240,.55), transparent 60%),
+              radial-gradient(1200px 600px at 90% 20%, rgba(189,246,255,.55), transparent 60%),
+              radial-gradient(1200px 600px at 50% 95%, rgba(255,240,184,.50), transparent 60%),
+              var(--bg);
+  color:var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
 }
 
-/* ========= counters ========= */
-function setupCounters() {
-  const nums = $$(".stat__num[data-count]");
-  if (!nums.length) return;
+/* background blobs */
+.bg{position:fixed; inset:0; pointer-events:none; z-index:-1}
+.blob{position:absolute; filter: blur(40px); opacity:.8; border-radius:999px; transform: translateZ(0)}
+.b1{width:420px;height:420px; left:-120px; top:120px; background:linear-gradient(135deg,var(--b),var(--a)); animation: float1 10s ease-in-out infinite;}
+.b2{width:520px;height:520px; right:-180px; top:-120px; background:linear-gradient(135deg,var(--d),var(--c)); animation: float2 12s ease-in-out infinite;}
+.b3{width:380px;height:380px; left:55%; bottom:-180px; background:linear-gradient(135deg,var(--a),var(--c)); animation: float3 11s ease-in-out infinite;}
+@keyframes float1{50%{transform:translate(25px,-15px)}}
+@keyframes float2{50%{transform:translate(-18px,22px)}}
+@keyframes float3{50%{transform:translate(18px,-12px)}}
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = Number(el.dataset.count || 0);
-      let cur = 0;
-      const step = Math.max(1, Math.round(target / 40));
-      const timer = setInterval(() => {
-        cur += step;
-        if (cur >= target) {
-          cur = target;
-          clearInterval(timer);
-        }
-        el.textContent = String(cur);
-      }, 18);
-      io.unobserve(el);
-    });
-  }, {
-    threshold: .5
-  });
+.container{max-width:1100px; margin:0 auto; padding:0 18px;}
+.section{padding:64px 0;}
+.section__head{margin-bottom:18px;}
+.section__head.split{display:flex; align-items:flex-end; justify-content:space-between; gap:16px;}
+.big{font-size:40px; letter-spacing:-.02em; margin:0 0 10px;}
+.muted{color:var(--muted);}
+.tiny{font-size:12px;}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
 
-  nums.forEach(n => io.observe(n));
+/* progress */
+.progress{position:fixed; left:0; top:0; height:4px; width:0; background:linear-gradient(90deg,var(--a),var(--b),var(--c)); z-index:99; border-radius:999px;}
+
+/* header */
+.header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background:rgba(255,255,255,.6); border-bottom:1px solid var(--line);}
+.header__inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:14px;}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit;}
+.brand__logo{
+  width:44px; height:44px; border-radius:14px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--a),var(--b));
+  box-shadow: var(--shadow);
+  font-weight:800;
+}
+.brand__text small{display:block; color:var(--muted); margin-top:2px; font-size:12px;}
+.nav{display:flex; align-items:center; gap:14px;}
+.nav a{color:inherit; text-decoration:none; font-size:13px; letter-spacing:.22em; text-transform:uppercase; opacity:.9;}
+.nav a:hover{opacity:1; text-decoration:underline; text-underline-offset:4px;}
+.burger{display:none; background:transparent; border:0; cursor:pointer; padding:8px; border-radius:12px;}
+.burger span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; border-radius:999px;}
+.mobile{padding:10px 18px 16px; display:grid; gap:10px;}
+.mobile a{letter-spacing:.10em; text-transform:uppercase; font-size:13px; text-decoration:none; color:inherit; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.55); border:1px solid var(--line);}
+
+/* ✅ Mobile nav should be a dropdown layer, not a page block */
+.header { 
+  position: sticky; 
+  top: 0; 
+  z-index: 50; 
 }
 
-/* ========= carousel ========= */
-function setupCarousel() {
-  const track = $("#carouselTrack");
-  const prev = $("#carouselPrev");
-  const next = $("#carouselNext");
-  const dotsWrap = $("#carouselDots");
-  if (!track || !prev || !next || !dotsWrap) return;
+.mobile{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 10px 18px 16px;
+  display: grid;
+  gap: 10px;
 
-  const slides = $$(".carousel__slide", track);
-  let idx = 0;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.85);
+  border-bottom: 1px solid rgba(18,18,18,.10);
+}
 
-  // dots
-  dotsWrap.innerHTML = "";
-  slides.forEach((_, i) => {
-    const d = document.createElement("button");
-    d.className = "dot" + (i === 0 ? " is-active" : "");
-    d.type = "button";
-    d.addEventListener("click", () => go(i));
-    dotsWrap.appendChild(d);
-  });
-  const dots = $$(".dot", dotsWrap);
 
-  function render() {
-    track.style.transform = `translateX(-${idx * 100}%)`;
-    slides.forEach((s, i) => s.classList.toggle("is-active", i === idx));
-    dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+
+/* hero */
+.hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; padding:28px 0 10px;}
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.7);
+  border:1px solid var(--line);
+  padding:8px 12px; border-radius:999px;
+  font-size:12px;
+}
+.hero__title{font-size:52px; line-height:1.02; margin:14px 0 12px; letter-spacing:-.03em;}
+.lead{font-size:16px; line-height:1.7; margin:0 0 16px;}
+.hero__cta{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+.stats{display:flex; gap:14px; flex-wrap:wrap;}
+.stat{padding:12px 14px; border-radius:18px; background:rgba(255,255,255,.65); border:1px solid var(--line);}
+.stat__num{font-weight:900; font-size:22px; display:block;}
+.stat__label{font-size:12px; color:var(--muted);}
+
+/* marquee */
+.marquee{margin-top:12px; overflow:hidden; border-radius:999px; border:1px dashed rgba(18,18,18,.18); background:rgba(255,255,255,.55);}
+.marquee__track{display:flex; gap:14px; padding:10px 0; white-space:nowrap; animation: run 12s linear infinite;}
+.marquee__track span{font-size:12px; letter-spacing:.20em; text-transform:uppercase; opacity:.8;}
+@keyframes run{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* buttons */
+.btn{
+  appearance:none; border:1px solid rgba(18,18,18,.14);
+  background:linear-gradient(135deg,var(--btn),rgba(255,255,255,.9));
+  color:var(--ink);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-flex; align-items:center; justify-content:center;
+  box-shadow: 0 10px 24px rgba(18,18,18,.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 16px 34px rgba(18,18,18,.12);}
+.btn--ghost{background:rgba(255,255,255,.55);}
+.btn--soft{background:linear-gradient(135deg,rgba(189,246,255,.8),rgba(255,214,240,.55));}
+.btn--sm{padding:8px 12px; font-size:12px;}
+
+/* cards */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow: var(--shadow);
+  padding:18px;
+}
+.cards{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; align-items:stretch;}
+.grid2{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px;}
+.divider{height:1px; background:var(--line); margin:14px 0;}
+.list{margin:0; padding-left:18px;}
+.list li{margin:8px 0; line-height:1.7;}
+.note{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:linear-gradient(135deg, rgba(255,240,184,.55), rgba(215,221,255,.45));
+  border:1px dashed rgba(18,18,18,.18);
+}
+
+.card h3{margin:0 0 10px; font-size:18px; line-height:1.25;}
+/* clamp = consistent height feel */
+.work h3, .work .muted{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.work h3{-webkit-line-clamp:2;}
+.work .muted{-webkit-line-clamp:2; font-size:14px; line-height:1.55;}
+
+.card__top{display:flex; gap:8px; align-items:center; margin-bottom:10px;}
+.tag{
+  font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  padding:6px 10px; border-radius:999px;
+  background:rgba(255,255,255,.65);
+  border:1px solid var(--line);
+}
+.tag--soft{background:linear-gradient(135deg, rgba(255,214,240,.6), rgba(189,246,255,.5));}
+
+.actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;}
+.work{display:flex; flex-direction:column; min-height:240px;}
+.work .actions{margin-top:auto;}
+
+.toolbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:10px 0 16px;}
+.filters{display:flex; gap:10px; flex-wrap:wrap;}
+.filter{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.55);
+  padding:8px 12px; border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.filter.is-active{background:linear-gradient(135deg, rgba(189,246,255,.75), rgba(255,214,240,.55));}
+.search input{
+  width:min(320px, 78vw);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.65);
+  padding:10px 12px;
+  border-radius:999px;
+  outline:none;
+}
+
+/* about */
+.about{display:grid; grid-template-columns:1.1fr .9fr; gap:16px;}
+.about__top{display:flex; gap:14px; align-items:flex-start;}
+.avatar{width:84px; height:84px; border-radius:26px; object-fit:cover; border:1px solid var(--line); background:rgba(255,255,255,.7);}
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+.chip{font-size:12px; padding:7px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.55);}
+
+/* bars */
+.bars{display:grid; gap:12px; margin-top:14px;}
+.bar__top{display:flex; justify-content:space-between; font-size:13px;}
+.bar__track{height:10px; background:rgba(18,18,18,.08); border-radius:999px; overflow:hidden;}
+.bar__fill{height:100%; width:var(--w); background:linear-gradient(90deg, var(--a), var(--b), var(--c)); border-radius:999px;}
+
+/* timeline */
+.timeline{display:grid; gap:16px;}
+.tl{position:relative; padding-left:22px;}
+.tl__dot{position:absolute; left:0; top:18px; width:12px; height:12px; border-radius:99px; background:linear-gradient(135deg,var(--a),var(--b)); border:1px solid var(--line);}
+.tl__card{border-left:3px solid rgba(18,18,18,.10);}
+
+/* carousel */
+.carousel{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow: var(--shadow); background:rgba(255,255,255,.55);}
+.carousel__track{display:flex; transition: transform .4s ease;}
+.carousel__slide{min-width:100%; position:relative;}
+.carousel__img{width:100%; height:420px; object-fit:cover; display:block; background:rgba(255,255,255,.6);}
+.carousel__overlay{position:absolute; inset:auto 16px 16px 16px; background:rgba(255,255,255,.72); border:1px solid var(--line); border-radius:20px; padding:12px 14px;}
+.badge{display:inline-flex; padding:6px 10px; border-radius:999px; background:linear-gradient(135deg, rgba(255,214,240,.65), rgba(189,246,255,.55)); border:1px solid var(--line); font-weight:800; font-size:12px;}
+.carousel__title{margin:10px 0 6px; font-size:18px;}
+.carousel__desc{margin:0; color:var(--muted); font-size:13px; line-height:1.5;}
+.carousel__btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.7);
+  cursor:pointer; font-size:22px; font-weight:900;
+}
+.carousel__btn--prev{left:10px;}
+.carousel__btn--next{right:10px;}
+.carousel__dots{display:flex; gap:8px; justify-content:center; padding:10px;}
+.dot{width:10px; height:10px; border-radius:99px; border:1px solid var(--line); background:rgba(255,255,255,.6); cursor:pointer;}
+.dot.is-active{background:linear-gradient(135deg,var(--a),var(--b));}
+
+/* interactive */
+.quiz__q{font-weight:900; font-size:16px; margin:10px 0 12px;}
+.quiz__options{display:grid; gap:10px;}
+.option{
+  text-align:left;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.6);
+  padding:10px 12px;
+  border-radius:16px;
+  cursor:pointer;
+}
+.option:hover{transform:translateY(-1px);}
+.quiz__foot{display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px; flex-wrap:wrap;}
+.pick{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0;}
+.pick__btn{flex:1; min-width:140px; border:1px solid var(--line); background:rgba(255,255,255,.55); padding:10px 12px; border-radius:16px; cursor:pointer; font-weight:800;}
+.pick__btn:hover{background:linear-gradient(135deg, rgba(189,246,255,.65), rgba(255,214,240,.45));}
+
+/* modal */
+.modal{position:fixed; inset:0; display:none; z-index:90;}
+.modal.is-open{display:block;}
+.modal__backdrop{position:absolute; inset:0; background:rgba(0,0,0,.28);}
+.modal__panel{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:min(760px, 92vw);
+  max-height:min(78vh, 720px);
+  overflow:auto;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow: 0 28px 80px rgba(0,0,0,.22);
+  padding:18px;
+}
+.modal__close{position:sticky; top:0; float:right; border:1px solid var(--line); background:rgba(255,255,255,.8); border-radius:999px; width:42px; height:42px; cursor:pointer;}
+.modal__content h3{font-size:22px; margin-top:10px;}
+.modal__content p{line-height:1.8;}
+
+/* footer */
+.footer{padding:30px 0 40px;}
+.footer__inner{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+.footer a{color:inherit; text-decoration:none;}
+.footer a:hover{text-decoration:underline; text-underline-offset:4px;}
+
+/* responsive */
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr; }
+  .carousel__img{height:360px;}
+  .cards{grid-template-columns:repeat(2, minmax(0,1fr));}
+  .about{grid-template-columns:1fr;}
+  .grid3{grid-template-columns:1fr;}
+}
+@media (max-width: 760px){
+  .nav{display:none;}
+  .burger{display:block;}
+  .big{font-size:34px;}
+  .hero__title{font-size:44px;}
+  .grid2{grid-template-columns:1fr;}
+  .cards{grid-template-columns:1fr;}
+}
+
+/* =========================
+   Mobile polish (<= 900px)
+   ========================= */
+@media (max-width: 900px){
+
+  /* Header / nav */
+  .nav { display: none; }
+  .burger { display: inline-flex; }
+
+  .header__inner{
+    gap: 10px;
+    align-items: center;
   }
 
-  function go(i) {
-    idx = (i + slides.length) % slides.length;
-    render();
+  .brand__text small{ display:none; } /* 避免 logo 旁字太擠，可刪掉這行 */
+
+  /* Mobile dropdown */
+  .mobile{
+    margin: 0;
+    border-radius: 0;
+  }
+  .mobile a{
+    padding: 12px 10px;
+    border-radius: 12px;
   }
 
-  prev.addEventListener("click", () => go(idx - 1));
-  next.addEventListener("click", () => go(idx + 1));
-
-  // autoplay
-  let t = setInterval(() => go(idx + 1), 5200);
-  [prev, next, track, dotsWrap].forEach(el => {
-    el.addEventListener("mouseenter", () => clearInterval(t));
-    el.addEventListener("mouseleave", () => t = setInterval(() => go(idx + 1), 5200));
-  });
+  /* Avoid anchor content hiding under sticky header */
+  html{ scroll-padding-top: 88px; }
 }
 
-/* ========= portfolio filter + search ========= */
-function setupPortfolio() {
-  const grid = $("#portfolioGrid");
-  const search = $("#searchInput");
-  if (!grid) return;
-
-  const filters = $$(".filter");
-  let current = "all";
-
-  function matchCard(card) {
-    const tags = (card.dataset.tags || "").toLowerCase();
-    const title = (card.dataset.title || "").toLowerCase() + " " + (card.innerText || "").toLowerCase();
-    const q = (search ?.value || "").trim().toLowerCase();
-
-    const okFilter = current === "all" ? true : tags.includes(current);
-    const okSearch = !q ? true : title.includes(q);
-
-    return okFilter && okSearch;
+@media (max-width: 900px){
+  .hero{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 18px;
   }
 
-  function render() {
-    $$(".work", grid).forEach(card => {
-      card.style.display = matchCard(card) ? "" : "none";
-    });
+  .hero__left h1{
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1.15;
   }
 
-  filters.forEach(btn => {
-    btn.addEventListener("click", () => {
-      filters.forEach(b => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      current = btn.dataset.filter || "all";
-      render();
-    });
-  });
+  .lead{
+    font-size: 15px;
+    line-height: 1.7;
+  }
 
-  search ?.addEventListener("input", render);
+  .hero__cta{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .carousel{
+    border-radius: 18px;
+  }
+  .carousel__img{
+    height: 220px;      /* 手機 hero 圖高度 */
+    object-fit: cover;
+  }
+  .carousel__overlay{
+    padding: 14px;
+  }
+  .carousel__title{
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  .carousel__desc{
+    font-size: 13px;
+  }
 }
 
-/* ========= modal data ========= */
-const modalData = {
-  m1: {
-    zh: {
-      title: "重拾食慾，重拾活力",
-      body: `<p>示範內容（中文）</p>`
-    },
-    en: {
-      title: "Bring Back Appetite, Bring Back Energy",
-      body: `
-      <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
-        <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-          title="Older Adult Nutrition Animation"
-          style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-        <img src="assets/nutrition-1.jpg" style="width:100%;border-radius:12px;">
-        <img src="assets/nutrition-2.jpg" style="width:100%;border-radius:12px;">
-      </div>
-
-      <p>
-        This project translates nutrition knowledge for older adults into
-        <strong>illustrated brochures</strong> and <strong>short animations</strong>,
-        helping caregivers and the general public understand and apply the ideas
-        in everyday life.
-      </p>
-
-      <ul>
-        <li>📌 Format: Illustrated brochure + animation</li>
-        <li>📌 Focus: Scenario-based, easy to understand</li>
-        <li>📌 Audience: Older adults, caregivers, general public</li>
-      </ul>
-    `
-    }
-  },
-
-  m2: {
-    zh: {
-      title: "預立醫療電子書",
-      body: "把較難讀的內容重新整理：分層、改寫、配圖與版面，讓讀者在有限時間內抓到重點。"
-    },
-    en: {
-      title: "ACP E-book",
-      body: "Re-structured and redesigned for clarity: better hierarchy, friendlier wording, and visual guidance for quick understanding."
-    }
-  },
-  m3: {
-    zh: {
-      title: "國科會大專生研究計畫｜12月衛教內容與前後測題目",
-      body: "從內容設計到測驗題目都顧到：可理解性、可用性與成效評估，讓活動不是做完就算，而是看得見改變。"
-    },
-    en: {
-      title: "NSTC Undergraduate Research (Content + Pre/Post Tests)",
-      body: "From content design to assessments: focused on clarity, usability, and measurable outcomes—so the activity leads to visible learning gains."
-    }
-  },
-  m4: {
-    zh: {
-      title: "LUMI 失智症衛教互動教材",
-      body: "用互動引導理解：小步驟、回饋、選擇題與情境題，讓學習更有參與感、更容易記住。"
-    },
-    en: {
-      title: "LUMI Interactive Dementia Health Education",
-      body: "Guided interaction with small steps, feedback, and scenario-based questions to increase engagement and retention."
-    }
-  },
-  blog1: {
-    zh: {
-      title: "如何把衛教做得更好懂？3個情境化技巧",
-      body: "1) 先找『日常時刻』當開場；2) 用『一句話結論＋三個要點』；3) 讓讀者能『立刻做一個小動作』。"
-    },
-    en: {
-      title: "3 Scenario-based Tricks for Clearer Health Education",
-      body: "1) Start with a real-life moment; 2) One-sentence takeaway + 3 key points; 3) Give readers a small action they can do right away."
-    }
-  },
-  blog2: {
-    zh: {
-      title: "互動測驗為什麼能提升停留時間？",
-      body: "因為它讓人『參與』：一點點挑戰＋即時回饋＋可分享，會自然拉長停留時間與回訪率。"
-    },
-    en: {
-      title: "Why Quizzes Increase Time-on-Page",
-      body: "Interaction creates participation: small challenge + instant feedback + shareability—naturally boosting time-on-page and return visits."
-    }
-  },
-  blog3: {
-    zh: {
-      title: "新手也能做的AR展示：從故事到Demo",
-      body: "先寫一句故事核心→拆成3個場景→每個場景只做一個重點互動→就能完成可展示的Demo。"
-    },
-    en: {
-      title: "Beginner-friendly AR: From Story to Demo",
-      body: "One-sentence story core → 3 scenes → 1 interaction per scene. Simple and showable."
-    }
-  }
-};
-
-/* ========= modal image carousel ========= */
-let __mcarTimer = null;
-
-function initModalCarousels() {
-  // 找 modal 內容區裡的 mcar
-  const car = document.querySelector("#modalContent .mcar");
-  if (!car) return;
-
-  const track = car.querySelector(".mcar__track");
-  const imgs = [...car.querySelectorAll(".mcar__img")];
-  const prev = car.querySelector(".mcar__btn--prev");
-  const next = car.querySelector(".mcar__btn--next");
-  const dotsWrap = car.querySelector(".mcar__dots");
-  if (!track || imgs.length <= 1 || !prev || !next || !dotsWrap) return;
-
-  let idx = 0;
-
-  // dots
-  dotsWrap.innerHTML = "";
-  imgs.forEach((_, i) => {
-    const d = document.createElement("button");
-    d.type = "button";
-    d.className = "mcar__dot" + (i === 0 ? " is-active" : "");
-    d.addEventListener("click", () => go(i));
-    dotsWrap.appendChild(d);
-  });
-  const dots = [...dotsWrap.querySelectorAll(".mcar__dot")];
-
-  function render() {
-    track.style.transform = `translateX(-${idx * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+@media (max-width: 900px){
+  .cards{
+    grid-template-columns: 1fr !important;
+    gap: 14px;
   }
 
-  function go(i) {
-    idx = (i + imgs.length) % imgs.length;
-    render();
+  .work{
+    display:flex;
+    flex-direction: column;
+    min-height: 0;
   }
 
-  prev.addEventListener("click", () => go(idx - 1));
-  next.addEventListener("click", () => go(idx + 1));
-
-  // autoplay
-  clearInterval(__mcarTimer);
-  __mcarTimer = setInterval(() => go(idx + 1), 3200);
-
-  // pause on hover (desktop)
-  car.addEventListener("mouseenter", () => clearInterval(__mcarTimer));
-  car.addEventListener("mouseleave", () => {
-    clearInterval(__mcarTimer);
-    __mcarTimer = setInterval(() => go(idx + 1), 3200);
-  });
-
-  render();
-}
-
-function destroyModalCarousels() {
-  clearInterval(__mcarTimer);
-  __mcarTimer = null;
-}
-
-/* ========= modal ========= */
-function setupModal() {
-  const modal = $("#modal");
-  const closeBtn = $("#modalClose");
-  const content = $("#modalContent");
-  if (!modal || !closeBtn || !content) return;
-
-  function open(id) {
-    const data = modalData[id];
-    if (!data) return;
-    const d = data[lang] || data.zh;
-    content.innerHTML = `<h3>${d.title}</h3><p>${d.body}</p>`;
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    setTimeout(() => {
-      try {
-        initModalCarousels();
-      } catch (err) {
-        console.warn("Modal carousel init skipped:", err);
-      }
-    }, 0);
+  .work img{
+    height: 180px;      /* 卡片縮圖高度一致 */
+    object-fit: cover;
   }
 
-  function close() {
-    destroyModalCarousels();
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+  .work h3{
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 2px 0 6px;
   }
 
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".openModal");
-    if (btn && btn.dataset.modal) {
-      open(btn.dataset.modal);
-      return;
-    }
-    if (e.target.matches("[data-close]")) close();
-  });
-
-  closeBtn.addEventListener("click", close);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-}
-
-/* ========= quiz ========= */
-function setupQuiz() {
-  const qEl = $("#quizQ");
-  const optEl = $("#quizOptions");
-  const prog = $("#quizProgress");
-  const reset = $("#quizReset");
-  if (!qEl || !optEl || !prog || !reset) return;
-
-  const questions = [{
-      zh: {
-        q: "年長者食慾下降，第一步最重要的是？",
-        a: ["先了解原因（牙口/情緒/藥物）", "直接補營養品", "先強迫吃完"],
-        correct: 0,
-        tip: "先找原因，才能選對方法。"
-      },
-      en: {
-        q: "When appetite drops in older adults, the best first step is…",
-        a: ["Identify the cause (oral health/mood/meds)", "Just add supplements", "Force them to finish meals"],
-        correct: 0,
-        tip: "Find the cause before choosing solutions."
-      }
-    },
-    {
-      zh: {
-        q: "做衛教時，哪個最能提高理解？",
-        a: ["生活情境例子", "大量專有名詞", "越長越好"],
-        correct: 0,
-        tip: "情境化可以降低理解門檻。"
-      },
-      en: {
-        q: "What helps understanding the most in health education?",
-        a: ["Real-life scenarios", "Lots of jargon", "Longer is better"],
-        correct: 0,
-        tip: "Scenarios lower the learning barrier."
-      }
-    },
-    {
-      zh: {
-        q: "互動測驗的好處是？",
-        a: ["增加參與感與停留時間", "讓內容更學術", "完全取代真人教學"],
-        correct: 0,
-        tip: "互動＝參與＝停留更久。"
-      },
-      en: {
-        q: "A key benefit of quizzes is…",
-        a: ["More engagement and time-on-page", "More academic tone", "Replacing human teaching entirely"],
-        correct: 0,
-        tip: "Interaction boosts engagement and time-on-page."
-      }
-    }
-  ];
-
-  let i = 0;
-  let score = 0;
-  let locked = false;
-
-  function cur() {
-    return questions[i][lang] || questions[i].zh;
+  .work .muted{
+    font-size: 13.5px;
+    line-height: 1.6;
   }
 
-  function render() {
-    locked = false;
-    const c = cur();
-    qEl.textContent = c.q;
-    optEl.innerHTML = "";
-    c.a.forEach((txt, idx) => {
-      const b = document.createElement("button");
-      b.className = "option";
-      b.type = "button";
-      b.textContent = txt;
-      b.addEventListener("click", () => choose(idx));
-      optEl.appendChild(b);
-    });
-    prog.textContent = `${i+1} / ${questions.length}`;
+  /* 讓文字最多顯示 3 行，避免卡片因長字變超高 */
+  .work .muted{
+    display:-webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
   }
 
-  function choose(idx) {
-    if (locked) return;
-    locked = true;
-
-    const correct = (questions[i][lang] || questions[i].zh).correct ?? questions[i].zh.correct;
-    const tip = (questions[i][lang] || questions[i].zh).tip ?? questions[i].zh.tip;
-
-    const buttons = $$(".option", optEl);
-    buttons.forEach((b, j) => {
-      if (j === correct) b.style.borderColor = "rgba(0,0,0,.35)";
-      if (j === idx && idx !== correct) b.style.opacity = ".75";
-      b.disabled = true;
-    });
-
-    if (idx === correct) score++;
-
-    setTimeout(() => {
-      i++;
-      if (i >= questions.length) {
-        qEl.textContent = lang === "zh" ?
-          `完成！你答對 ${score} / ${questions.length} 🎉` :
-          `Done! You got ${score} / ${questions.length} 🎉`;
-        optEl.innerHTML = `<div class="note"><strong>${lang==="zh"?"小提醒：":"Tip:"}</strong> ${tip}</div>`;
-        prog.textContent = "";
-      } else {
-        render();
-      }
-    }, 650);
+  .actions{
+    margin-top: auto;   /* 按鈕固定在卡片底 */
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
-  reset.addEventListener("click", () => {
-    i = 0;
-    score = 0;
-    render();
-  });
-
-  render();
-
-  // expose rerender on language change
-  window.__rerenderQuiz = () => render();
+  .actions .btn{
+    width: 100%;
+    justify-content: center;
+  }
 }
 
-/* ========= mini tool ========= */
-function setupPickTool() {
-  const box = $("#pickResult");
-  if (!box) return;
 
-  const map = {
-    visual: {
-      zh: "你適合：多用圖像、icon、對照表、一步一步的『圖像化流程』。",
-      en: "Best for you: visuals, icons, comparisons, and a step-by-step visual flow."
-    },
-    story: {
-      zh: "你適合：用短故事＋角色情境，把重點藏在『一個場景』裡。",
-      en: "Best for you: short stories and scenarios—embed key points in one scene."
-    },
-    steps: {
-      zh: "你適合：把內容變成『3步驟清單』＋『常見錯誤提醒』，最實用。",
-      en: "Best for you: a 3-step checklist + common mistakes—super practical."
-    }
-  };
-
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".pick__btn");
-    if (!btn) return;
-    const key = btn.dataset.pick;
-    const msg = map[key] ?. [lang] || map[key] ?.zh;
-    box.innerHTML = `<strong>${lang==="zh"?"建議：":"Suggestion:"}</strong> ${msg}`;
-  });
-
-  window.__rerenderPick = () => {
-    box.innerHTML = `<strong>${i18n[lang]["tool.hintT"]}</strong> ${i18n[lang]["tool.hintP"]}`;
-  };
+@media (max-width: 900px){
+  .grid2{ 
+    grid-template-columns: 1fr !important; 
+    gap: 14px;
+  }
+  .grid3{ 
+    grid-template-columns: 1fr !important; 
+    gap: 14px;
+  }
+  .section{
+    padding: 28px 0;
+  }
 }
 
-/* ========= contact form (demo) ========= */
-function setupContactForm() {
-  const form = $("#contactForm");
-  if (!form) return;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert(lang === "zh" ? "已送出（示範）✨" : "Sent (demo) ✨");
-    form.reset();
-  });
+@media (max-width: 900px){
+  .option, .pick__btn, .btn{
+    min-height: 44px; /* 手機可點性 */
+  }
 }
 
-/* ========= language toggle ========= */
-function setupLang() {
-  const btn = $("#langToggle");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    lang = (lang === "zh") ? "en" : "zh";
-    applyI18n();
-
-    // re-render interactive pieces
-    if (window.__rerenderQuiz) window.__rerenderQuiz();
-    if (window.__rerenderPick) window.__rerenderPick();
-  });
-
-  applyI18n();
+/* ===== Desktop centering fix ===== */
+.container{
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+/* ===== Hero layout: bigger carousel + not too far right ===== */
+.hero{
+  display: grid;
+  grid-template-columns: 1.25fr 1fr; /* 右側變大 */
+  gap: 28px;
+  align-items: center;
 }
 
-/* ========= init ========= */
-function init() {
-  console.log("✅ init running");
-
-  $("#year").textContent = new Date().getFullYear();
-
-  setupNav();
-  setupProgress();
-  setupCounters();
-  setupCarousel();
-  setupPortfolio();
-  setupModal();
-  setupQuiz();
-  setupPickTool();
-  setupContactForm();
-  setupLang();
+.hero__right{
+  justify-self: start;   /* 不要貼到最右 */
+  width: 100%;
+  max-width: 520px;      /* 右側可再大一點 */
 }
 
-document.addEventListener("DOMContentLoaded", init);
+/* ===== Carousel size polish ===== */
+.carousel{
+  width: 100%;
+}
+.carousel__img{
+  height: 320px;   /* 原本若偏小，就拉高 */
+  object-fit: cover;
+}
+
+.hero.container{
+  justify-content: initial;
+}
+
+/* ===== Featured section ===== */
+.featured{
+  padding-top: 24px;
+}
+
+.featured__wrap{
+  max-width: 720px;      /* 控制精選卡片寬度 */
+  margin: 0 auto;        /* 置中 */
+}
+
+.featured .carousel__img{
+  height: 360px;         /* 比 Hero 裡更大，當主角 */
+}
+
+.featured .carousel{
+  border-radius: 22px;
+}
+
+/* ===== Featured section: match About scale ===== */
+.featured{
+  padding-top: 32px;
+}
+
+.featured .section__head{
+  margin-bottom: 16px;
+}
+
+/* 關鍵：寬度、節奏對齊 About */
+.featured__wrap{
+  max-width: 1040px;      /* 和 about 區塊視覺寬度接近 */
+  margin-inline: auto;
+}
+
+/* 讓 carousel 本身像一張 card */
+.featured .carousel{
+  background: rgba(255,255,255,.7);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.06);
+  padding: 12px;
+}
+
+/* 精選圖尺寸 ≈ About 卡片高度感 */
+.featured .carousel__img{
+  height: 340px;
+  border-radius: 16px;
+}
+
+/* 文字區塊留白更像 About */
+.featured .carousel__overlay{
+  padding: 18px;
+}
+
+.featured{
+  padding-bottom: 40px;
+}
+
+/* ===== Featured matches About section ===== */
+.featuredCard{
+  padding: 12px;
+  border-radius: 22px;
+}
+
+.featuredCard .carousel{
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.featuredCard .carousel__img{
+  height: 360px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.featuredCard .carousel__overlay{
+  padding: 18px;
+}
+
+/* ===== Modal image carousel ===== */
+.mcar{
+  position: relative;
+  margin: 14px 0 16px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.65);
+  box-shadow: 0 18px 36px rgba(0,0,0,.06);
+}
+
+.mcar__viewport{
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.mcar__track{
+  display: flex;
+  transition: transform .45s ease;
+  will-change: transform;
+}
+
+.mcar__img{
+  width: 100%;
+  flex: 0 0 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.mcar__btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.8);
+  cursor: pointer;
+}
+
+.mcar__btn--prev{ left: 10px; }
+.mcar__btn--next{ right: 10px; }
+
+.mcar__dots{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.mcar__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.22);
+  background: rgba(255,255,255,.7);
+  cursor: pointer;
+}
+
+.mcar__dot.is-active{
+  transform: scale(1.25);
+  background: rgba(0,0,0,.12);
+}
+
+@media (max-width: 520px){
+  .mcar__img{ height: 220px; }
+}
