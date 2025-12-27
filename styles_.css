@@ -558,4 +558,74 @@ body{
   padding: 18px;
 }
 
+/* ===== Modal image carousel ===== */
+.mcar{
+  position: relative;
+  margin: 14px 0 16px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.65);
+  box-shadow: 0 18px 36px rgba(0,0,0,.06);
+}
+
+.mcar__viewport{
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.mcar__track{
+  display: flex;
+  transition: transform .45s ease;
+  will-change: transform;
+}
+
+.mcar__img{
+  width: 100%;
+  flex: 0 0 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.mcar__btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.8);
+  cursor: pointer;
+}
+
+.mcar__btn--prev{ left: 10px; }
+.mcar__btn--next{ right: 10px; }
+
+.mcar__dots{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.mcar__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.22);
+  background: rgba(255,255,255,.7);
+  cursor: pointer;
+}
+
+.mcar__dot.is-active{
+  transform: scale(1.25);
+  background: rgba(0,0,0,.12);
+}
+
+@media (max-width: 520px){
+  .mcar__img{ height: 220px; }
+}
+
+
 
