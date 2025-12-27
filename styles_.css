@@ -31,10 +31,20 @@ body{
               radial-gradient(1200px 600px at 50% 95%, rgba(255,240,184,.50), transparent 60%),
               var(--bg);
   color:var(--ink);
- font-family: "LXGW WenKai TC", "LXGW WenKai Mono TC", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+font-family: "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  
+  /* 2. 關鍵：把預設字重設為 500 (原本是 400)，這樣字體會比較飽滿 */
+  font-weight: 500;
+  
+  /* 3. 讓字距稍微寬一點點，閱讀起來比較舒服 */
+  letter-spacing: 0.03em;
   
   color: var(--ink);
+  
+  /* 4. 讓字體邊緣更平滑 (Mac/iOS 特別有效) */
+  -webkit-font-smoothing: antialiased;
 }
+
 /* background blobs */
 .bg{position:fixed; inset:0; pointer-events:none; z-index:-1}
 .blob{position:absolute; filter: blur(40px); opacity:.8; border-radius:999px; transform: translateZ(0)}
@@ -665,6 +675,17 @@ body{
 .card.work:hover .btn--soft {
   /* 讓按鈕顏色也跟著變亮一點 */
   filter: brightness(1.05);
+}
+
+/* 讓所有標題 (h1~h3) 字體更重，並稍微縮小字距，看起來更緊湊有力 */
+h1, h2, h3, .brand__text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* 讓內文的顏色稍微深一點，解決「看起來太細」的視覺問題 */
+p, li {
+  color: rgba(18, 18, 18, 0.85); /* 深灰色，比全黑柔和，但比淺灰清楚 */
 }
 
 
