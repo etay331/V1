@@ -447,3 +447,36 @@ body{
     min-height: 44px; /* 手機可點性 */
   }
 }
+
+/* ===== Desktop centering fix ===== */
+.container{
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+/* ===== Hero layout: bigger carousel + not too far right ===== */
+.hero{
+  display: grid;
+  grid-template-columns: 1.25fr 1fr; /* 右側變大 */
+  gap: 28px;
+  align-items: center;
+}
+
+.hero__right{
+  justify-self: start;   /* 不要貼到最右 */
+  width: 100%;
+  max-width: 520px;      /* 右側可再大一點 */
+}
+
+/* ===== Carousel size polish ===== */
+.carousel{
+  width: 100%;
+}
+.carousel__img{
+  height: 320px;   /* 原本若偏小，就拉高 */
+  object-fit: cover;
+}
+
+.hero.container{
+  justify-content: initial;
+}
+
