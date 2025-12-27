@@ -742,4 +742,40 @@ p, li {
   color: var(--muted);
 }
 
+/* ========= Credentials (證照區) ========= */
+.credentials-wrap {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--line); /* 分隔線 */
+  grid-column: 1 / -1; /* 讓它跨滿整行 */
+}
+
+.cre-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--muted);
+}
+
+.cre-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cre-tag {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 針對不同類別給一點點不同的邊框色 */
+.cre-tag.main { border-color: #ff9ecd; background: #fff0f5; } /* 粉色 - 護理本業 */
+.cre-tag.tech { border-color: #89cff0; background: #f0f8ff; } /* 藍色 - 科技 */
+.cre-tag.mkt  { border-color: #ffd700; background: #fffff0; } /* 黃色 - 行銷 */
 
