@@ -101,55 +101,85 @@
   </div>
 </section>
 
-<!-- Featured / 精選（放在關於我前面） -->
-<section class="section container featured">
-  <div class="section__head">
-     <h2 class="big">精選作品</h2>
-    <p class="muted">快速了解我最具代表性的內容與設計方向。</p>
+<!-- Featured / 精選作品 -->
+<section class="section container featured" id="featured">
+  <div class="section__head split">
+    <div>
+      <h2 class="big">精選作品</h2>
+      <p class="muted">快速了解我最具代表性的內容與設計方向。</p>
+    </div>
+    <a class="btn btn--ghost" href="#portfolio">看全部 →</a>
   </div>
 
-  <div class="featured__wrap">
+  <!-- 跟「關於我」同層級的卡片 -->
+  <div class="card featuredCard">
     <div class="carousel" id="heroCarousel" aria-label="Featured carousel">
+      
+      <!-- Track -->
       <div class="carousel__track" id="carouselTrack">
 
         <!-- Slide 1 -->
         <article class="carousel__slide is-active">
-          <img class="carousel__img" src="assets/hero1.jpg" alt="作品封面（可替換）">
+          <img class="carousel__img" src="assets/hero1.jpg" alt="老年人營養衛教動畫">
           <div class="carousel__overlay">
             <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
-            <h3 class="carousel__title" data-i18n="carousel.s1.title">把健康知識做成看得懂、用得上的內容</h3>
-            <p class="carousel__desc" data-i18n="carousel.s1.desc">Vivian｜健康教育 × 數位互動設計</p>
+            <h3 class="carousel__title" data-i18n="carousel.s1.title">
+              把健康知識做成看得懂、用得上的內容
+            </h3>
+            <p class="carousel__desc" data-i18n="carousel.s1.desc">
+              Vivian｜健康教育 × 數位互動設計
+            </p>
           </div>
         </article>
 
         <!-- Slide 2 -->
         <article class="carousel__slide">
-          <img class="carousel__img" src="assets/hero2.jpg" alt="作品封面（可替換）">
+          <img class="carousel__img" src="assets/hero2.jpg" alt="預立醫療與衛教內容設計">
           <div class="carousel__overlay">
             <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
-            <h3 class="carousel__title" data-i18n="carousel.s2.title">衛教不只是「告訴你」，而是「陪你理解」</h3>
-            <p class="carousel__desc" data-i18n="carousel.s2.desc">用插畫、動態與互動，降低理解門檻</p>
+            <h3 class="carousel__title" data-i18n="carousel.s2.title">
+              衛教不只是「告訴你」，而是「陪你理解」
+            </h3>
+            <p class="carousel__desc" data-i18n="carousel.s2.desc">
+              用插畫、動態與互動，降低理解門檻
+            </p>
           </div>
         </article>
 
         <!-- Slide 3 -->
         <article class="carousel__slide">
-          <img class="carousel__img" src="assets/hero3.jpg" alt="作品封面（可替換）">
+          <img class="carousel__img" src="assets/hero3.jpg" alt="互動教材與實習合作">
           <div class="carousel__overlay">
             <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
-            <h3 class="carousel__title" data-i18n="carousel.s3.title">想找願意一起把內容做好的夥伴</h3>
-            <p class="carousel__desc" data-i18n="carousel.s3.desc">實習、專案合作、教材設計都歡迎</p>
+            <h3 class="carousel__title" data-i18n="carousel.s3.title">
+              想找願意一起把內容做好的夥伴
+            </h3>
+            <p class="carousel__desc" data-i18n="carousel.s3.desc">
+              實習、專案合作、教材設計都歡迎
+            </p>
           </div>
         </article>
 
       </div>
 
-      <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Previous slide">‹</button>
-      <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Next slide">›</button>
-      <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="Carousel dots"></div>
+      <!-- Controls -->
+      <button class="carousel__btn carousel__btn--prev"
+              id="carouselPrev"
+              aria-label="Previous slide">‹</button>
+
+      <button class="carousel__btn carousel__btn--next"
+              id="carouselNext"
+              aria-label="Next slide">›</button>
+
+      <div class="carousel__dots"
+           id="carouselDots"
+           role="tablist"
+           aria-label="Carousel dots"></div>
+
     </div>
   </div>
 </section>
+
 
     <!-- About -->
     <section class="section container" id="about">
@@ -477,6 +507,7 @@
 
 </body>
 </html>
+
 
 
 
