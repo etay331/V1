@@ -1,3 +1,4 @@
+console.log("✅ script loaded");
 /* ========= helpers ========= */
 const $ = (q, el=document) => el.querySelector(q);
 const $$ = (q, el=document) => [...el.querySelectorAll(q)];
@@ -798,7 +799,8 @@ function setupLang(){
 }
 
 /* ========= init ========= */
-function init(){
+function init(console.log("✅ init running");
+){
   $("#year").textContent = new Date().getFullYear();
 
   setupNav();
@@ -814,6 +816,7 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
