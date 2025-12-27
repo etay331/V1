@@ -1,5 +1,53 @@
 console.log("✅ script loaded");
 
+/* ========= 你的作品資料庫 (以後改這裡就好) ========= */
+const myWorks = [
+  // --- 範例 1：YouTube 影片 ---
+  {
+    category: "health", // 分類: health, interactive, research, multimedia
+    tags: ["Health", "Video"], // 卡片上顯示的標籤
+    title: "專業倫理議題影片",
+    desc: "透過微電影探討護理臨床的倫理困境。",
+    cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", // 這裡放封面圖連結，這行是自動抓 YT 封面
+    // 點開後的內容
+    content: [
+      { type: "video", id: "dQw4w9WgXcQ" }, // YouTube ID
+      { type: "text", value: "這是影片的說明文字，描述你的創作理念..." }
+    ]
+  },
+
+  // --- 範例 2：圖片作品 (名片/海報) ---
+  {
+    category: "multimedia",
+    tags: ["Design", "Image"],
+    title: "個人品牌名片設計",
+    desc: "使用 Illustrator 設計的兩款名片，強調柔和與專業感。",
+    cover: "assets/card-cover.jpg", // 記得換成你的圖片路徑
+    content: [
+      { type: "text", value: "設計理念：以粉色系為主..." },
+      { type: "image", src: "assets/card-front.jpg" }, // 圖片 1
+      { type: "image", src: "assets/card-back.jpg" }   // 圖片 2
+    ]
+  },
+
+  // --- 範例 3：PDF 下載或外部連結 (教案/簡報) ---
+  {
+    category: "research",
+    tags: ["PDF", "Plan"],
+    title: "創新創業計畫簡報",
+    desc: "2025 NTUE 校園創業競賽金獎作品。",
+    cover: "assets/slide-cover.jpg",
+    content: [
+      { type: "text", value: "這是我們獲獎的完整簡報內容。" },
+      { type: "link", url: "https://drive.google.com/file/d/...", text: "下載完整 PDF" },
+      { type: "link", url: "https://www.instagram.com/...", text: "看 IG 貼文" }
+    ]
+  },
+  
+  // --- 你可以繼續往下複製貼上... ---
+];
+
+
 /* ========= helpers ========= */
 const $ = (q, el = document) => el.querySelector(q);
 const $$ = (q, el = document) => [...el.querySelectorAll(q)];
@@ -368,42 +416,103 @@ function setupCarousel() {
   });
 }
 
-/* ========= portfolio filter + search ========= */
-function setupPortfolio() {
+/* ========= 自動生成作品集 (Auto Portfolio Generator) ========= */
+function renderPortfolioSystem() {
   const grid = $("#portfolioGrid");
-  const search = $("#searchInput");
-  if (!grid) return;
+  const modal = $("#modal");
+  const modalContent = $("#modalContent");
+  
+  if (!grid || !modal) return;
 
+  // 1. 生成卡片 (Card)
+  grid.innerHTML = ""; // 清空
+  
+  myWorks.forEach((item, index) => {
+    // 建立卡片 HTML
+    const article = document.createElement("article");
+    article.className = "card work";
+    article.dataset.tags = item.category; // 給過濾器用
+    article.dataset.index = index; // 記住這是第幾個作品
+
+    // 決定封面圖 (如果是 YT ID 就自動抓，如果是路徑就用路徑)
+    let coverSrc = item.cover;
+    
+    article.innerHTML = `
+      <div class="card__top">
+        ${item.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+      </div>
+      <div style="width:100%; height:180px; overflow:hidden; border-radius:12px; margin-bottom:12px;">
+        <img src="${coverSrc}" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;" alt="${item.title}">
+      </div>
+      <h3>${item.title}</h3>
+      <p class="muted">${item.desc}</p>
+      <div class="actions">
+        <button class="btn btn--soft open-dynamic-modal">看詳細</button>
+      </div>
+    `;
+    
+    // 綁定點擊事件 (打開彈窗)
+    const btn = article.querySelector(".open-dynamic-modal");
+    btn.addEventListener("click", () => openDynamicModal(item));
+
+    grid.appendChild(article);
+  });
+
+  // 2. 設定過濾器 (Filter)
   const filters = $$(".filter");
-  let current = "all";
-
-  function matchCard(card) {
-    const tags = (card.dataset.tags || "").toLowerCase();
-    const title = (card.dataset.title || "").toLowerCase() + " " + (card.innerText || "").toLowerCase();
-    const q = (search ?.value || "").trim().toLowerCase();
-
-    const okFilter = current === "all" ? true : tags.includes(current);
-    const okSearch = !q ? true : title.includes(q);
-
-    return okFilter && okSearch;
-  }
-
-  function render() {
-    $$(".work", grid).forEach(card => {
-      card.style.display = matchCard(card) ? "" : "none";
-    });
-  }
-
   filters.forEach(btn => {
     btn.addEventListener("click", () => {
       filters.forEach(b => b.classList.remove("is-active"));
       btn.classList.add("is-active");
-      current = btn.dataset.filter || "all";
-      render();
+      const filter = btn.dataset.filter;
+      
+      const cards = $$(".card.work", grid);
+      cards.forEach(card => {
+        const cat = card.dataset.tags;
+        if (filter === "all" || cat === filter) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
     });
   });
 
-  search ?.addEventListener("input", render);
+  // 3. 動態彈窗內容生成器 (Modal Builder)
+  function openDynamicModal(item) {
+    let html = `<h3>${item.title}</h3>`;
+    
+    // 根據 content 陣列的內容，決定要顯示什麼
+    item.content.forEach(block => {
+      if (block.type === "text") {
+        html += `<p style="margin-bottom:16px; line-height:1.8;">${block.value}</p>`;
+      } 
+      else if (block.type === "image") {
+        html += `<img src="${block.src}" style="width:100%; border-radius:12px; margin-bottom:16px; border:1px solid #eee;">`;
+      } 
+      else if (block.type === "video") {
+        html += `
+          <div style="position:relative; padding-top:56.25%; margin-bottom:16px;">
+            <iframe src="https://www.youtube.com/embed/${block.id}" 
+              style="position:absolute; inset:0; width:100%; height:100%; border-radius:12px;" 
+              frameborder="0" allowfullscreen></iframe>
+          </div>
+        `;
+      } 
+      else if (block.type === "link") {
+        html += `
+          <a href="${block.url}" target="_blank" class="btn btn--ghost" style="width:100%; margin-bottom:10px;">
+            🔗 ${block.text}
+          </a>
+        `;
+      }
+    });
+
+    modalContent.innerHTML = html;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
 }
 
 /* ========= modal data ========= */
@@ -821,7 +930,7 @@ function init() {
   setupProgress();
   setupCounters();
   setupCarousel();
-  setupPortfolio();
+  renderPortfolioSystem();
   setupModal();
   setupQuiz();
   setupPickTool();
@@ -831,6 +940,7 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
