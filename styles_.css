@@ -480,3 +480,22 @@ body{
   justify-content: initial;
 }
 
+/* ===== Featured section ===== */
+.featured{
+  padding-top: 24px;
+}
+
+.featured__wrap{
+  max-width: 720px;      /* 控制精選卡片寬度 */
+  margin: 0 auto;        /* 置中 */
+}
+
+.featured .carousel__img{
+  height: 360px;         /* 比 Hero 裡更大，當主角 */
+}
+
+.featured .carousel{
+  border-radius: 22px;
+}
+
+
