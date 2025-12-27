@@ -688,5 +688,58 @@ p, li {
   color: rgba(18, 18, 18, 0.85); /* 深灰色，比全黑柔和，但比淺灰清楚 */
 }
 
+/* ========= Achievements (榮譽與經歷) ========= */
+.achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* 每個項目之間的距離 */
+  margin-top: 14px;
+}
+
+.ach-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5); /* 半透明背景 */
+  border: 1px solid var(--line);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* 滑鼠移上去的可愛特效 */
+.ach-item:hover {
+  transform: translateX(4px); /* 輕微往右動一下 */
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ach-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.ach-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ach-title {
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.ach-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
 
 
