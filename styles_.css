@@ -498,4 +498,41 @@ body{
   border-radius: 22px;
 }
 
+/* ===== Featured section: match About scale ===== */
+.featured{
+  padding-top: 32px;
+}
+
+.featured .section__head{
+  margin-bottom: 16px;
+}
+
+/* 關鍵：寬度、節奏對齊 About */
+.featured__wrap{
+  max-width: 1040px;      /* 和 about 區塊視覺寬度接近 */
+  margin-inline: auto;
+}
+
+/* 讓 carousel 本身像一張 card */
+.featured .carousel{
+  background: rgba(255,255,255,.7);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.06);
+  padding: 12px;
+}
+
+/* 精選圖尺寸 ≈ About 卡片高度感 */
+.featured .carousel__img{
+  height: 340px;
+  border-radius: 16px;
+}
+
+/* 文字區塊留白更像 About */
+.featured .carousel__overlay{
+  padding: 18px;
+}
+
+.featured{
+  padding-bottom: 40px;
+}
 
