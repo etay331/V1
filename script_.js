@@ -794,6 +794,23 @@ function setupLang() {
   applyI18n();
 }
 
+
+/* ========= back to top fix (修復回到頂部) ========= */
+function setupBackToTop() {
+  // 找到那個 href 是 #top 的按鈕
+  const btn = $('a[href="#top"]');
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault(); // 阻止原本的 #top 跳轉行為
+    // 強制用 JS 平滑滾動到最上面
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
+
 /* ========= init ========= */
 function init() {
   console.log("✅ init running");
@@ -810,8 +827,10 @@ function init() {
   setupPickTool();
   setupContactForm();
   setupLang();
+  setupBackToTop();
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
