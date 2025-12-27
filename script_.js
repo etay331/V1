@@ -489,6 +489,65 @@ body: `
       </ul>
     `
   },
+/* ========= modal image carousel ========= */
+let __mcarTimer = null;
+
+function initModalCarousels(){
+  // 找 modal 內容區裡的 mcar（因為 modal 每次打開會重新塞內容）
+  const car = document.querySelector("#modalContent .mcar");
+  if(!car) return;
+
+  const track = car.querySelector(".mcar__track");
+  const imgs = [...car.querySelectorAll(".mcar__img")];
+  const prev = car.querySelector(".mcar__btn--prev");
+  const next = car.querySelector(".mcar__btn--next");
+  const dotsWrap = car.querySelector(".mcar__dots");
+  if(!track || imgs.length <= 1 || !prev || !next || !dotsWrap) return;
+
+  let idx = 0;
+
+  // dots
+  dotsWrap.innerHTML = "";
+  imgs.forEach((_, i)=>{
+    const d = document.createElement("button");
+    d.type = "button";
+    d.className = "mcar__dot" + (i===0 ? " is-active" : "");
+    d.addEventListener("click", ()=> go(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = [...dotsWrap.querySelectorAll(".mcar__dot")];
+
+  function render(){
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d,i)=> d.classList.toggle("is-active", i===idx));
+  }
+
+  function go(i){
+    idx = (i + imgs.length) % imgs.length;
+    render();
+  }
+
+  prev.addEventListener("click", ()=> go(idx - 1));
+  next.addEventListener("click", ()=> go(idx + 1));
+
+  // autoplay
+  clearInterval(__mcarTimer);
+  __mcarTimer = setInterval(()=> go(idx + 1), 3200);
+
+  // pause on hover (desktop)
+  car.addEventListener("mouseenter", ()=> clearInterval(__mcarTimer));
+  car.addEventListener("mouseleave", ()=>{
+    clearInterval(__mcarTimer);
+    __mcarTimer = setInterval(()=> go(idx + 1), 3200);
+  });
+
+  render();
+}
+
+function destroyModalCarousels(){
+  clearInterval(__mcarTimer);
+  __mcarTimer = null;
+}
 
   en: {
     title: "Bring Back Appetite, Bring Back Energy",
@@ -561,8 +620,10 @@ body: `
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
+    setTimeout(initModalCarousels, 0);
   }
   function close(){
+    destroyModalCarousels();
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden","true");
     document.body.style.overflow = "";
@@ -745,6 +806,7 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
