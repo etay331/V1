@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-web@1.2.0/style.css');
 /* ✅ 讓 HTML 的 hidden 一定會隱藏（避免被 reset 影響） */
 [hidden] { 
   display: none !important; 
@@ -667,4 +667,5 @@ body{
   /* 讓按鈕顏色也跟著變亮一點 */
   filter: brightness(1.05);
 }
+
 
