@@ -57,48 +57,51 @@
 
   <main id="home">
     <!-- Hero -->
-    <section class="hero container">
-      <div class="hero__left">
-        <p class="pill" data-i18n="hero.pill">張煒䕒的個人網頁</p>
-        <h1 class="hero__title" data-i18n-html="hero.h1">
-          用健康教育與數位互動<br/>
-          把「難懂」變成「好懂、想學、會用」
-        </h1>
+<!-- Hero -->
+<section class="hero container">
+  <div class="hero__left">
+    <p class="pill" data-i18n="hero.pill">張煒䕒的個人網頁</p>
 
-        <p class="lead" data-i18n="hero.lead">
-          我做的是：可視化衛教、多媒體教材、互動測驗、AR/遊戲化學習設計，
-          讓知識更貼近日常、也更容易被記住。
-        </p>
+    <h1 class="hero__title" data-i18n-html="hero.h1">
+      用健康教育與數位互動<br/>
+      把「難懂」變成「好懂、想學、會用」
+    </h1>
 
-        <div class="hero__cta">
-          <a class="btn" href="#portfolio" data-i18n="hero.cta.portfolio">看作品集</a>
-          <a class="btn btn--ghost" href="#interactive" data-i18n="hero.cta.demo">玩互動小遊戲</a>
-        </div>
+    <p class="lead" data-i18n="hero.lead">
+      我做的是：可視化衛教、多媒體教材、互動測驗、AR/遊戲化學習設計，
+      讓知識更貼近日常、也更容易被記住。
+    </p>
 
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee__track">
-            <span>Care We Care · </span><span>Health Education · </span><span>Digital Learning · </span>
-            <span>Care We Care · </span><span>Health Education · </span><span>Digital Learning · </span>
-          </div>
-        </div>
+    <div class="hero__cta">
+      <a class="btn" href="#portfolio" data-i18n="hero.cta.portfolio">看作品集</a>
+      <a class="btn btn--ghost" href="#interactive" data-i18n="hero.cta.demo">玩互動小遊戲</a>
+    </div>
 
-        <div class="stats">
-          <div class="stat">
-            <span class="stat__num" data-count="4">0</span>
-            <span class="stat__label" data-i18n="hero.stat1">代表作品</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num" data-count="5">0</span>
-            <span class="stat__label" data-i18n="hero.stat2">互動教材/工具</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num" data-count="3">0</span>
-            <span class="stat__label" data-i18n="hero.stat3">研究/活動經驗</span>
-          </div>
-        </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Care We Care · </span><span>Health Education · </span><span>Digital Learning · </span>
+        <span>Care We Care · </span><span>Health Education · </span><span>Digital Learning · </span>
       </div>
+    </div>
 
- <!-- Featured / 精選 -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat__num" data-count="4">0</span>
+        <span class="stat__label" data-i18n="hero.stat1">代表作品</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-count="5">0</span>
+        <span class="stat__label" data-i18n="hero.stat2">互動教材/工具</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-count="3">0</span>
+        <span class="stat__label" data-i18n="hero.stat3">研究/活動經驗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured / 精選（放在關於我前面） -->
 <section class="section container featured">
   <div class="section__head">
     <h2>精選作品</h2>
@@ -106,20 +109,47 @@
   </div>
 
   <div class="featured__wrap">
-    <!-- 把 carousel 貼在這裡 -->
-    <div class="carousel" id="heroCarousel">
-      ...
+    <div class="carousel" id="heroCarousel" aria-label="Featured carousel">
+      <div class="carousel__track" id="carouselTrack">
+
+        <!-- Slide 1 -->
+        <article class="carousel__slide is-active">
+          <img class="carousel__img" src="assets/hero1.jpg" alt="作品封面（可替換）">
+          <div class="carousel__overlay">
+            <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
+            <h3 class="carousel__title" data-i18n="carousel.s1.title">把健康知識做成看得懂、用得上的內容</h3>
+            <p class="carousel__desc" data-i18n="carousel.s1.desc">Vivian｜健康教育 × 數位互動設計</p>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="carousel__slide">
+          <img class="carousel__img" src="assets/hero2.jpg" alt="作品封面（可替換）">
+          <div class="carousel__overlay">
+            <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
+            <h3 class="carousel__title" data-i18n="carousel.s2.title">衛教不只是「告訴你」，而是「陪你理解」</h3>
+            <p class="carousel__desc" data-i18n="carousel.s2.desc">用插畫、動態與互動，降低理解門檻</p>
+          </div>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="carousel__slide">
+          <img class="carousel__img" src="assets/hero3.jpg" alt="作品封面（可替換）">
+          <div class="carousel__overlay">
+            <span class="carousel__badge" data-i18n="carousel.badge">精選</span>
+            <h3 class="carousel__title" data-i18n="carousel.s3.title">想找願意一起把內容做好的夥伴</h3>
+            <p class="carousel__desc" data-i18n="carousel.s3.desc">實習、專案合作、教材設計都歡迎</p>
+          </div>
+        </article>
+
+      </div>
+
+      <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Previous slide">‹</button>
+      <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Next slide">›</button>
+      <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="Carousel dots"></div>
     </div>
   </div>
 </section>
-
-
-          <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Previous slide">‹</button>
-          <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Next slide">›</button>
-          <div class="carousel__dots" id="carouselDots" aria-label="Carousel dots"></div>
-        </div>
-      </div>
-    </section>
 
     <!-- About -->
     <section class="section container" id="about">
@@ -447,6 +477,7 @@
 
 </body>
 </html>
+
 
 
 
