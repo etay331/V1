@@ -10,6 +10,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles_.css" />
+  <style>
+  /* --- 這是剛剛幫你寫好的樣式 --- */
+  .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      box-sizing: border-box;
+      margin: 0 auto;
+  }
+  .image-box {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background-color: #ddd;
+  }
+  .image-box img {
+      display: block;
+      width: 100%;
+      height: auto;
+  }
+  .text-pill {
+      margin-top: 15px;
+      background-color: white;
+      padding: 10px 25px;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+</style>
 </head>
 
 <body>
@@ -87,14 +125,24 @@
     </div>
   </div>
 
-  <div class="hero__right">
+<div class="hero__right">
     <div class="hero__visual">
-      <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="Vivian 的跨領域作品集錦">
+        
+        <div class="card-container"> 
+
+            <div class="image-box">
+                <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="活動照片">
+            </div>
+
+            <div class="text-pill">
+                <span>💗</span>
+                <span>2025 文山親角親子衛教</span>
+            </div>
+            
+        </div> 
+        </div>
+</div>
       
-      <div class="floating-badge">
-        <span class="emoji">🩷</span>
-        <span>2025 文山親角親子衛教</span>
-      </div>
     </div>
   </div>
 
@@ -390,6 +438,7 @@
 
 </body>
 </html>
+
 
 
 
