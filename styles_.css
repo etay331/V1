@@ -536,3 +536,26 @@ body{
   padding-bottom: 40px;
 }
 
+/* ===== Featured matches About section ===== */
+.featuredCard{
+  padding: 12px;
+  border-radius: 22px;
+}
+
+.featuredCard .carousel{
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.featuredCard .carousel__img{
+  height: 360px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.featuredCard .carousel__overlay{
+  padding: 18px;
+}
+
+
