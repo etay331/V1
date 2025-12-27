@@ -1,4 +1,3 @@
-@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-web@1.2.0/style.css');
 /* ✅ 讓 HTML 的 hidden 一定會隱藏（避免被 reset 影響） */
 [hidden] { 
   display: none !important; 
@@ -32,10 +31,10 @@ body{
               radial-gradient(1200px 600px at 50% 95%, rgba(255,240,184,.50), transparent 60%),
               var(--bg);
   color:var(--ink);
-  font-family: "LXGW WenKai TC", "Zen Maru Gothic", ui-sans-serif, system-ui, sans-serif;
+ font-family: "LXGW WenKai TC", "LXGW WenKai Mono TC", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  
   color: var(--ink);
 }
-
 /* background blobs */
 .bg{position:fixed; inset:0; pointer-events:none; z-index:-1}
 .blob{position:absolute; filter: blur(40px); opacity:.8; border-radius:999px; transform: translateZ(0)}
@@ -667,5 +666,6 @@ body{
   /* 讓按鈕顏色也跟著變亮一點 */
   filter: brightness(1.05);
 }
+
 
 
