@@ -127,7 +127,7 @@ const i18n = {
     "nav.resources": "BLOG",
     "nav.interactive": "DEMO",
     "nav.contact": "CONTACT",
-    "hero.pill": "For internship units & the general public",
+    "hero.pill": "Vivian's Portfolio Website",
     "hero.h1": "Health education + digital interaction<br/>Make complex ideas easy, usable, and shareable",
     "hero.lead": "I create visual health education, multimedia learning materials, interactive quizzes, and playful AR/gamified experiences—so knowledge feels closer to daily life and easier to remember.",
     "hero.cta.portfolio": "See Work",
@@ -813,3 +813,4 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
