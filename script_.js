@@ -15,8 +15,8 @@ const i18n = {
     "nav.interactive": "互動Demo",
     "nav.contact": "聯絡我",
     "hero.pill": "張煒䕒的個人網頁",
-    "hero.h1": "用健康教育與數位互動<br/>把「難懂」變成「好懂、想學、會用」",
-    "hero.lead": "我做的是：可視化衛教、多媒體教材、互動測驗、AR/遊戲化學習設計，讓知識更貼近日常、也更容易被記住。",
+    "hero.h1": "衛教不該只是單向傳遞<br/>而是一場有溫度的對話",
+    "hero.lead": "面對疾病時，人們需要的不只是資訊，還有理解。運用動畫、AR 與互動網頁，把冰冷的醫學名詞，變成能安撫焦慮、引發興趣的陪伴。",
     "hero.cta.portfolio": "看作品集",
     "hero.cta.demo": "玩互動小遊戲",
     "carousel.badge": "精選",
@@ -128,8 +128,8 @@ const i18n = {
     "nav.interactive": "DEMO",
     "nav.contact": "CONTACT",
     "hero.pill": "Vivian's Portfolio Website",
-    "hero.h1": "Health education + digital interaction<br/>Make complex ideas easy, usable, and shareable",
-    "hero.lead": "I create visual health education, multimedia learning materials, interactive quizzes, and playful AR/gamified experiences—so knowledge feels closer to daily life and easier to remember.",
+    "hero.h1": "Health education shouldn't be a monologue,<br/>but a warm dialogue.",
+    "hero.lead": "Facing illness, people need understanding, not just information. I use animation, AR, and interactive web design to turn cold medical terms into comforting, engaging companions that ease anxiety.",
     "hero.cta.portfolio": "See Work",
     "hero.cta.demo": "Play the Demo",
     "carousel.badge": "FEATURED",
@@ -813,4 +813,5 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
