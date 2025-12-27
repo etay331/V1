@@ -620,8 +620,15 @@ function destroyModalCarousels(){
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
-    setTimeout(initModalCarousels, 0);
+    setTimeout(()=>{
+  try{
+    initModalCarousels();
+  }catch(err){
+    console.warn("Modal carousel init skipped:", err);
   }
+}, 0);
+  }
+
   function close(){
     destroyModalCarousels();
     modal.classList.remove("is-open");
@@ -629,14 +636,15 @@ function destroyModalCarousels(){
     document.body.style.overflow = "";
   }
 
-  document.addEventListener("click", (e)=>{
-    const btn = e.target.closest(".openModal");
-    if(btn){
-      open(btn.dataset.modal);
-      return;
-    }
-    if(e.target.matches("[data-close]")) close();
-  });
+document.addEventListener("click", (e)=>{
+  const btn = e.target.closest(".openModal");
+  if(btn && btn.dataset.modal){
+    open(btn.dataset.modal);
+    return;
+  }
+  if(e.target.matches("[data-close]")) close();
+});
+
 
   closeBtn.addEventListener("click", close);
   document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") close(); });
@@ -806,6 +814,7 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
