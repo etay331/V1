@@ -440,21 +440,40 @@ function setupModal(){
     title: "重拾食慾，重拾活力｜老年人營養三折頁與動畫",
     body: `
       <!-- Video -->
-      <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
-        <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-          title="老年人營養動畫示範"
-          style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-      </div>
+body: `
+  <!-- Video -->
+  <div style="position:relative;padding-top:56.25%;margin-bottom:16px;">
+    <iframe
+      src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+      title="老年人營養動畫示範"
+      style="position:absolute;inset:0;width:100%;height:100%;border-radius:14px;"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-      <!-- Images -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-        <img src="assets/nutrition-1.jpg" alt="營養三折頁設計" style="width:100%;border-radius:12px;">
-        <img src="assets/nutrition-2.jpg" alt="動畫畫面" style="width:100%;border-radius:12px;">
+  <!-- Modal Image Carousel -->
+  <div class="mcar" data-mcar="m1">
+    <div class="mcar__viewport">
+      <div class="mcar__track">
+        <img class="mcar__img" src="assets/nutrition-1.jpg" alt="營養三折頁設計1">
+        <img class="mcar__img" src="assets/nutrition-2.jpg" alt="營養三折頁設計2">
       </div>
+    </div>
+
+    <button class="mcar__btn mcar__btn--prev" type="button" aria-label="Previous image">‹</button>
+    <button class="mcar__btn mcar__btn--next" type="button" aria-label="Next image">›</button>
+
+    <div class="mcar__dots" aria-label="Image dots"></div>
+  </div>
+
+  <p>
+    本作品以<strong>年長者常見的食慾下降情境</strong>為出發點，
+    將營養專業內容轉化為<strong>插畫式三折頁</strong>與<strong>短動畫</strong>，
+    協助一般民眾與照護者在日常生活中理解並實際應用。
+  </p>
+`
+
 
       <!-- Description -->
       <p>
@@ -726,5 +745,6 @@ function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
