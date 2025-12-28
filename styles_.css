@@ -119,15 +119,15 @@ font-family: "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, sans-serif
   padding:8px 12px; border-radius:999px;
   font-size:12px;
 }
-.hero__title{
-    /* 原本可能寫死 font-size: 3rem 之類的，請改成下面這樣： */
+.hero__title {
+    /* 🔥 修改重點 1：最大值從 3rem 改成 2.5rem，讓筆電版字體縮小一點，就能塞進一行了 */
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem); 
     
-    /* 意思：最小24px，平常依照螢幕寬度自動調整，最大48px */
-    font-size: clamp(1.8rem, 4vw, 3rem); 
+    line-height: 1.3;
+    margin-bottom: 20px;
     
-    line-height: 1.3;      /* 行高調緊一點，看起來比較俐落 */
-    margin-bottom: 20px;   /* 跟下面文字保持距離 */
-    word-break: keep-all;  /* 🔥 這是重點！這行會盡量不把中文字詞切斷 */
+    /* 🔥 修改重點 2：這裡把 keep-all 刪掉了，萬一真的塞不下，它會自動換行，不會消失 */
+    font-weight: 700; /* 確保標題夠粗 */
 }
 .lead{font-size:16px; line-height:1.7; margin:0 0 16px;}
 .hero__cta{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
@@ -942,4 +942,5 @@ p, li {
         gap: 10px;
     }
 }
+
 
