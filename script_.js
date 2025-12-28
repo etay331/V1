@@ -85,8 +85,8 @@ const i18n = {
     "about.li1": "<strong>我擅長：</strong>把抽象概念變成圖像、情境與互動任務。",
     "about.li2": "<strong>我重視：</strong>可理解性、可使用性、與真實情境連結。",
     "about.li3": "<strong>我提供：</strong>教材設計、互動Demo、專案支援與簡報呈現。",
-    "about.map": "能力地圖",
-    "about.mapSub": "用很直覺的方式，快速看到我能幫上什麼。",
+    "about.map": "我的經歷",
+    "about.mapSub": "從學術研究到創新創業挑戰，我的成長軌跡。",
     "about.skill1": "衛教內容設計",
     "about.skill2": "互動教材/測驗",
     "about.skill3": "多媒體設計（動畫/影片）",
@@ -940,6 +940,7 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
