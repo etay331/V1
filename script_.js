@@ -950,7 +950,22 @@ document.addEventListener("DOMContentLoaded", init);
         document.getElementById(id).classList.remove('show');
         setTimeout(() => document.getElementById(id).style.display = 'none', 300);
     }
+
+/* --- 請貼在 <script> 標籤內 --- */
+
+function openModal(modalId) {
+  var modal = document.getElementById(modalId);
+  if(modal) modal.classList.add('active');
+}
+
+function closeModal(modalId) {
+  var modal = document.getElementById(modalId);
+  if(modal) modal.classList.remove('active');
+}
+
+
 </script>
+
 
 
 
