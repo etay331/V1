@@ -884,3 +884,52 @@ p, li {
     align-items: center;
     gap: 8px;
 }
+
+/* --- 響應式佈局 (RWD) 設定 --- */
+
+/* 1. 電腦版預設設定 */
+.hero {
+    display: flex;             /* 讓左右兩塊並排 */
+    align-items: center;       /* 垂直置中對齊 */
+    justify-content: space-between;
+    gap: 40px;                 /* 左右兩邊保持距離 */
+    padding-top: 60px;         /* 上方留點呼吸空間 */
+    padding-bottom: 60px;
+}
+
+.hero__left {
+    flex: 1;                   /* 佔據一半空間 */
+    max-width: 600px;          /* 文字區塊不要太寬，比較好讀 */
+}
+
+.hero__right {
+    flex: 1;                   /* 佔據另一半空間 */
+    display: flex;             /* 讓裡面的圖片卡片置中 */
+    justify-content: center;
+}
+
+/* 2. 手機版專用設定 (螢幕小於 768px 時觸發) */
+@media screen and (max-width: 768px) {
+    .hero {
+        /* 🔥 關鍵：變成直向排列，並反轉順序 (讓圖片在上面，文字在下面) */
+        flex-direction: column-reverse; 
+        
+        text-align: center;    /* 手機上文字置中比較好看 */
+        padding-top: 30px;
+        gap: 30px;
+    }
+
+    .hero__left, 
+    .hero__right {
+        width: 100%;           /* 強制寬度佔滿手機螢幕 */
+        max-width: 100%;
+        flex: auto;            /* 解除 flex 限制 */
+    }
+
+    /* 讓按鈕在手機上也置中 */
+    .hero__cta {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+}
