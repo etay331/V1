@@ -941,6 +941,16 @@ function init() {
 
 document.addEventListener("DOMContentLoaded", init);
 
+<script>
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+        setTimeout(() => document.getElementById(id).classList.add('show'), 10);
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('show');
+        setTimeout(() => document.getElementById(id).style.display = 'none', 300);
+    }
+</script>
 
 
 
