@@ -444,6 +444,9 @@
   </div>
 
 
+
+
+  
   <div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
     <div class="modal-content" onclick="event.stopPropagation()" style="width: 95%; max-width: 900px; height: 80vh;">
         <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
@@ -457,33 +460,51 @@
     </div>
   </div>
 
-  <div id="demo-eyejack" class="modal-overlay" onclick="closeModal('demo-eyejack')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
-        <h2>📱 AR 擴增實境體驗流程</h2>
-        <p class="modal-subtitle">請拿出手機，跟著步驟操作：</p>
 
-        <div class="ar-steps" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-            
-            <div class="step-box" style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
-                <img src="https://via.placeholder.com/150?text=App+QR+Code" alt="下載 QR Code" style="width: 120px; height: 120px; margin: 0 auto;">
-                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">下載 EyeJack App</p>
-            </div>
 
-            <div class="step-box" style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描啟動圖</div>
-                <img src="https://via.placeholder.com/150?text=啟動辨識圖" alt="啟動圖" style="width: 120px; height: 120px; object-fit: cover; margin: 0 auto;">
-                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">打開 App 掃描這張圖</p>
-            </div>
+  <div class="demo-section">
+  <h1 class="demo-title">互動Demo</h1>
+  <p class="demo-subtitle">讓訪客動手玩：停留更久、也更容易分享。</p>
 
-        </div>
-
-        <div style="margin-top: 20px; padding: 15px; background: #fff8e1; border-radius: 8px; font-size: 0.9rem; color: #856404;">
-            <strong>💡 體驗說明：</strong> 掃描成功後，你會看到 [描述一下會發生什麼事，例如：心臟會跳動、出現3D模型...]。
-        </div>
+  <div class="cards-flex-container">
+    
+    <div class="demo-card">
+      <div class="tag-row">
+        <span class="tag-pill-outline">GAME</span>
+        <span class="tag-pill-blue">小測驗</span>
+      </div>
+      <h3 class="card-h3">健康小測驗（示範）</h3>
+      <p class="card-p">
+        你可以把題目改成：失智症/口腔保健/營養/傷口照護...任何主題。
+      </p>
+      <button class="float-right-btn" onclick="openModal('demo-lumi')">重來一次</button>
     </div>
+
+    <div class="demo-card">
+      <div class="tag-row">
+        <span class="tag-pill-outline">TOOL</span>
+        <span class="tag-pill-purple">小工具</span>
+      </div>
+      <h3 class="card-h3">我是哪種學習者？（超短小互動）</h3>
+      <p class="card-p">
+        選一個你最常用的方法，我給你一個「最適合的內容呈現方式」建議。
+      </p>
+      
+      <div class="btn-row-group">
+        <button class="wide-btn" onclick="openModal('demo-eyejack')">看圖比較快</button>
+        <button class="wide-btn" onclick="openModal('demo-eyejack')">故事更有感</button>
+        <button class="wide-btn" onclick="openModal('demo-eyejack')">步驟最實用</button>
+      </div>
+
+      <div class="dashed-hint">
+        <span>提示：點上面按鈕試試看 ✨</span>
+      </div>
+    </div>
+
   </div>
+</div>
+
+ 
 
   
   <script src="./script_.js" defer></script>
@@ -508,6 +529,7 @@
 </body>
 </html>
   
+
 
 
 
