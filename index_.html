@@ -203,38 +203,41 @@
           <p class="muted" data-i18n="about.mapSub">從學術研究到創新創業挑戰，我的成長軌跡。</p>
 
        <div class="achievements">
+
+
+         <div class="experience-card" onclick="openModal('modal-1')" style="cursor: pointer;">
+    <div class="icon">🔬</div>
+    <div class="content">
+        <h3>114年度國科會大專生研究計畫</h3>
+        <p>主題：運用多媒體與遊戲教學提升兒童健康識能</p>
+    </div>
+</div>
+
+<div class="experience-card" onclick="openModal('modal-2')" style="cursor: pointer;">
+    <div class="icon">🏆</div>
+    <div class="content">
+        <h3>2025 NTUE 校園創業競賽 | 金獎</h3>
+        <p>獲獎作品：語觸世界 LingoTouch - 視語光點</p>
+    </div>
+</div>
+
+<div class="experience-card" onclick="openModal('modal-3')" style="cursor: pointer;">
+    <div class="icon">✈️</div>
+    <div class="content">
+        <h3>學海築夢 | 印尼巨港海外實習</h3>
+        <p>於 Universitas Muhammadiyah Palembang 醫療機構實習</p>
+    </div>
+</div>
+
+<div class="experience-card" onclick="openModal('modal-4')" style="cursor: pointer;">
+    <div class="icon">📚</div>
+    <div class="content">
+        <h3>勤學書卷獎 (連續兩學期)</h3>
+        <p>113學年度 第1學期 & 第2學期 系排前三</p>
+    </div>
+</div>
   
-  <div class="ach-item">
-    <div class="ach-icon">🔬</div>
-    <div class="ach-content">
-      <strong class="ach-title">114年度國科會大專生研究計畫</strong>
-      <span class="ach-desc">主題：運用多媒體與遊戲教學提升兒童健康識能</span>
-    </div>
-  </div>
 
-  <div class="ach-item">
-    <div class="ach-icon">🏆</div>
-    <div class="ach-content">
-      <strong class="ach-title">2025 NTUE 校園創業競賽｜金獎</strong>
-      <span class="ach-desc">獲獎作品：語觸世界 LingoTouch - 視語光點</span>
-    </div>
-  </div>
-
-  <div class="ach-item">
-    <div class="ach-icon">✈️</div>
-    <div class="ach-content">
-      <strong class="ach-title">學海築夢｜印尼巨港海外實習</strong>
-      <span class="ach-desc">於 Universitas Muhammadiyah Palembang 醫療機構實習</span>
-    </div>
-  </div>
-
-  <div class="ach-item">
-    <div class="ach-icon">📚</div>
-    <div class="ach-content">
-      <strong class="ach-title">勤學書卷獎 (連續兩學期)</strong>
-      <span class="ach-desc">113學年度 第1學期 & 第2學期 系排前三</span>
-    </div>
-  </div>
 
 </div>
 
@@ -436,8 +439,56 @@
   </div>
   <script src="./script_.js" defer></script>
 
+
+
+
+
+
+  <div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
+        <h2>🔬 國科會大專生研究計畫</h2>
+        <p class="modal-subtitle">主題：運用多媒體與遊戲教學提升兒童健康識能</p>
+        
+        <img src="你的照片連結.jpg" alt="研究過程照片" style="width:100%; border-radius:10px; margin: 15px 0;">
+        
+        <p>這裡可以寫詳細的內容。例如：我設計了一款結合 AR 的衛教遊戲，讓小朋友在玩樂中學習...</p>
+    </div>
+</div>
+
+<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
+        <h2>🏆 校園創業競賽金獎</h2>
+        
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:10px; margin: 15px 0;">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/你的影片ID" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <p>獲獎作品「視語光點」是為視障兒童設計的語言學習工具...</p>
+    </div>
+</div>
+
+<div id="modal-3" class="modal-overlay" onclick="closeModal('modal-3')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
+        <h2>✈️ 印尼巨港海外實習</h2>
+        <img src="https://via.placeholder.com/600x400" alt="實習合照" style="width:100%; border-radius:10px; margin: 15px 0;">
+        <p>在當地的社區衛生中心進行為期一個月的實習，深刻體驗了跨文化的衛教挑戰...</p>
+    </div>
+</div>
+
+<div id="modal-4" class="modal-overlay" onclick="closeModal('modal-4')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-4')">&times;</span>
+        <h2>📚 勤學書卷獎</h2>
+        <p>連續兩學期保持系排前三名，主要修習課程包括：公共衛生、護理導論、多媒體設計...</p>
+    </div>
+</div>
+  
 </body>
 </html>
+
 
 
 
