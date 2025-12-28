@@ -634,9 +634,152 @@
       padding: 0 8px;
   }
 </style>
+
+
+    <style>
+  /* 1. 區塊設定 */
+  .portfolio-section {
+    max-width: 1200px; margin: 60px auto; padding: 20px;
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
+  
+  /* 2. 網格排版 (預設顯示) */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 自動填滿，卡片最小280px */
+    gap: 25px;
+  }
+
+  /* 3. 卡片樣式 (保持一致的風格) */
+  .port-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s; cursor: pointer;
+    display: flex; flex-direction: column;
+  }
+  .port-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+  
+  .port-img-box {
+    width: 100%; height: 180px; background-color: #f0f0f0;
+    display: flex; align-items: center; justify-content: center; color: #999;
+  }
+  .port-img-box img { width: 100%; height: 100%; object-fit: cover; }
+  
+  .port-content { padding: 20px; }
+  .port-tag {
+    font-size: 12px; color: #6a4f9e; background: #f3e5f5;
+    padding: 4px 10px; border-radius: 50px; font-weight: bold;
+    display: inline-block; margin-bottom: 10px;
+  }
+  .port-title { font-size: 18px; font-weight: bold; margin: 0 0 8px 0; color: #333; }
+  .port-desc { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+
+  /* 4. 關鍵功能：隱藏多餘卡片的樣式 */
+  .hidden-item {
+    display: none; /* 預設隱藏 */
+  }
+
+  /* 5. 「查看更多」按鈕區塊 */
+  .load-more-container {
+    text-align: center; margin-top: 40px;
+  }
+  .load-btn {
+    background: #333; color: white; border: none;
+    padding: 12px 35px; border-radius: 50px; font-size: 15px; font-weight: bold;
+    cursor: pointer; transition: 0.3s; letter-spacing: 1px;
+  }
+  .load-btn:hover { background: #555; transform: scale(1.05); }
+</style>
+
+<div class="portfolio-section">
+  <h2 style="font-size:28px; font-weight:800; color:#1a1a1a; margin-bottom:10px;">更多作品集</h2>
+  <p style="color:#888; margin-bottom:30px;">這裡收錄了我在學期間參與的各類專案與設計。</p>
+
+  <div class="portfolio-grid">
+    
+    <div class="port-card" onclick="openModal('modal-gallery')">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案A" alt="專案A"></div>
+      <div class="port-content">
+        <span class="port-tag">UI 設計</span>
+        <h3 class="port-title">高齡友善介面設計</h3>
+        <p class="port-desc">針對高齡者視覺特性設計的 APP 介面優化專案。</p>
+      </div>
+    </div>
+
+    <div class="port-card" onclick="openModal('modal-pdf')">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案B" alt="專案B"></div>
+      <div class="port-content">
+        <span class="port-tag">衛教手冊</span>
+        <h3 class="port-title">糖尿病飲食指南</h3>
+        <p class="port-desc">以圖文並茂的方式重新排版衛教資訊，提升閱讀意願。</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案C" alt="專案C"></div>
+      <div class="port-content">
+        <span class="port-tag">活動企劃</span>
+        <h3 class="port-title">社區健康篩檢活動</h3>
+        <p class="port-desc">統籌規劃百人規模的社區篩檢流程與動線設計。</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案D" alt="專案D"></div>
+      <div class="port-content">
+        <span class="port-tag">影片製作</span>
+        <h3 class="port-title">正確洗手衛教短片</h3>
+        <p class="port-desc">負責腳本撰寫與後製剪輯，推廣正確洗手步驟。</p>
+      </div>
+    </div>
+
+    <div class="port-card hidden-item">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案E" alt="專案E"></div>
+      <div class="port-content">
+        <span class="port-tag">海報設計</span>
+        <h3 class="port-title">失智症宣導海報</h3>
+        <p class="port-desc">運用溫暖色調與簡單圖示，傳達失智症友善觀念。</p>
+      </div>
+    </div>
+
+    <div class="port-card hidden-item">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案F" alt="專案F"></div>
+      <div class="port-content">
+        <span class="port-tag">網站架設</span>
+        <h3 class="port-title">個人作品集網站</h3>
+        <p class="port-desc">從零開始規劃與架設的響應式個人網站。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="load-more-container">
+    <button id="showMoreBtn" class="load-btn" onclick="showAllProjects()">查看更多作品 ↓</button>
+  </div>
+</div>
+
+<script>
+  function showAllProjects() {
+    // 1. 找到所有被隱藏的卡片
+    var hiddenItems = document.querySelectorAll('.hidden-item');
+    
+    // 2. 把每一張都改成顯示 (display: flex)
+    hiddenItems.forEach(function(item) {
+      item.style.display = 'flex';
+      // 加一點簡單的淡入動畫效果
+      item.style.opacity = '0';
+      item.style.transition = 'opacity 0.5s';
+      setTimeout(() => item.style.opacity = '1', 50);
+    });
+
+    // 3. 隱藏按鈕自己 (因為都顯示完了)
+    document.getElementById('showMoreBtn').style.display = 'none';
+  }
+</script>
 </body>
 </html>
   
+
 
 
 
