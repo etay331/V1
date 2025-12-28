@@ -1313,5 +1313,162 @@ p, li {
 
 
 
+/* --- 互動 Demo 區塊專用樣式 (仿照圖片風格) --- */
+
+/* 外層容器 */
+.demo-section {
+  background-color: #FAFAFA; /* 圖片中的極淡灰白背景 */
+  padding: 40px 20px;
+  font-family: system-ui, -apple-system, "Microsoft JhengHei", sans-serif;
+}
+
+.demo-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.demo-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* 卡片容器 */
+.cards-flex-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* 手機版自動換行 */
+}
+
+/* 單張卡片 */
+.demo-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  flex: 1 1 300px; /* 彈性寬度 */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* 極淡的陰影 */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #f0f0f0;
+}
+
+/* 標籤群組 */
+.tag-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+/* 膠囊標籤 - 空心款 */
+.tag-pill-outline {
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 1px;
+  background: #fff;
+}
+
+/* 膠囊標籤 - 淺藍色款 (左邊卡片) */
+.tag-pill-blue {
+  background-color: #eaf4ff;
+  color: #1976d2;
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 膠囊標籤 - 淺紫色款 (右邊卡片) */
+.tag-pill-purple {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 卡片文字 */
+.card-h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #222;
+}
+
+.card-p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1; /* 撐開高度 */
+}
+
+/* 左卡按鈕 (圓角陰影) */
+.float-right-btn {
+  align-self: flex-end; /* 靠右對齊 */
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+.float-right-btn:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* 右卡按鈕群 (三個並排) */
+.btn-row-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.wide-btn {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 10px 0;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.wide-btn:hover {
+  background: #f9f9f9;
+  border-color: #ddd;
+}
+
+/* 底部虛線提示框 */
+.dashed-hint {
+  background: linear-gradient(to right, #fffdf5, #f8f0fc); /* 淡黃到淡紫漸層 */
+  border: 2px dashed #d1c4e9; /* 紫色虛線 */
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 13px;
+  color: #444;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+
 
 
