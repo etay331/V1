@@ -1013,3 +1013,23 @@ p, li {
     margin-bottom: 15px;
 }
 
+/* --- 卡片互動特效 --- */
+.experience-card {
+    /* 這是原本應該就有的基本設定，確保有這行 transition */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent; /* 先佔位，避免 hover 時邊框跳動 */
+}
+
+/* 滑鼠移上去時：浮起來 + 陰影變深 */
+.experience-card:hover {
+    transform: translateY(-5px);  /* 往上浮 5px */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* 陰影變深 */
+    background-color: #fffdf9;    /* 背景稍微變亮一點的暖色 */
+    border-color: #eee;           /* 顯現淡淡邊框 */
+}
+
+/* 點下去時：稍微縮小 (按鈕回饋感) */
+.experience-card:active {
+    transform: scale(0.98);       /* 縮小一點點 */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* 陰影變小 */
+}
