@@ -485,9 +485,38 @@
         <p>連續兩學期保持系排前三名，主要修習課程包括：公共衛生、護理導論、多媒體設計...</p>
     </div>
 </div>
+
+
+  <script>
+    // 開啟視窗
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "flex";
+            // 延遲一點點加 show class，讓淡入動畫生效
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+    }
+
+    // 關閉視窗
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('show');
+            // 等動畫跑完再隱藏
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+    }
+</script>
+
   
 </body>
 </html>
+
 
 
 
