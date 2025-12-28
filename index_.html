@@ -263,24 +263,138 @@
   }
 </style>
 
-<nav class="navbar-container">
-  <a href="#" class="logo-group">
-    <div class="logo-icon">★</div> <div class="logo-text-col">
-      <span class="logo-title">Care We Care</span>
-      <span class="logo-subtitle">關心我們在乎的</span>
-    </div>
-  </a>
+<style>
+  /* 1. 導覽列容器：關鍵的磨砂玻璃效果 */
+  .header-frosted {
+    position: sticky; top: 0; z-index: 1000; /* 固定在頂部 */
+    width: 100%;
+    
+    /* --- 磨砂特效核心 --- */
+    background: rgba(255, 255, 255, 0.75); /* 白色半透明 (0.75) */
+    backdrop-filter: blur(12px);           /* 背景模糊 (毛玻璃) */
+    -webkit-backdrop-filter: blur(12px);   /* 支援 Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* 底部淡淡的白線 */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03); /* 極淡的陰影 */
+    
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
 
-  <div class="hamburger-icon" onclick="toggleNav()">☰</div>
+  .header-inner {
+    max-width: 1200px; margin: 0 auto; /* 內容置中 */
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px;
+  }
 
-  <ul class="nav-menu" id="mainNav">
-    <li><a href="#" class="nav-link">關於我</a></li>
-    <li><a href="#" class="nav-link">作品集</a></li>
-    <li><a href="#" class="nav-link">互動作品</a></li>
-    <li><a href="#" class="nav-link contact-pill">聯絡我</a></li>
-    <li><a href="#" class="en-btn">EN</a></li>
-  </ul>
-</nav>
+  /* 2. Logo 設計 (完全依照您的截圖) */
+  .brand-group {
+    display: flex; align-items: center; gap: 15px; text-decoration: none;
+  }
+
+  /* 那個粉藍漸層的圓角方塊 */
+  .brand-icon-box {
+    width: 48px; height: 48px;
+    /* 漸層背景：從淡藍(#E3F2FD) 到 淡粉(#FCE4EC) */
+    background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);
+    border-radius: 14px; /* 圓角 */
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; /* 星星大小 */
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.05); /* 微微的粉色光暈 */
+  }
+  
+  .brand-text-col { display: flex; flex-direction: column; justify-content: center; }
+  
+  .brand-title {
+    font-size: 18px; font-weight: 800; color: #222; 
+    line-height: 1.2; letter-spacing: 0.5px;
+  }
+  .brand-subtitle {
+    font-size: 13px; color: #666; font-weight: normal; margin-top: 2px;
+  }
+
+  /* 3. 電腦版選單 */
+  .nav-menu {
+    display: flex; align-items: center; gap: 25px; margin: 0; padding: 0; list-style: none;
+  }
+  
+  .nav-link {
+    text-decoration: none; color: #444; font-weight: bold; font-size: 14px; transition: 0.2s;
+  }
+  .nav-link:hover { color: #000; }
+
+  /* 聯絡我按鈕 (灰色膠囊) */
+  .contact-pill {
+    background-color: #f1f3f5; padding: 8px 24px; border-radius: 50px; color: #333 !important;
+  }
+  .contact-pill:hover { background-color: #e9ecef; }
+
+  /* EN 按鈕 (圓形) */
+  .en-btn {
+    border: 1px solid #ddd; width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold; color: #555; text-decoration: none;
+    transition: 0.2s; background: rgba(255,255,255,0.5);
+  }
+  .en-btn:hover { border-color: #333; background: #333; color: white; }
+
+  /* 4. 手機版漢堡 (預設隱藏) */
+  .hamburger { display: none; cursor: pointer; font-size: 24px; color: #333; user-select: none; }
+
+  /* ================= 手機版 RWD (螢幕小於 768px) ================= */
+  @media screen and (max-width: 768px) {
+    .header-inner { padding: 10px 20px; }
+    
+    .hamburger { display: block; } /* 顯示漢堡 */
+
+    /* 選單變成下拉式 */
+    .nav-menu {
+      position: absolute; top: 100%; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.95); /* 手機版背景不透明一點，比較好閱讀 */
+      backdrop-filter: blur(15px);
+      flex-direction: column; gap: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      
+      /* 收合動畫設定 */
+      max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    /* 連結樣式調整 */
+    .nav-menu li { width: 100%; text-align: center; border-top: 1px solid rgba(0,0,0,0.03); }
+    .nav-link, .contact-pill, .en-btn {
+      display: block; width: 100%; padding: 15px 0; background: none; border-radius: 0; border: none;
+    }
+    .en-btn { width: 100%; height: auto; } /* 修正 EN 按鈕在手機版的高度 */
+
+    /* JS 打開時的高度 */
+    .nav-menu.active { max-height: 450px; }
+  }
+</style>
+
+<header class="header-frosted">
+  <div class="header-inner">
+    
+    <a href="#home" class="brand-group">
+      <div class="brand-icon-box">
+        <span style="color: #FBC02D;">⭐</span> 
+      </div>
+      <div class="brand-text-col">
+        <span class="brand-title">Care We Care</span>
+        <span class="brand-subtitle">關心我們在乎的</span>
+      </div>
+    </a>
+
+    <div class="hamburger" onclick="toggleNav()">☰</div>
+
+    <ul class="nav-menu" id="mainNav">
+      <li><a href="#about" class="nav-link">關於我</a></li>
+      <li><a href="#portfolio" class="nav-link">作品集</a></li>
+      <li><a href="#demo" class="nav-link">互動DEMO</a></li>
+      <li><a href="#contact" class="nav-link contact-pill">聯絡我</a></li>
+      <li><a href="#en" class="en-btn">EN</a></li>
+    </ul>
+
+  </div>
+</header>
 
 <script>
   function toggleNav() {
@@ -288,7 +402,6 @@
     menu.classList.toggle("active");
   }
 </script>
-      
   </header>
 
   <main id="home">
@@ -969,6 +1082,7 @@
 </body>
 </html>
   
+
 
 
 
