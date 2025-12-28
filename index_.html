@@ -7,636 +7,339 @@
   <meta name="description" content="Vivian｜健康教育 × 數位互動作品集" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-web@1/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles_.css" />
+  
   <style>
-  /* --- 2.0 版全新樣式 --- */
+  /* --- 這裡整合了所有你需要的 CSS --- */
 
-  /* 1. 卡片容器：負責排隊與置中 */
-  .card-container {
-      display: flex;
-      flex-direction: column; /* 垂直排列 */
-      align-items: center;    /* 讓裡面的東西水平置中 */
-      width: 100%;
-      max-width: 700px;       /* 🔥 改動：讓電腦版圖片可以更大！ */
-      margin: 0 auto;         /* 自己在父層中置中 */
+  /* 1. 經歷卡片變成雙欄 (你之前漏掉這段) */
+  .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 電腦版雙欄 */
+      gap: 15px;
+  }
+  @media screen and (max-width: 768px) {
+      .experience-grid { grid-template-columns: 1fr; } /* 手機版單欄 */
   }
 
-  /* 2. 圖片區塊設定 */
-  .image-box {
-      width: 100%;
-      border-radius: 24px;    /* 更圓潤一點 */
-      overflow: hidden;
-      /* 改用更現代、柔和的陰影 */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      background-color: #f0f0f0;
-      line-height: 0;         /* 消除圖片下方微小空隙 */
-  }
-  .image-box img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-  }
-
-  /* 3. 精緻化文字框設定 */
-  .text-pill {
-      margin-top: 20px;       /* 稍微拉開一點距離 */
-      
-      background-color: white;
-      /* 🔥 改動：更緊湊的內距，不再那麼巨大 */
-      padding: 12px 24px; 
-      /* 🔥 改動：從膠囊改成現代圓角矩形 */
+  /* 2. 卡片樣式 */
+  .experience-card {
+      background: white;
+      padding: 20px;
       border-radius: 16px;
-      /* 柔和的浮起效果 */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.05); /* 微微的邊框增加質感 */
-
-      font-size: 16px;
-      font-weight: 700;       /* 更粗一點的字體 */
-      color: #2c3e50;         /* 更有質感的深藍灰色 */
-      
-      display: inline-flex;   /* 關鍵：讓外框緊貼文字內容，不會變超寬 */
-      align-items: center;
-      gap: 10px;              /* 愛心和文字的間距大一點 */
-      white-space: nowrap;    /* 強制文字不換行 */
+      border: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 140px; /* 統一高度 */
   }
-</style>
+  .experience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-color: #ffd700; 
+  }
+  .card-icon { font-size: 24px; }
+  .card-content h3 { font-size: 1.1rem; margin: 0 0 5px 0; }
+  .card-content p { font-size: 0.9rem; color: #666; margin: 0; }
+  .card-link {
+      margin-top: auto;
+      font-size: 14px;
+      font-weight: bold;
+      color: #999;
+      display: flex; align-items: center; gap: 5px;
+  }
+  .experience-card:hover .card-link { color: #333; }
+
+  /* 3. Hero 區域的卡片與膠囊 */
+  .card-container {
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; max-width: 700px; margin: 0 auto;
+  }
+  .image-box {
+      width: 100%; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12); background-color: #f0f0f0; line-height: 0;
+  }
+  .image-box img { display: block; width: 100%; height: auto; object-fit: cover; }
+  .text-pill {
+      margin-top: 20px; background-color: white; padding: 12px 24px;
+      border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05); font-size: 16px; font-weight: 700;
+      color: #2c3e50; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+  }
+
+  /* 4. 彈跳視窗與輪播 */
+  .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); z-index: 9999;
+      justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
+  }
+  .modal-overlay.show { display: flex; opacity: 1; }
+  .modal-content {
+      background-color: white; padding: 30px; border-radius: 20px;
+      width: 90%; max-width: 600px; max-height: 85vh; overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
+      transform: translateY(20px); transition: transform 0.3s ease;
+  }
+  .modal-overlay.show .modal-content { transform: translateY(0); }
+  .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+  
+  /* 照片輪播 */
+  .gallery-container {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding-bottom: 10px;
+      scrollbar-width: none;
+  }
+  .gallery-container::-webkit-scrollbar { display: none; }
+  .gallery-item { scroll-snap-align: center; flex: 0 0 100%; height: 300px; object-fit: cover; border-radius: 12px; background: #eee; }
+  .scroll-hint { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+  
+  /* PDF 容器 */
+  .pdf-container {
+      position: relative; width: 100%; height: 500px; margin-top: 15px;
+      border-radius: 12px; overflow: hidden; border: 1px solid #eee; background-color: #f9f9f9;
+  }
+  .pdf-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  </style>
 </head>
 
 <body>
-  <!-- Decorative background blobs -->
   <div class="bg">
     <span class="blob b1" aria-hidden="true"></span>
     <span class="blob b2" aria-hidden="true"></span>
     <span class="blob b3" aria-hidden="true"></span>
   </div>
 
-  <!-- Top progress -->
-  <div class="progress" id="progress"></div>
-
-  <!-- Header -->
   <header class="header" id="top">
     <div class="container header__inner">
       <a class="brand" href="#home" aria-label="Go to home">
         <span class="brand__logo">⭐</span>
         <span class="brand__text">
-          <strong>Care We Care</strong>
-          <small>關心我們在乎的</small>
+          <strong>Care We Care</strong><small>關心我們在乎的</small>
         </span>
       </a>
-
       <nav class="nav" aria-label="Primary">
-        <a href="#about" data-i18n="nav.about">關於我</a>
-        <a href="#portfolio" data-i18n="nav.portfolio">作品集</a>
-        <a href="#projects" data-i18n="nav.projects">專案與研究</a>
-        <a href="#resources" data-i18n="nav.resources">資源/Blog</a>
-        <a href="#interactive" data-i18n="nav.interactive">互動Demo</a>
-        <a class="btn btn--sm" href="#contact" data-i18n="nav.contact">聯絡我</a>
-        <button class="btn btn--sm btn--ghost" id="langToggle" type="button" aria-label="Toggle language">EN</button>
+        <a href="#about">關於我</a>
+        <a href="#portfolio">作品集</a>
+        <a href="#projects">專案與研究</a>
+        <a href="#resources">資源/Blog</a>
+        <a href="#interactive">互動Demo</a>
+        <a class="btn btn--sm" href="#contact">聯絡我</a>
+        <button class="btn btn--sm btn--ghost" id="langToggle" type="button">EN</button>
       </nav>
-
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
-
-    <div class="mobile" id="mobileNav" hidden>
-      <a href="#about" data-i18n="nav.about">關於我</a>
-      <a href="#portfolio" data-i18n="nav.portfolio">作品集</a>
-      <a href="#projects" data-i18n="nav.projects">專案與研究</a>
-      <a href="#resources" data-i18n="nav.resources">資源/Blog</a>
-      <a href="#interactive" data-i18n="nav.interactive">互動Demo</a>
-      <a href="#contact" data-i18n="nav.contact">聯絡我</a>
-    </div>
+    <div class="mobile" id="mobileNav" hidden>...</div>
   </header>
 
   <main id="home">
-    <!-- Hero -->
-<section class="hero container">
-  
-  <div class="hero__left">
-    <p class="pill" data-i18n="hero.pill">張煒䕒的個人網頁</p>
-    <h1 class="hero__title" data-i18n-html="hero.h1">
-      衛教不該只是單向傳遞<br/>而是一場有溫度的對話
-    </h1>
-    <p class="lead" data-i18n="hero.lead">
-      面對疾病時，人們需要的不只是資訊，還有理解。我運用動畫、AR 與互動網頁，把冰冷的醫學名詞，變成能安撫焦慮、引發興趣的陪伴。
-    </p>
-
-    <div class="hero__cta">
-      <a class="btn" href="#portfolio" data-i18n="hero.cta.portfolio">看作品集</a>
-      <a class="btn btn--ghost" href="#interactive" data-i18n="hero.cta.demo">玩互動小遊戲</a>
-    </div>
     
-  </div> 
-  <div class="hero__right">
-    <div class="hero__visual">
-      
-      <div class="card-container"> 
-          <div class="image-box">
-              <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="活動照片">
-          </div>
-          <div class="text-pill">
-              <span>💗</span>
-              <span>2025 文山親角親子衛教</span>
-          </div>
-      </div> 
+    <section class="hero container">
+      <div class="hero__left">
+        <p class="pill">張煒䕒的個人網頁</p>
+        <h1 class="hero__title">衛教不該只是單向傳遞<br/>而是一場有溫度的對話</h1>
+        <p class="lead">面對疾病時，人們需要的不只是資訊，還有理解。我運用動畫、AR 與互動網頁，把冰冷的醫學名詞，變成能安撫焦慮、引發興趣的陪伴。</p>
+        <div class="hero__cta">
+          <a class="btn" href="#portfolio">看作品集</a>
+          <a class="btn btn--ghost" href="#interactive">玩互動小遊戲</a>
+        </div>
       </div>
-  </div>
+      <div class="hero__right">
+        <div class="hero__visual">
+          <div class="card-container"> 
+              <div class="image-box">
+                  <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="活動照片">
+              </div>
+              <div class="text-pill">
+                  <span>💗</span><span>2025 文山親角親子衛教</span>
+              </div>
+          </div> 
+        </div>
+      </div>
+    </section>
 
-</section>
-
-
-    <!-- About -->
     <section class="section container" id="about">
       <div class="section__head split">
-        <div>
-          <h2 class="big" data-i18n="sec.about">關於我</h2>
-        </div>
-        <a class="btn btn--ghost" href="#contact" data-i18n="about.cta">Let’s Chat →</a>
+        <div><h2 class="big">關於我</h2></div>
+        <a class="btn btn--ghost" href="#contact">Let’s Chat →</a>
       </div>
 
       <div class="about">
         <div class="card about__left">
           <div class="about__top">
-            <img class="avatar" src="assets/profile.jpg" alt="Profile photo (replace)" />
+            <img class="avatar" src="assets/profile.jpg" alt="Profile photo" />
             <div>
-              <h3 data-i18n="about.name">Vivian｜健康教育 × 數位互動</h3>
-              <p class="muted" data-i18n="about.intro">
-                具護理背景，喜歡把專業知識做成「好懂、好記、願意分享」的內容。
-              </p>
+              <h3>Vivian｜健康教育 × 數位互動</h3>
+              <p class="muted">具護理背景，喜歡把專業知識做成「好懂、好記、願意分享」的內容。</p>
               <div class="chips">
-                <span class="chip" data-i18n="about.tag1">互動式衛教</span>
-                <span class="chip" data-i18n="about.tag2">多媒體教材</span>
-                <span class="chip" data-i18n="about.tag3">AR / 體驗設計</span>
-                <span class="chip" data-i18n="about.tag4">研究與成效評估</span>
+                <span class="chip">互動式衛教</span>
+                <span class="chip">多媒體教材</span>
+                <span class="chip">AR / 體驗設計</span>
+                <span class="chip">研究與成效評估</span>
               </div>
             </div>
           </div>
 
-              <div class="credentials-wrap">
-  <h3 class="cre-title">專業認證 & 技能</h3>
-  <div class="cre-tags" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
-    <span class="cre-tag main">⚕️ 護理師證書</span>
-    
-    <span class="cre-tag tech">🤖 SSE AI Prompt Engineer</span>
-    <span class="cre-tag tech">🎓 Google Certified Educator L1</span>
-    
-    <span class="cre-tag mkt">📊 Google Analytics</span>
-    <span class="cre-tag mkt">📱 Google Ads App</span>
-    <span class="cre-tag mkt">💡 初階行銷企劃證照</span>
-  </div>      
-</div>
-    
-
-<div class="volunteer-section" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #eee;">
-    
-    <h3 style="font-size: 1rem; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-        ✨ 服務與領導經歷
-    </h3>
-    
-    <ul style="padding-left: 20px; margin: 0; color: #555; font-size: 0.95rem; line-height: 1.8;">
-        <li><strong>班級代表</strong> (112學年度) | 協助系上活動溝通協調</li>
-        <li><strong>偏鄉衛教志工隊</strong> | 副隊長 (籌辦寒暑期營隊)</li>
-        <li><strong>系學會活動部</strong> | 迎新晚會總召</li>
-        <li><strong>課輔志工</strong> | 每週服務時數 4 小時</li>
-    </ul>
-
-</div>      
-
-
-
-
-
+          <div class="credentials-wrap">
+            <h3 class="cre-title">專業認證 & 技能</h3>
+            <div class="cre-tags" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="cre-tag main">⚕️ 護理師證書</span>
+              <span class="cre-tag tech">🤖 SSE AI Prompt Engineer</span>
+              <span class="cre-tag tech">🎓 Google Certified Educator L1</span>
+              <span class="cre-tag mkt">📊 Google Analytics</span>
+              <span class="cre-tag mkt">📱 Google Ads App</span>
+              <span class="cre-tag mkt">💡 初階行銷企劃證照</span>
+            </div>      
+          </div>
           
+          <div class="volunteer-section" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #eee;">
+            <h3 style="font-size: 1rem; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">✨ 服務與領導經歷</h3>
+            <ul style="padding-left: 20px; margin: 0; color: #555; font-size: 0.95rem; line-height: 1.8;">
+                <li><strong>班級代表</strong> (112學年度) | 協助系上活動溝通協調</li>
+                <li><strong>偏鄉衛教志工隊</strong> | 副隊長 (籌辦寒暑期營隊)</li>
+                <li><strong>系學會活動部</strong> | 迎新晚會總召</li>
+                <li><strong>課輔志工</strong> | 每週服務時數 4 小時</li>
+            </ul>
+          </div>      
           <div class="divider"></div>
         </div>
 
         <div class="card about__right">
-          <h3 data-i18n="about.map">我的經歷</h3>
-          <p class="muted" data-i18n="about.mapSub">從學術研究到創新創業挑戰，我的成長軌跡。</p>
-
-       <div class="achievements">
-
-
-<div class="experience-grid">
-
-    <div class="experience-card" onclick="openModal('modal-1')">
-        <div class="card-icon">🔬</div>
-        <div class="card-content">
-            <h3>114年度國科會計畫</h3>
-            <p>運用多媒體與遊戲教學提升兒童健康識能</p>
-        </div>
-        <div class="card-link">
-            看詳細內容 <span class="arrow">→</span>
-        </div>
-    </div>
-
-    <div class="experience-card" onclick="openModal('modal-2')">
-        <div class="card-icon">🏆</div>
-        <div class="card-content">
-            <h3>2025 NTUE 校園創業競賽 | 金獎</h3>
-            <p>獲獎作品：語觸世界 LingoTouch</p>
-        </div>
-        <div class="card-link">
-            看比賽照片 <span class="arrow">→</span>
-        </div>
-    </div>
-
-  <div class="experience-card" onclick="openModal('modal-3')">
-    <div class="card-icon">✈️</div> <div class="card-content">
-        <h3>學海築夢｜印尼巨港海外實習</h3>
-        <p>於 Universitas Muhammadiyah Palembang 附設醫療機構實習</p>
-    </div>
-    <div class="card-link">
-        看詳細內容 <span class="arrow">→</span>
-    </div>
-</div>
-
-<div class="experience-card" onclick="openModal('modal-4')">
-    <div class="card-icon">🚀</div> <div class="card-content">
-        <h3>勤學書卷獎</h3>
-        <p>113學年度 第1學期 & 第2學期</p>
-    </div>
-</div>
-
-
-  <section class="work section" id="portfolio">
-    <h2 class="section-title">作品集</h2>
-    <span class="section-subtitle">精選專案與實作</span>
-
-    <div class="work__container bd-grid">
-        
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+1" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 1</span>
+          <h3>我的經歷</h3>
+          <p class="muted">從學術研究到創新創業挑戰，我的成長軌跡。</p>
+          
+          <div class="experience-grid">
+            <div class="experience-card" onclick="openModal('modal-1')">
+                <div class="card-icon">🔬</div>
+                <div class="card-content">
+                    <h3>114年度國科會計畫</h3>
+                    <p>運用多媒體與遊戲教學</p>
+                </div>
+                <div class="card-link">看詳細內容 <span class="arrow">→</span></div>
             </div>
-        </div>
-
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+2" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 2</span>
+            
+            <div class="experience-card" onclick="openModal('modal-2')">
+                <div class="card-icon">🏆</div>
+                <div class="card-content">
+                    <h3>2025 校園創業競賽 | 金獎</h3>
+                    <p>獲獎作品：語觸世界</p>
+                </div>
+                <div class="card-link">看比賽照片 <span class="arrow">→</span></div>
             </div>
-        </div>
 
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+3" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 3</span>
+            <div class="experience-card" onclick="openModal('modal-3')">
+                <div class="card-icon">✈️</div>
+                <div class="card-content">
+                    <h3>印尼巨港海外實習</h3>
+                    <p>Universitas Muhammadiyah</p>
+                </div>
+                <div class="card-link">看詳細內容 <span class="arrow">→</span></div>
             </div>
-        </div>
 
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+4" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 4</span>
+            <div class="experience-card" onclick="openModal('modal-4')">
+                <div class="card-icon">📚</div>
+                <div class="card-content">
+                    <h3>勤學書卷獎</h3>
+                    <p>連續兩學期系排前三</p>
+                </div>
+                <div class="card-link">看詳細內容 <span class="arrow">→</span></div>
             </div>
-        </div>
+          </div> </div> </div> </section>
 
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+5" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 5</span>
-            </div>
-        </div>
-
-        <div class="work__img">
-            <img src="https://via.placeholder.com/400x300?text=Project+6" alt="">
-            <div class="work__data">
-                <a href="#" class="work__link"><i class='bx bx-link-external'></i></a>
-                <span class="work__title">專案名稱 6</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-
-
-    <section class="section container" id="portfolio">
-  <div class="cards" id="portfolioGrid"></div>
-
-</section>
-    
-    <!-- Projects -->
-
-    <!-- Resources / Blog -->
-    <section class="section container" id="resources">
-      <div class="section__head split">
-        <div>
-          <h2 class="big" data-i18n="sec.resources">資源 / Blog</h2>
-          <p class="muted" data-i18n="sec.resources.sub">這區是流量引擎：用長尾關鍵字文章讓網站被搜尋到。</p>
-        </div>
-        <div class="mini">
-          <span class="mini__label" data-i18n="resources.tip">小技巧</span>
-          <span class="mini__text" data-i18n="resources.tip2">每篇文末加「下載/小測驗」提升停留時間</span>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <article class="card post">
-          <h3 data-i18n="blog1.t">如何把衛教做得更好懂？3個情境化技巧</h3>
-          <p class="muted" data-i18n="blog1.p">從日常情境切入，把抽象概念變成可理解、可使用的行動建議。</p>
-          <button class="btn btn--soft openModal" data-modal="blog1" data-i18n="blog.btn">閱讀摘要</button>
-        </article>
-
-        <article class="card post">
-          <h3 data-i18n="blog2.t">互動測驗為什麼能提升停留時間？</h3>
-          <p class="muted" data-i18n="blog2.p">用小成本互動做出大差異：增加參與感、分享、回訪。</p>
-          <button class="btn btn--soft openModal" data-modal="blog2" data-i18n="blog.btn">閱讀摘要</button>
-        </article>
-
-        <article class="card post">
-          <h3 data-i18n="blog3.t">新手也能做的AR展示：從故事到Demo</h3>
-          <p class="muted" data-i18n="blog3.p">用最簡單的流程，把你的內容變成可展示、可理解的體驗。</p>
-          <button class="btn btn--soft openModal" data-modal="blog3" data-i18n="blog.btn">閱讀摘要</button>
-        </article>
+    <section class="work section container" id="portfolio">
+      <h2 class="section-title">作品集</h2>
+      <span class="section-subtitle">精選專案與實作</span>
+      <div class="work__container bd-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+          <div class="work__img">
+              <img src="https://via.placeholder.com/400x300?text=Project+1" alt="" style="width:100%; border-radius:10px;">
+              <h3 style="margin-top:10px; font-size:1rem;">專案名稱 1</h3>
+          </div>
+          <div class="work__img">
+              <img src="https://via.placeholder.com/400x300?text=Project+2" alt="" style="width:100%; border-radius:10px;">
+              <h3 style="margin-top:10px; font-size:1rem;">專案名稱 2</h3>
+          </div>
+          <div class="work__img">
+              <img src="https://via.placeholder.com/400x300?text=Project+3" alt="" style="width:100%; border-radius:10px;">
+              <h3 style="margin-top:10px; font-size:1rem;">專案名稱 3</h3>
+          </div>
       </div>
     </section>
 
-    <!-- Interactive -->
-    <section class="section container" id="interactive">
-      <div class="section__head">
-        <h2 class="big" data-i18n="sec.interactive">互動Demo</h2>
-        <p class="muted" data-i18n="sec.interactive.sub">讓訪客動手玩：停留更久、也更容易分享。</p>
-      </div>
-
-      <div class="grid2">
-        <div class="card">
-          <div class="card__top">
-            <span class="tag">Game</span>
-            <span class="tag tag--soft" data-i18n="quiz.badge">小測驗</span>
-          </div>
-          <h3 data-i18n="quiz.t">健康小測驗（示範）</h3>
-          <p class="muted" data-i18n="quiz.p">你可以把題目改成：失智症/口腔保健/營養/傷口照護…任何主題。</p>
-
-          <div class="quiz" id="quiz">
-            <div class="quiz__q" id="quizQ"></div>
-            <div class="quiz__options" id="quizOptions"></div>
-            <div class="quiz__foot">
-              <span class="tiny muted" id="quizProgress"></span>
-              <button class="btn btn--ghost" id="quizReset" type="button" data-i18n="quiz.reset">重來一次</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card__top">
-            <span class="tag">Tool</span>
-            <span class="tag tag--soft" data-i18n="tool.badge">小工具</span>
-          </div>
-          <h3 data-i18n="tool.t">我是哪種學習者？（超短小互動）</h3>
-          <p class="muted" data-i18n="tool.p">選一個你最常用的方法，我給你一個「最適合的內容呈現方式」建議。</p>
-
-          <div class="pick">
-            <button class="pick__btn" data-pick="visual" data-i18n="tool.opt1">看圖比較快</button>
-            <button class="pick__btn" data-pick="story" data-i18n="tool.opt2">故事更有感</button>
-            <button class="pick__btn" data-pick="steps" data-i18n="tool.opt3">步驟最實用</button>
-          </div>
-
-          <div class="note" id="pickResult" aria-live="polite">
-            <strong data-i18n="tool.hintT">提示：</strong>
-            <span data-i18n="tool.hintP">點上面按鈕試試看 ✨</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section container" id="contact">
-      <div class="section__head split">
-        <div>
-          <h2 class="big" data-i18n="sec.contact">聯絡我</h2>
-          <p class="muted" data-i18n="sec.contact.sub">實習洽談、專案合作或一般詢問都歡迎。</p>
-        </div>
-        <a class="btn" href="mailto:etay11270331@gmail.com" data-i18n="contact.mailto">寄信給我 →</a>
-      </div>
-
-      <div class="grid2">
-        <div class="card">
-          <h3 data-i18n="contact.info.t">聯絡資訊</h3>
-          <ul class="list">
-            <li><strong data-i18n="contact.info.email">Email：</strong><span class="mono">etay11270331@gmail.com</span></li>
-            <li data-i18n-html="contact.info.role"><strong>合作方向：</strong>衛教內容、互動教材、研究專案、AR/體驗設計</li>
-            <li data-i18n-html="contact.info.note"><strong>適合對象：</strong>實習單位、學校、非營利組織、一般民眾</li>
-          </ul>
-
-          <div class="note">
-            <strong data-i18n="contact.tip.t">給實習單位：</strong>
-            <span data-i18n="contact.tip.p">想快速看成果→作品集；想看流程→專案與研究。</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3 data-i18n="contact.form.t">快速聯絡（示範）</h3>
-          <form id="contactForm">
-            <label>
-              <span data-i18n="contact.form.name">你的稱呼</span>
-              <input name="name" required data-i18n-ph="contact.form.namePh" placeholder="例如：王小姐 / 某某單位" />
-            </label>
-            <label>
-              <span data-i18n="contact.form.email">Email</span>
-              <input name="email" type="email" required data-i18n-ph="contact.form.emailPh" placeholder="example@mail.com" />
-            </label>
-            <label>
-              <span data-i18n="contact.form.msg">想說的話</span>
-              <textarea name="msg" rows="5" required data-i18n-ph="contact.form.msgPh" placeholder="例如：想了解作品、想談實習、想合作…"></textarea>
-            </label>
-            <button class="btn" type="submit" data-i18n="contact.form.submit">送出（示範）</button>
-            <p class="tiny muted" data-i18n="contact.form.note">此表單為前端示範：目前不會真的寄出信件。</p>
-          </form>
-        </div>
-      </div>
-    </section>
+    <section class="section container" id="resources">...</section>
+    <section class="section container" id="interactive">...</section>
+    <section class="section container" id="contact">...</section>
 
     <footer class="footer">
       <div class="container footer__inner">
-        <p class="tiny muted">© <span id="year"></span> Care We Care Studio · Made with pastel power ✨</p>
-        <a class="tiny" href="#top" data-i18n="footer.top">回到頂部 ↑</a>
+        <p class="tiny muted">© <span id="year">2025</span> Care We Care Studio</p>
       </div>
     </footer>
   </main>
-
-  <!-- Modal -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal__backdrop" data-close="1"></div>
-    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Modal">
-      <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
-      <div class="modal__content" id="modalContent"></div>
-    </div>
-  </div>
-  <script src="./script_.js" defer></script>
-
-
-
-
-
 
   <div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
         <h2>🔬 國科會大專生研究計畫</h2>
         <p class="modal-subtitle">主題：運用多媒體與遊戲教學提升兒童健康識能</p>
-        
-        <img src="你的照片連結.jpg" alt="研究過程照片" style="width:100%; border-radius:10px; margin: 15px 0;">
-        
-        <p>這裡可以寫詳細的內容。例如：我設計了一款結合 AR 的衛教遊戲，讓小朋友在玩樂中學習...</p>
+        <p>這裡可以寫詳細的內容...</p>
     </div>
-</div>
+  </div>
 
-<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
+  <div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
-        
         <h2>🏆 創業競賽金獎</h2>
         
         <div class="gallery-container">
-            <img src="你的照片連結1.jpg" class="gallery-item" alt="照片1">
-            
-            <img src="你的照片連結2.jpg" class="gallery-item" alt="照片2">
-            
-            <img src="你的照片連結3.jpg" class="gallery-item" alt="照片3">
+            <img src="https://via.placeholder.com/600x400?text=比賽現場" class="gallery-item">
+            <img src="https://via.placeholder.com/600x400?text=領獎合照" class="gallery-item">
         </div>
-        
         <p class="scroll-hint">← 左右滑動看更多照片 →</p>
-      <div class="pdf-container">
-    <iframe 
-        src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview" 
-        allow="autoplay">
-    </iframe>
-</div>
-        <p>獲獎作品「視語光點」是為視障兒童設計的語言學習工具...</p>
+
+        <h3 style="margin-top:20px;">📄 比賽簡報</h3>
+        <div class="pdf-container">
+            <iframe src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview" allow="autoplay"></iframe>
+        </div>
+        <p style="margin-top:15px">獲獎作品「視語光點」是為視障兒童設計的語言學習工具...</p>
     </div>
-</div>
-<div id="modal-3" class="modal-overlay" onclick="closeModal('modal-3')">
+  </div>
+
+  <div id="modal-3" class="modal-overlay" onclick="closeModal('modal-3')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
         <h2>✈️ 印尼巨港海外實習</h2>
-        <img src="https://via.placeholder.com/600x400" alt="實習合照" style="width:100%; border-radius:10px; margin: 15px 0;">
-        <p>在當地的社區衛生中心進行為期一個月的實習，深刻體驗了跨文化的衛教挑戰...</p>
+        <p>在當地的社區衛生中心進行為期一個月的實習...</p>
     </div>
-</div>
+  </div>
 
-<div id="modal-4" class="modal-overlay" onclick="closeModal('modal-4')">
+  <div id="modal-4" class="modal-overlay" onclick="closeModal('modal-4')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('modal-4')">&times;</span>
         <h2>📚 勤學書卷獎</h2>
-        <p>連續兩學期保持系排前三名，主要修習課程包括：公共衛生、護理導論、多媒體設計...</p>
+        <p>連續兩學期保持系排前三名...</p>
     </div>
-</div>
+  </div>
 
+  <script src="./script_.js" defer></script>
 
   <script>
-    // 開啟視窗
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
             modal.style.display = "flex";
-            // 延遲一點點加 show class，讓淡入動畫生效
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
+            setTimeout(() => { modal.classList.add('show'); }, 10);
         }
     }
-
-    // 關閉視窗
     function closeModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
             modal.classList.remove('show');
-            // 等動畫跑完再隱藏
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
+            setTimeout(() => { modal.style.display = "none"; }, 300);
         }
     }
-</script>
-<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
-        
-        <h2>🏆 創業競賽金獎</h2>
-        
-        <div class="gallery-container">
-            <img src="比賽照片.jpg" class="gallery-item">
-            <img src="領獎照片.jpg" class="gallery-item">
-        </div>
-        <p class="scroll-hint">← 左右滑動看更多照片 →</p>
+  </script>
 
-        <p>這裡是詳細的比賽心得與介紹...</p>
-    </div>
-</div>
-<script> ... </script>
-
-</body> </html>
-  
 </body>
 </html>
-
-<div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
-        <h2>🔬 國科會大專生研究計畫</h2>
-        <p>這是我在大學期間投入最多的研究專案...</p>
-        </div>
-</div>
-
-<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
-        <h2>🏆 創業競賽金獎</h2>
-        
-        <div class="gallery-container">
-            <img src="https://via.placeholder.com/600x400?text=比賽現場" class="gallery-item" alt="照片1">
-            <img src="https://via.placeholder.com/600x400?text=領獎合照" class="gallery-item" alt="照片2">
-            <img src="https://via.placeholder.com/600x400?text=產品Demo" class="gallery-item" alt="照片3">
-        </div>
-        <p class="scroll-hint">← 左右滑動看更多照片 →</p>
-        <p style="margin-top: 20px;">這裡可以寫更多關於比賽的心得，或是評審的評語...</p>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
