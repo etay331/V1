@@ -247,6 +247,8 @@
                 <div class="card-link">看詳細內容 <span class="arrow">→</span></div>
             </div>
           </div> </div> </div> </section>
+
+    
 <section class="section container" id="portfolio">
       <div class="section__head">
         <h2 class="section-title">作品集</h2>
@@ -254,37 +256,31 @@
       </div>
 
       <div class="work__container">
-          <div class="work__img">
+          
+          <div class="work__img" onclick="openModal('project-1')" style="cursor: pointer;">
               <img src="https://via.placeholder.com/400x300?text=Project+1" alt="專案1">
               <div class="work__data">
                   <span class="work__title">衛教動畫設計專案</span>
-                  <a href="#" class="work__link">查看詳情 →</a>
+                  <span class="work__link" style="color:#666; font-size:0.9rem;">查看詳情 →</span>
               </div>
           </div>
 
-          <div class="work__img">
+          <div class="work__img" onclick="openModal('project-2')" style="cursor: pointer;">
               <img src="https://via.placeholder.com/400x300?text=Project+2" alt="專案2">
               <div class="work__data">
                   <span class="work__title">AR 互動體驗與腳本</span>
-                  <a href="#" class="work__link">查看詳情 →</a>
+                  <span class="work__link" style="color:#666; font-size:0.9rem;">查看詳情 →</span>
               </div>
           </div>
 
-          <div class="work__img">
+          <div class="work__img" onclick="openModal('project-3')" style="cursor: pointer;">
               <img src="https://via.placeholder.com/400x300?text=Project+3" alt="專案3">
               <div class="work__data">
                   <span class="work__title">高齡衛教手冊重設計</span>
-                  <a href="#" class="work__link">查看詳情 →</a>
+                  <span class="work__link" style="color:#666; font-size:0.9rem;">查看詳情 →</span>
               </div>
           </div>
 
-          <div class="work__img">
-              <img src="https://via.placeholder.com/400x300?text=Project+4" alt="專案4">
-              <div class="work__data">
-                  <span class="work__title">使用者介面優化研究</span>
-                  <a href="#" class="work__link">查看詳情 →</a>
-              </div>
-          </div>
       </div>
     </section>
 
@@ -431,6 +427,45 @@
     </div>
   </div>
 
+  <div id="project-1" class="modal-overlay" onclick="closeModal('project-1')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('project-1')">&times;</span>
+        <h2>🎨 衛教動畫設計專案</h2>
+        <p class="modal-subtitle">專案類型：2D 動畫 / 腳本企劃</p>
+        
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; margin: 15px 0;">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+        </div>
+        
+        <p>這裡寫下你的設計理念：為什麼要做這個動畫？解決了什麼溝通問題？...</p>
+    </div>
+  </div>
+
+  <div id="project-2" class="modal-overlay" onclick="closeModal('project-2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('project-2')">&times;</span>
+        <h2>📱 AR 互動體驗與腳本</h2>
+        <p class="modal-subtitle">專案類型：AR 濾鏡 / 互動腳本</p>
+        
+        <div class="gallery-container">
+            <img src="https://via.placeholder.com/600x400?text=AR介面" class="gallery-item">
+            <img src="https://via.placeholder.com/600x400?text=使用者體驗" class="gallery-item">
+        </div>
+        <p class="scroll-hint">← 左右滑動看更多 →</p>
+
+        <p>這是一個結合實體展覽的 AR 體驗...</p>
+    </div>
+  </div>
+
+  <div id="project-3" class="modal-overlay" onclick="closeModal('project-3')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('project-3')">&times;</span>
+        <h2>📖 高齡衛教手冊重設計</h2>
+        <p>針對高齡者視力退化進行的字體與排版優化...</p>
+        <img src="https://via.placeholder.com/600x400?text=手冊內頁" style="width:100%; border-radius:12px; margin-top:10px;">
+    </div>
+  </div>
+
   <script src="./script_.js" defer></script>
 
   <script>
@@ -453,3 +488,4 @@
 </body>
 </html>
   
+
