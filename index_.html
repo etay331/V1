@@ -98,16 +98,105 @@
           <strong>Care We Care</strong><small>關心我們在乎的</small>
         </span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#about">關於我</a>
-        <a href="#portfolio">作品集</a>
-        <a href="#interactive">互動Demo</a>
-        <a class="btn btn--sm" href="#contact">聯絡我</a>
-        <button class="btn btn--sm btn--ghost" id="langToggle" type="button">EN</button>
-      </nav>
-      <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
-    </div>
-    <div class="mobile" id="mobileNav" hidden>...</div>
+     <style>
+  /* 1. 導覽列整體設定 */
+  .navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 30px;
+    background-color: white; /* 背景色 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* 底部陰影 */
+    position: sticky; top: 0; z-index: 1000; /* 固定在頂部，蓋過所有內容 */
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
+
+  /* 2. Logo 設定 */
+  .nav-logo {
+    font-size: 20px; font-weight: 800; color: #333; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: #FFD700; font-size: 24px; } /* 星星符號顏色 */
+
+  /* 3. 電腦版連結群組 */
+  .nav-links {
+    display: flex; gap: 30px; list-style: none; margin: 0; padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none; color: #666; font-weight: bold; font-size: 15px;
+    transition: 0.3s;
+  }
+  .nav-links a:hover { color: #333; }
+  
+  /* 按鈕樣式的連結 (例如: 聯絡我) */
+  .nav-btn {
+    background: #f0f0f0; padding: 8px 20px; border-radius: 50px;
+  }
+  .nav-btn:hover { background: #e0e0e0; color: black !important; }
+
+  /* 4. 手機版漢堡按鈕 (預設隱藏) */
+  .hamburger {
+    display: none; /* 電腦版不顯示 */
+    font-size: 24px; cursor: pointer; color: #333;
+    user-select: none;
+  }
+
+  /* ================= 手機版專用設定 (螢幕小於 768px 時) ================= */
+  @media screen and (max-width: 768px) {
+    /* 讓漢堡出來見人 */
+    .hamburger { display: block; }
+
+    /* 隱藏原本的橫排連結，改成絕對定位的滑動選單 */
+    .nav-links {
+      position: absolute;
+      top: 100%; left: 0; width: 100%;
+      background-color: white;
+      flex-direction: column; /* 變成直排 */
+      gap: 0;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      
+      /* 關鍵：藏起來的動畫設定 */
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+    }
+
+    /* 選單內的每一個連結 */
+    .nav-links li {
+      text-align: center; border-bottom: 1px solid #f5f5f5;
+    }
+    .nav-links a {
+      display: block; padding: 20px; font-size: 16px;
+    }
+
+    /* 當我們用 JS 加上 .active Class 時，選單就會滑出來 */
+    .nav-links.active {
+      max-height: 500px; /* 足夠放下所有連結的高度 */
+    }
+  }
+</style>
+
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <span>★</span> Care We Care
+  </a>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    &#9776; </div>
+
+  <ul class="nav-links" id="myNavLinks">
+    <li><a href="#" onclick="toggleMenu()">關於我</a></li>
+    <li><a href="#" onclick="toggleMenu()">作品集</a></li>
+    <li><a href="#" onclick="toggleMenu()">互動作品</a></li>
+    <li><a href="#" class="nav-btn" onclick="toggleMenu()">聯絡我</a></li>
+  </ul>
+</nav>
+
+<script>
+  function toggleMenu() {
+    var links = document.getElementById("myNavLinks");
+    // 切換 active 狀態：原本開著就關，原本關著就開
+    links.classList.toggle("active");
+  }
+</script>
+
+      
   </header>
 
   <main id="home">
@@ -788,6 +877,7 @@
 </body>
 </html>
   
+
 
 
 
