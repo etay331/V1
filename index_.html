@@ -283,42 +283,113 @@
     </section>
 
 
- <div class="btn-container">
-  <button class="trigger-btn" onclick="openModal('demo-lumi')">🎮 試玩衛教遊戲</button>
-  <button class="trigger-btn ar" onclick="openModal('demo-eyejack')">📱 開啟 AR 體驗</button>
+    <style>
+  /* 區塊容器 */
+  .interact-section {
+    font-family: "Microsoft JhengHei", sans-serif;
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  /* 標題與副標題 */
+  .interact-title { font-size: 28px; font-weight: 800; color: #1a1a1a; margin: 0 0 8px 0; }
+  .interact-subtitle { color: #888; font-size: 14px; margin: 0 0 30px 0; }
+  /* 卡片排版 */
+  .cards-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  /* 單張卡片 */
+  .style-card {
+    background: #fff; border-radius: 24px; padding: 25px; flex: 1 1 300px;
+    box-shadow: 0 5px 20px rgba(220, 200, 210, 0.3);
+    display: flex; flex-direction: column; border: 1px solid #fcfcfc;
+  }
+  /* 標籤與文字 */
+  .tag-group { display: flex; gap: 8px; margin-bottom: 15px; }
+  .tag-outline { border: 1px solid #e0e0e0; background: #fff; color: #666; border-radius: 50px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+  .tag-fill-pink { background-color: #fbecec; color: #c0392b; border-radius: 50px; padding: 3px 10px; font-size: 11px; font-weight: bold; }
+  .tag-fill-blue { background-color: #e3f2fd; color: #1565c0; border-radius: 50px; padding: 3px 10px; font-size: 11px; font-weight: bold; }
+  .card-h { font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: #222; }
+  .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+  /* 按鈕樣式 */
+  .btn-round { align-self: flex-end; background: #fff; border: 1px solid #ddd; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: bold; color: #333; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; }
+  .btn-round:hover { background: #f5f5f5; transform: translateY(-2px); }
+  .btn-group-row { display: flex; gap: 10px; margin-bottom: 15px; }
+  .btn-block { flex: 1; background: #fff; border: 1px solid #ddd; padding: 10px 0; border-radius: 50px; font-size: 12px; font-weight: bold; color: #333; cursor: pointer; text-align: center; transition: 0.2s; }
+  .btn-block:hover { background: #fafafa; border-color: #bbb; }
+  .hint-dashed { background: linear-gradient(90deg, #fffcf5, #fcf5ff); border: 2px dashed #d1c4e9; border-radius: 12px; padding: 10px; font-size: 12px; color: #5e35b1; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
+
+  /* 彈跳視窗 (Modal) 樣式 */
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+  .modal-overlay.active { display: flex; }
+  .modal-content { background: white; border-radius: 16px; position: relative; width: 90%; max-width: 900px; height: 85vh; box-shadow: 0 20px 50px rgba(0,0,0,0.3); overflow: hidden; animation: popIn 0.3s ease-out; display: flex; flex-direction: column; }
+  @keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #aaa; cursor: pointer; z-index: 10; font-weight: bold; }
+  .close-btn:hover { color: #333; }
+</style>
+
+<div class="interact-section">
+  <h2 class="interact-title">互動 Demo</h2>
+  <p class="interact-subtitle">繽紛客製手玩：停留更久、內容更生動。</p>
+
+  <div class="cards-row">
+    <div class="style-card">
+      <div class="tag-group"><span class="tag-outline">GAME</span><span class="tag-fill-pink">衛教問答</span></div>
+      <h3 class="card-h">互動衛教小遊戲</h3>
+      <p class="card-desc">將衛教知識轉化為趣味的問答互動，讓使用者在遊戲中學習，提升學習動機與成效。</p>
+      <button class="btn-round" onclick="openModal('demo-lumi')">開始挑戰 ►</button>
+    </div>
+
+    <div class="style-card">
+      <div class="tag-group"><span class="tag-outline">TOOL</span><span class="tag-fill-blue">AR 體驗</span></div>
+      <h3 class="card-h">AR 擴增實境展示</h3>
+      <p class="card-desc">透過手機鏡頭，讓平面教材「動」起來。您可以點擊下方按鈕查看步驟或直接體驗。</p>
+      <div class="btn-group-row">
+        <button class="btn-block" onclick="openModal('demo-eyejack')">APP 下載</button>
+        <button class="btn-block" onclick="openModal('demo-eyejack')">操作步驟</button>
+        <button class="btn-block" onclick="openModal('demo-eyejack')">開始掃描</button>
+      </div>
+      <div class="hint-dashed"><span>✨ 提示：點上方按鈕開啟 AR 說明</span></div>
+    </div>
+  </div>
 </div>
 
 <div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
-  <div class="modal-content" onclick="event.stopPropagation()" style="width: 95%; max-width: 900px; height: 80vh;">
-      <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
-      <h2 style="margin-top:0;">🎮 互動衛教小遊戲</h2>
-      <iframe src="https://app.lumi.education/run/4Pgaqw" style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;" allowfullscreen></iframe>
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
+    <div style="padding: 20px; height: 100%; box-sizing: border-box;">
+        <h2 style="margin:0 0 15px 0;">🎮 互動衛教小遊戲</h2>
+        <iframe src="https://app.lumi.education/run/4Pgaqw" style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;" allowfullscreen></iframe>
+    </div>
   </div>
 </div>
 
 <div id="demo-eyejack" class="modal-overlay" onclick="closeModal('demo-eyejack')">
   <div class="modal-content" onclick="event.stopPropagation()">
-      <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
-      <h2 style="margin-top:0;">📱 AR 擴增實境體驗流程</h2>
-      <p style="color:#666; margin-bottom:20px;">請拿出手機，跟著步驟操作：</p>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-              <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
-              <img src="https://via.placeholder.com/150?text=App+QR" alt="QR" style="width: 100px; height: 100px; margin: 0 auto;">
-              <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">EyeJack App</p>
-          </div>
-          <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-              <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描圖</div>
-              <img src="https://via.placeholder.com/150?text=Target+Image" alt="Target" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
-              <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">掃描這張圖</p>
-          </div>
-      </div>
+    <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
+    <div style="padding: 25px; overflow-y: auto; height: 100%; box-sizing: border-box;">
+        <h2 style="margin-top:0;">📱 AR 擴增實境體驗流程</h2>
+        <p style="color:#666; margin-bottom:20px;">請拿出手機，跟著步驟操作：</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
+                <img src="https://via.placeholder.com/150?text=App+QR" alt="QR" style="width: 100px; height: 100px; margin: 0 auto;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">EyeJack App</p>
+            </div>
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描圖</div>
+                <img src="https://via.placeholder.com/150?text=Target+Image" alt="Target" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">掃描這張圖</p>
+            </div>
+        </div>
+    </div>
   </div>
 </div>
 
+<script>
+  function openModal(id) { document.getElementById(id).classList.add('active'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+</script>
 
-    
+
+
 
     <section class="section container" id="contact">
       <div class="section__head">
@@ -529,6 +600,7 @@
 </body>
 </html>
   
+
 
 
 
