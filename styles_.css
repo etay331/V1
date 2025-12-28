@@ -1509,7 +1509,7 @@ p, li {
   overflow: hidden;
   border: 1px solid #eee; /* 淡淡邊框 */
   box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* 漂亮的立體陰影 */
-  background: #fff;
+  background: transparent ;
 }
 
 /* 3. iframe 設定 */
@@ -1526,6 +1526,7 @@ p, li {
     height: 500px; /* 手機上稍微矮一點 */
   }
 }
+
 
 
 
