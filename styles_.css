@@ -1138,3 +1138,33 @@ p, li {
     }
 }
 
+/* --- 讓經歷卡片變雙欄 (Grid System) --- */
+.experience-grid {
+    display: grid;
+    /* 電腦版：分成兩欄，每欄一樣寬 */
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; /* 卡片之間的間距 */
+}
+
+/* 讓卡片內容緊湊一點，不要那麼肥 */
+.experience-card {
+    padding: 20px; /* 原本可能是 30px，改小一點 */
+    min-height: 140px; /* 設定最小高度，讓它們看起來整齊 */
+}
+
+/* 標題字改小一點點，配合縮小的卡片 */
+.experience-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+.experience-card p {
+    font-size: 0.9rem;
+    margin-bottom: 10px; /* 縮小間距 */
+}
+
+/* --- 手機版 RWD (維持一欄) --- */
+@media screen and (max-width: 768px) {
+    .experience-grid {
+        grid-template-columns: 1fr; /* 手機變回直的一欄 */
+    }
+}
