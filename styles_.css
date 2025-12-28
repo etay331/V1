@@ -1033,3 +1033,79 @@ p, li {
     transform: scale(0.98);       /* 縮小一點點 */
     box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* 陰影變小 */
 }
+
+/* --- 1. 卡片與按鈕樣式 --- */
+.experience-card {
+    /* 卡片基本設定 */
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #f0f0f0; /* 淡淡邊框 */
+    cursor: pointer; /* 讓滑鼠變手指 */
+    transition: all 0.3s ease;
+    
+    /* 讓內容排好 */
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    position: relative;
+    overflow: hidden; /* 確保特效不跑出去 */
+}
+
+/* 滑鼠移上去的特效：整張卡浮起來，邊框變色 */
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: #ffd700; /* 這裡可以改成你的主色 (例如金色或粉色) */
+}
+
+/* 🔥「看詳細內容」按鈕文字 */
+.card-link {
+    margin-top: auto; /* 推到最下面 */
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+/* 滑鼠移上去時，文字變黑，箭頭往右跑 */
+.experience-card:hover .card-link {
+    color: #000;
+}
+.experience-card:hover .card-link .arrow {
+    transform: translateX(5px); /* 箭頭移動特效 */
+    transition: transform 0.3s;
+}
+
+
+/* --- 2. 照片輪播 (Gallery) 樣式 --- */
+.gallery-container {
+    display: flex;
+    overflow-x: auto; /* 橫向捲動 */
+    gap: 15px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory; /* 自動對齊 */
+    
+    /* 隱藏卷軸 */
+    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+}
+.gallery-container::-webkit-scrollbar { display: none; }
+
+.gallery-item {
+    scroll-snap-align: center;
+    flex: 0 0 100%; /* 一次顯示一張，若要露出一點旁邊的改成 85% */
+    height: 300px;  /* 固定高度 */
+    object-fit: cover;
+    border-radius: 12px;
+    background: #eee;
+}
+
+.scroll-hint {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+}
