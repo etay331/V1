@@ -1469,6 +1469,30 @@ p, li {
 }
 
 
+/* --- 強制顯示相簿的水平捲軸 --- */
+  .gallery-container::-webkit-scrollbar {
+      height: 8px;      /* 設定捲軸的高度 (粗細) */
+      display: block;   /* 強制它顯示出來 */
+  }
+  
+  /* 捲軸的軌道 (底色) */
+  .gallery-container::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+      border-radius: 4px;
+  }
+  
+  /* 捲軸本體 (拉桿) */
+  .gallery-container::-webkit-scrollbar-thumb {
+      background: #ccc;   /* 灰色 */
+      border-radius: 4px;
+  }
+  
+  /* 滑鼠移上去時變深一點 */
+  .gallery-container::-webkit-scrollbar-thumb:hover {
+      background: #999; 
+  }
+
+
 
 
 
