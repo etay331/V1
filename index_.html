@@ -76,36 +76,23 @@
 </style>
 
 
-
-
-
-  
-  
-</head>
-
 <body>
 
-    
- 
- 
 <style>
-
-
-<style>
-  /* 1. 導覽列容器：磨砂玻璃特效 */
+  /* 1. 導覽列容器：超透明磨砂質感 */
   .header-frosted {
     position: sticky; top: 0; z-index: 1000;
     width: 100%;
     
-    /* 背景透明度 0.3 (您指定的更透明) */
+    /* 🔥 關鍵：這裡改成 0.3 (30% 不透明度)，會非常通透 */
     background: rgba(255, 255, 255, 0.3);
     
-    /* 毛玻璃模糊效果 */
+    /* 毛玻璃模糊效果 (數值越大越模糊) */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     
-    /* 底部淡淡的白線 */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* 底部邊框改得更淡，幾乎看不見 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
     
     font-family: "Microsoft JhengHei", sans-serif;
@@ -144,7 +131,8 @@
 
   /* 按鈕樣式 */
   .contact-pill {
-    background-color: #f1f3f5; padding: 8px 24px; border-radius: 50px; color: #333 !important;
+    background-color: rgba(241, 243, 245, 0.8); /* 按鈕也稍微透一點 */
+    padding: 8px 24px; border-radius: 50px; color: #333 !important;
   }
   .contact-pill:hover { background-color: #e9ecef; }
   
@@ -171,7 +159,8 @@
     /* 選單變成下拉式 */
     .nav-menu {
       position: absolute; top: 100%; left: 0; width: 100%;
-      background: rgba(255, 255, 255, 0.95); /* 手機版選單背景稍微不透明一點，比較好看 */
+      /* 手機版選單背景：90% 不透明，避免看不清楚字 */
+      background: rgba(255, 255, 255, 0.9); 
       backdrop-filter: blur(15px);
       flex-direction: column; gap: 0;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -223,54 +212,19 @@
 </header>
 
 <script>
-  // 這段是控制開關的靈魂，一定要有！
+  // 切換選單開關
   function toggleNav() {
     var menu = document.getElementById("mainNav");
     menu.classList.toggle("active");
   }
 </script>
-</style>
+  
+</body>
 
-<header class="header-frosted">
-  <div class="header-inner">
-    
-    <a href="#home" class="brand-group">
-      <div class="brand-icon-box">
-        <span style="color: #FBC02D;">⭐</span> 
-      </div>
-      <div class="brand-text-col">
-        <span class="brand-title">Care We Care</span>
-        <span class="brand-subtitle">關心我們在乎的</span>
-      </div>
-    </a>
-
-    <div class="hamburger" onclick="toggleNav()">☰</div>
-
-    <ul class="nav-menu" id="mainNav">
-      <li><a href="#about" class="nav-link">關於我</a></li>
-      <li><a href="#portfolio" class="nav-link">作品集</a></li>
-      <li><a href="#demo" class="nav-link">互動DEMO</a></li>
-      <li><a href="#contact" class="nav-link contact-pill">聯絡我</a></li>
-      <li><a href="#en" class="en-btn">EN</a></li>
-    </ul>
-
-  </div>
-</header>
-
-<script>
-  function toggleNav() {
-    var menu = document.getElementById("mainNav");
-    menu.classList.toggle("active");
-  }
-</script>
-
-
-
-
-
-
-      
-  </header>
+  
+ </head>
+  
+  
 
   <main id="home">
     
@@ -950,6 +904,7 @@
 </body>
 </html>
   
+
 
 
 
