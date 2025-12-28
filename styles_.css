@@ -119,7 +119,16 @@ font-family: "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, sans-serif
   padding:8px 12px; border-radius:999px;
   font-size:12px;
 }
-.hero__title{font-size:52px; line-height:1.02; margin:14px 0 12px; letter-spacing:-.03em;}
+.hero__title{
+    /* 原本可能寫死 font-size: 3rem 之類的，請改成下面這樣： */
+    
+    /* 意思：最小24px，平常依照螢幕寬度自動調整，最大48px */
+    font-size: clamp(1.8rem, 4vw, 3rem); 
+    
+    line-height: 1.3;      /* 行高調緊一點，看起來比較俐落 */
+    margin-bottom: 20px;   /* 跟下面文字保持距離 */
+    word-break: keep-all;  /* 🔥 這是重點！這行會盡量不把中文字詞切斷 */
+}
 .lead{font-size:16px; line-height:1.7; margin:0 0 16px;}
 .hero__cta{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
 .stats{display:flex; gap:14px; flex-wrap:wrap;}
@@ -898,12 +907,12 @@ p, li {
 }
 
 .hero__left {
-    flex: 1;                   /* 佔據一半空間 */
-    max-width: 600px;          /* 文字區塊不要太寬，比較好讀 */
+    flex: 1.2;                   /* 佔據一半空間 */
+    max-width: 300px;          /* 文字區塊不要太寬，比較好讀 */
 }
 
 .hero__right {
-    flex: 1;                   /* 佔據另一半空間 */
+    flex: 0.8;                   /* 佔據另一半空間 */
     display: flex;             /* 讓裡面的圖片卡片置中 */
     justify-content: center;
 }
@@ -933,3 +942,4 @@ p, li {
         gap: 10px;
     }
 }
+
