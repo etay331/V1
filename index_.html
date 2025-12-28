@@ -75,104 +75,7 @@
   }
 </style>
 
-<div class="exp-section">
-  <h2 style="font-size:28px; font-weight:800; margin-bottom:20px;">專案經歷</h2>
 
-  <div class="experience-grid">
-    
-    <div class="experience-card" onclick="openModal('modal-pdf')">
-      <div class="card-icon">📄</div>
-      <h3 class="card-title">衛教專案成果報告</h3>
-      <p class="card-text">完整收錄專案發想、執行過程與成效評估的詳細紀錄。</p>
-      <div class="card-link">點擊預覽 PDF →</div>
-    </div>
-
-    <div class="experience-card" onclick="openModal('modal-gallery')">
-      <div class="card-icon">📸</div>
-      <h3 class="card-title">活動執行紀錄</h3>
-      <p class="card-text">包含活動現場照片、參與者互動情形以及活動花絮。</p>
-      <div class="card-link">查看活動相簿 →</div>
-    </div>
-
-  </div>
-  <style>
-  /* 這是專門給這個區塊用的樣式，不會影響別的地方 */
-  .game-container-wrapper {
-    /* 這裡就是控制尺寸的關鍵！跟您網站其他區塊一樣寬 */
-    max-width: 1200px; 
-    margin: 0 auto;    /* 這行會讓它自動置中 */
-    padding: 20px;     /* 上下左右留點空間 */
-    font-family: "Microsoft JhengHei", sans-serif;
-  }
-
-  /* 下面是粉紅色卡片的設計 (維持您喜歡的樣子) */
-  .game-cards-row { display: flex; gap: 24px; flex-wrap: wrap; }
-  
-  .game-style-card {
-    background: #fff; 
-    border-radius: 24px; 
-    padding: 30px; 
-    flex: 1 1 300px; 
-    box-shadow: 0 10px 30px rgba(220, 200, 215, 0.3); /* 粉色陰影 */
-    border: 1px solid #fff0f5;
-    display: flex; flex-direction: column;
-  }
-
-  /* 按鈕與標籤樣式 */
-  .game-tag { background: #fbecec; color: #c0392b; border-radius: 50px; padding: 4px 12px; font-size: 12px; font-weight: bold; width: fit-content; margin-bottom: 15px;}
-  .game-btn { 
-    align-self: flex-end; margin-top: auto;
-    background: #fff; border: 1px solid #ddd; padding: 10px 24px; 
-    border-radius: 50px; font-size: 14px; font-weight: bold; cursor: pointer; 
-  }
-  .game-btn:hover { background: #f5f5f5; }
-</style>
-
-<div class="game-container-wrapper">
-  
-  <h2 style="font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 10px;">互動 Demo</h2>
-  <p style="color: #888; font-size: 14px; margin-bottom: 30px;">繽紛客製手玩：停留更久、內容更生動。</p>
-
-  <div class="game-cards-row">
-    <div class="game-style-card">
-      <div class="game-tag">GAME 衛教問答</div>
-      <h3 style="margin:0 0 10px 0;">互動衛教小遊戲</h3>
-      <p style="color:#666; font-size:14px; margin-bottom:20px;">將衛教知識轉化為趣味的問答互動。</p>
-      <button class="game-btn" onclick="openModal('demo-lumi')">開始挑戰 ►</button>
-    </div>
-
-    <div class="game-style-card">
-      <div class="game-tag" style="background:#e3f2fd; color:#1565c0;">TOOL AR體驗</div>
-      <h3 style="margin:0 0 10px 0;">AR 擴增實境展示</h3>
-      <p style="color:#666; font-size:14px; margin-bottom:20px;">透過手機鏡頭，讓平面教材「動」起來。</p>
-      <button class="game-btn" onclick="openModal('demo-eyejack')">開始掃描 ►</button>
-    </div>
-  </div>
-
-</div>
-</div>
-
-<div id="modal-pdf" class="modal-overlay" onclick="closeModal('modal-pdf')">
-  <div class="modal-content" onclick="event.stopPropagation()" style="width:90%; max-width:1000px; height:90vh;">
-    <span class="close-btn" onclick="closeModal('modal-pdf')">&times;</span>
-    <h2 style="margin-top:0;">📄 專案報告預覽</h2>
-    
-    <iframe class="pdf-box" src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
-  </div>
-</div>
-
-<div id="modal-gallery" class="modal-overlay" onclick="closeModal('modal-gallery')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="close-btn" onclick="closeModal('modal-gallery')">&times;</span>
-    <h2>📸 活動紀錄</h2>
-    <p>這裡可以放入您的照片輪播...</p>
-    <div style="display:flex; gap:10px; overflow-x:auto;">
-       <img src="https://via.placeholder.com/300x200" style="border-radius:8px;">
-       <img src="https://via.placeholder.com/300x200" style="border-radius:8px;">
-    </div>
-  </div>
-</div>
-  
 
 
 
@@ -358,24 +261,29 @@
     </section>
 
 
-    <style>
-  /* 區塊容器 */
+<style>
+  /* 區塊容器：修改這裡讓它變乖 */
   .interact-section {
     font-family: "Microsoft JhengHei", sans-serif;
-    padding: 20px 0;
-    max-width: 100%;
+    padding: 20px;     /* 上下左右留點空間 */
+    max-width: 1200px; /* 限制最大寬度，跟其他區塊一樣 */
+    margin: 0 auto;    /* 讓區塊自動置中 */
   }
+
   /* 標題與副標題 */
   .interact-title { font-size: 28px; font-weight: 800; color: #1a1a1a; margin: 0 0 8px 0; }
   .interact-subtitle { color: #888; font-size: 14px; margin: 0 0 30px 0; }
+  
   /* 卡片排版 */
   .cards-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  
   /* 單張卡片 */
   .style-card {
     background: #fff; border-radius: 24px; padding: 25px; flex: 1 1 300px;
     box-shadow: 0 5px 20px rgba(220, 200, 210, 0.3);
     display: flex; flex-direction: column; border: 1px solid #fcfcfc;
   }
+  
   /* 標籤與文字 */
   .tag-group { display: flex; gap: 8px; margin-bottom: 15px; }
   .tag-outline { border: 1px solid #e0e0e0; background: #fff; color: #666; border-radius: 50px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
@@ -383,6 +291,7 @@
   .tag-fill-blue { background-color: #e3f2fd; color: #1565c0; border-radius: 50px; padding: 3px 10px; font-size: 11px; font-weight: bold; }
   .card-h { font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: #222; }
   .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+  
   /* 按鈕樣式 */
   .btn-round { align-self: flex-end; background: #fff; border: 1px solid #ddd; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: bold; color: #333; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; }
   .btn-round:hover { background: #f5f5f5; transform: translateY(-2px); }
@@ -462,7 +371,6 @@
   function openModal(id) { document.getElementById(id).classList.add('active'); }
   function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 </script>
-
 
 
 
@@ -675,6 +583,7 @@
 </body>
 </html>
   
+
 
 
 
