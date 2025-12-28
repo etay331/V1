@@ -1168,3 +1168,75 @@ p, li {
         grid-template-columns: 1fr; /* 手機變回直的一欄 */
     }
 }
+
+/* --- 🚑 作品集 (Portfolio) 專用樣式 --- */
+  .work__container {
+      display: grid;
+      /* 電腦版 3 欄，平板 2 欄，手機 1 欄 */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding-top: 20px;
+  }
+  .work__img {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background-color: #fff;
+      transition: transform 0.3s ease;
+  }
+  .work__img:hover {
+      transform: translateY(-5px); /* 滑鼠移上去會浮起來 */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  .work__img img {
+      width: 100%;
+      height: 220px; /* 固定高度，讓版面整齊 */
+      object-fit: cover;
+      display: block;
+  }
+  .work__data {
+      padding: 15px 20px;
+      background: #fff;
+      border-top: 1px solid #f0f0f0;
+  }
+  .work__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+  }
+  .work__link {
+      font-size: 0.9rem;
+      color: #666;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+  }
+  .work__link:hover { color: #000; }
+
+  /* --- 其他區塊 (資源/互動/聯絡) 通用網格 --- */
+  .grid3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+  }
+  .grid2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 寬一點 */
+      gap: 20px;
+  }
+  /* 卡片通用樣式 */
+  .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.02);
+  }
+  /* 標題與文字微調 */
+  .section__head { margin-bottom: 40px; text-align: left; }
+  .section-title { font-size: 2rem; font-weight: bold; margin-bottom: 10px; color: #333; }
+  .section-subtitle { display: block; color: #666; margin-bottom: 30px; }
