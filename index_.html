@@ -412,52 +412,120 @@
       </div>
     </footer>
 
-  </main> <div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
-        <h2>🔬 國科會大專生研究計畫</h2>
-        <p class="modal-subtitle">主題：運用多媒體與遊戲教學提升兒童健康識能</p>
-        <p>這裡可以寫詳細的內容...</p>
-    </div>
-  </div>
+  <style>
+  /* 1. 區塊排版設定 */
+  .exp-section-wrapper {
+    font-family: "Microsoft JhengHei", sans-serif;
+    max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;
+  }
+  .exp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media screen and (max-width: 768px) { .exp-grid { grid-template-columns: 1fr; } }
 
-  <div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
+  /* 2. 卡片樣式 */
+  .exp-card {
+      background: white; padding: 25px; border-radius: 24px; border: 1px solid #eee;
+      cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 10px;
+      min-height: 160px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  .exp-card:hover {
+      transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #ffd700;
+  }
+  .exp-icon { font-size: 32px; margin-bottom: 5px; }
+  .exp-title { font-size: 18px; font-weight: bold; margin: 0; color: #333; }
+  .exp-desc { font-size: 14px; color: #666; margin: 0; line-height: 1.5; flex-grow: 1; }
+  .exp-link { margin-top: auto; font-size: 13px; font-weight: bold; color: #aaa; display: flex; align-items: center; gap: 5px; }
+  .exp-card:hover .exp-link { color: #333; }
+
+  /* 3. 視窗內的「照片輪播」樣式 (新增的) */
+  .gallery-container {
+      display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;
+      scroll-snap-type: x mandatory; /* 讓滑動有吸附感 */
+  }
+  .gallery-item {
+      flex: 0 0 80%; /* 照片寬度佔 80%，讓右邊露出下一張 */
+      height: 250px; object-fit: cover; border-radius: 12px;
+      scroll-snap-align: center; background: #f0f0f0;
+  }
+  .scroll-hint { text-align: center; color: #999; font-size: 12px; margin: 5px 0 20px 0; }
+
+  /* 4. 視窗內的「PDF 容器」樣式 */
+  .pdf-container {
+      width: 100%; height: 60vh; /* 高度設為視窗的 60% */
+      border-radius: 12px; background: #f9f9f9; border: 1px solid #ddd; position: relative;
+  }
+  .pdf-container iframe {
+      width: 100%; height: 100%; border: none; border-radius: 12px;
+  }
+</style>
+
+<div class="exp-section-wrapper">
+  <h2 style="font-size:28px; font-weight:800; color:#1a1a1a; margin-bottom:10px;">專案經歷</h2>
+  <p style="color:#888; font-size:14px; margin-bottom:30px;">點擊卡片查看詳細成果報告。</p>
+
+  <div class="exp-grid">
+    
+    <div class="exp-card" onclick="openModal('modal-2')">
+      <div class="exp-icon">🏆</div>
+      <h3 class="exp-title">創業競賽獲獎紀錄</h3>
+      <p class="exp-desc">包含比賽現場照片、團隊合影以及決賽使用的簡報檔案。</p>
+      <div class="exp-link">查看照片與簡報 →</div>
+    </div>
+
+    <div class="exp-card" onclick="openModal('modal-pdf-only')">
+      <div class="exp-icon">📄</div>
+      <h3 class="exp-title">衛教專案成果報告</h3>
+      <p class="exp-desc">完整收錄專案發想、執行過程與成效評估的詳細紀錄。</p>
+      <div class="exp-link">點擊預覽 PDF →</div>
+    </div>
+
+  </div>
+</div>
+
+<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
-        <h2>🏆 創業競賽金獎</h2>
         
-        <div class="gallery-container">
-            <img src="https://via.placeholder.com/600x400?text=比賽現場" class="gallery-item">
-            <img src="https://via.placeholder.com/600x400?text=領獎合照" class="gallery-item">
-            <img src="https://via.placeholder.com/600x400?text=產品Demo" class="gallery-item">
+        <div class="modal-inner-scroll">
+            <h2 style="margin-top:0;">🏆 創業競賽金獎</h2>
+            
+            <div class="gallery-container">
+                <img src="https://via.placeholder.com/600x400?text=Photo+1" class="gallery-item">
+                <img src="https://via.placeholder.com/600x400?text=Photo+2" class="gallery-item">
+                <img src="https://via.placeholder.com/600x400?text=Photo+3" class="gallery-item">
+            </div>
+            <p class="scroll-hint">← 左右滑動看更多照片 →</p>
+    
+            <h3 style="margin-top:30px;">📄 比賽簡報</h3>
+            <div class="pdf-container">
+                <iframe src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview" allow="autoplay"></iframe>
+            </div>
+            <p style="margin-top:15px; color:#666; line-height:1.6;">
+                獲獎作品「視語光點」是為視障兒童設計的語言學習工具，透過觸覺與聽覺的結合...
+            </p>
         </div>
-        <p class="scroll-hint">← 左右滑動看更多照片 →</p>
+    </div>
+</div>
 
-        <h3 style="margin-top:20px;">📄 比賽簡報</h3>
-        <div class="pdf-container">
-            <iframe src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview" allow="autoplay"></iframe>
+<div id="modal-pdf-only" class="modal-overlay" onclick="closeModal('modal-pdf-only')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-pdf-only')">&times;</span>
+        <div class="modal-inner-scroll">
+            <h2 style="margin-top:0;">📄 專案報告預覽</h2>
+            <div class="pdf-container">
+                <iframe src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
+            </div>
         </div>
-        <p style="margin-top:15px">獲獎作品「視語光點」是為視障兒童設計的語言學習工具...</p>
     </div>
-  </div>
+</div>
 
-  <div id="modal-3" class="modal-overlay" onclick="closeModal('modal-3')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
-        <h2>✈️ 印尼巨港海外實習</h2>
-        <p>於 Universitas Muhammadiyah Palembang 附設醫療機構實習...</p>
-        <img src="https://via.placeholder.com/600x400" alt="實習照片" style="width:100%; border-radius:12px; margin-top:10px;">
-    </div>
-  </div>
 
-  <div id="modal-4" class="modal-overlay" onclick="closeModal('modal-4')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('modal-4')">&times;</span>
-        <h2>📚 勤學書卷獎</h2>
-        <p>連續兩學期保持系排前三名...</p>
-    </div>
-  </div>
 
+
+
+
+    
   <div id="project-1" class="modal-overlay" onclick="closeModal('project-1')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('project-1')">&times;</span>
@@ -472,6 +540,8 @@
     </div>
   </div>
 
+
+  
   <div id="project-2" class="modal-overlay" onclick="closeModal('project-2')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-btn" onclick="closeModal('project-2')">&times;</span>
@@ -537,6 +607,7 @@
 </body>
 </html>
   
+
 
 
 
