@@ -10,99 +10,119 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles_.css" />
-  
-  <style>
-  /* --- 這裡整合了所有你需要的 CSS --- */
 
-  /* 1. 經歷卡片變成雙欄 (你之前漏掉這段) */
+
+  <style>
+  /* 1. 區塊容器 */
+  .exp-section {
+    font-family: "Microsoft JhengHei", sans-serif;
+    max-width: 1200px;
+    margin: 40px auto; /* 與上方區塊保持距離 */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* 2. 雙欄卡片設定 */
   .experience-grid {
       display: grid;
       grid-template-columns: 1fr 1fr; /* 電腦版雙欄 */
-      gap: 15px;
+      gap: 20px;
   }
   @media screen and (max-width: 768px) {
       .experience-grid { grid-template-columns: 1fr; } /* 手機版單欄 */
   }
 
-  /* 2. 卡片樣式 */
+  /* 3. 卡片外觀 */
   .experience-card {
       background: white;
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid #f0f0f0;
+      padding: 25px;
+      border-radius: 24px; /* 大圓角 */
+      border: 1px solid #eee;
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-height: 140px; /* 統一高度 */
+      min-height: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
   }
   .experience-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      border-color: #ffd700; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-color: #ffd700; /* 金色邊框 */
   }
-  .card-icon { font-size: 24px; }
-  .card-content h3 { font-size: 1.1rem; margin: 0 0 5px 0; }
-  .card-content p { font-size: 0.9rem; color: #666; margin: 0; }
+  
+  .card-icon { font-size: 32px; margin-bottom: 5px; }
+  .card-title { font-size: 18px; font-weight: bold; margin: 0; color: #333; }
+  .card-text { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+  
   .card-link {
-      margin-top: auto;
-      font-size: 14px;
+      margin-top: auto; /* 推到最底部 */
+      font-size: 13px;
       font-weight: bold;
-      color: #999;
+      color: #aaa;
       display: flex; align-items: center; gap: 5px;
   }
   .experience-card:hover .card-link { color: #333; }
 
-  /* 3. Hero 區域的卡片與膠囊 */
-  .card-container {
-      display: flex; flex-direction: column; align-items: center;
-      width: 100%; max-width: 700px; margin: 0 auto;
+  /* 4. PDF 容器樣式 */
+  .pdf-box {
+      width: 100%;
+      height: 70vh; /* 視窗高度的 70% */
+      border-radius: 12px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
   }
-  .image-box {
-      width: 100%; border-radius: 24px; overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12); background-color: #f0f0f0; line-height: 0;
-  }
-  .image-box img { display: block; width: 100%; height: auto; object-fit: cover; }
-  .text-pill {
-      margin-top: 20px; background-color: white; padding: 12px 24px;
-      border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.05); font-size: 16px; font-weight: 700;
-      color: #2c3e50; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
-  }
+</style>
 
-  /* 4. 彈跳視窗與輪播 */
-  .modal-overlay {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6); z-index: 9999;
-      justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
-  }
-  .modal-overlay.show { display: flex; opacity: 1; }
-  .modal-content {
-      background-color: white; padding: 30px; border-radius: 20px;
-      width: 90%; max-width: 600px; max-height: 85vh; overflow-y: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
-      transform: translateY(20px); transition: transform 0.3s ease;
-  }
-  .modal-overlay.show .modal-content { transform: translateY(0); }
-  .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+<div class="exp-section">
+  <h2 style="font-size:28px; font-weight:800; margin-bottom:20px;">專案經歷</h2>
+
+  <div class="experience-grid">
+    
+    <div class="experience-card" onclick="openModal('modal-pdf')">
+      <div class="card-icon">📄</div>
+      <h3 class="card-title">衛教專案成果報告</h3>
+      <p class="card-text">完整收錄專案發想、執行過程與成效評估的詳細紀錄。</p>
+      <div class="card-link">點擊預覽 PDF →</div>
+    </div>
+
+    <div class="experience-card" onclick="openModal('modal-gallery')">
+      <div class="card-icon">📸</div>
+      <h3 class="card-title">活動執行紀錄</h3>
+      <p class="card-text">包含活動現場照片、參與者互動情形以及活動花絮。</p>
+      <div class="card-link">查看活動相簿 →</div>
+    </div>
+
+  </div>
+</div>
+
+<div id="modal-pdf" class="modal-overlay" onclick="closeModal('modal-pdf')">
+  <div class="modal-content" onclick="event.stopPropagation()" style="width:90%; max-width:1000px; height:90vh;">
+    <span class="close-btn" onclick="closeModal('modal-pdf')">&times;</span>
+    <h2 style="margin-top:0;">📄 專案報告預覽</h2>
+    
+    <iframe class="pdf-box" src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
+  </div>
+</div>
+
+<div id="modal-gallery" class="modal-overlay" onclick="closeModal('modal-gallery')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-gallery')">&times;</span>
+    <h2>📸 活動紀錄</h2>
+    <p>這裡可以放入您的照片輪播...</p>
+    <div style="display:flex; gap:10px; overflow-x:auto;">
+       <img src="https://via.placeholder.com/300x200" style="border-radius:8px;">
+       <img src="https://via.placeholder.com/300x200" style="border-radius:8px;">
+    </div>
+  </div>
+</div>
   
-  /* 照片輪播 */
-  .gallery-container {
-      display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding-bottom: 10px;
-      scrollbar-width: none;
-  }
-  .gallery-container::-webkit-scrollbar { display: none; }
-  .gallery-item { scroll-snap-align: center; flex: 0 0 100%; height: 300px; object-fit: cover; border-radius: 12px; background: #eee; }
-  .scroll-hint { text-align: center; color: #999; font-size: 12px; margin-bottom: 20px; }
+
+
+
   
-  /* PDF 容器 */
-  .pdf-container {
-      position: relative; width: 100%; height: 500px; margin-top: 15px;
-      border-radius: 12px; overflow: hidden; border: 1px solid #eee; background-color: #f9f9f9;
-  }
-  .pdf-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-  </style>
+  
 </head>
 
 <body>
@@ -600,6 +620,7 @@
 </body>
 </html>
   
+
 
 
 
