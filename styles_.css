@@ -1492,6 +1492,40 @@ p, li {
       background: #999; 
   }
 
+/* ================= 留言板專用樣式 ================= */
+
+/* 1. 外層容器：控制寬度與置中 */
+.padlet-wrapper {
+  max-width: 800px; /* 🔥 關鍵：限制最大寬度，才不會太寬 */
+  margin: 0 auto;   /* 水平置中 */
+  width: 100%;
+}
+
+/* 2. Padlet 盒子：外觀美化 */
+.padlet-box {
+  width: 100%;
+  height: 600px; /* 給它足夠的高度，方便閱讀留言 */
+  border-radius: 24px; /* 大圓角 */
+  overflow: hidden;
+  border: 1px solid #eee; /* 淡淡邊框 */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* 漂亮的立體陰影 */
+  background: #fff;
+}
+
+/* 3. iframe 設定 */
+.padlet-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* 4. 手機版調整 */
+@media (max-width: 768px) {
+  .padlet-box {
+    height: 500px; /* 手機上稍微矮一點 */
+  }
+}
 
 
 
