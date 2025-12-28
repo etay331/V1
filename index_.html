@@ -283,51 +283,39 @@
     </section>
 
 
-    <div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
-    <div class="modal-content" onclick="event.stopPropagation()" style="width: 95%; max-width: 900px; height: 80vh;">
-        <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
-        <h2>🎮 互動衛教小遊戲</h2>
-        
-        <iframe 
-            src="https://app.lumi.education/run/4Pgaqw" 
-            style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;"
-            allowfullscreen>
-        </iframe>
-    </div>
+ <div class="btn-container">
+  <button class="trigger-btn" onclick="openModal('demo-lumi')">🎮 試玩衛教遊戲</button>
+  <button class="trigger-btn ar" onclick="openModal('demo-eyejack')">📱 開啟 AR 體驗</button>
+</div>
+
+<div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
+  <div class="modal-content" onclick="event.stopPropagation()" style="width: 95%; max-width: 900px; height: 80vh;">
+      <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
+      <h2 style="margin-top:0;">🎮 互動衛教小遊戲</h2>
+      <iframe src="https://app.lumi.education/run/4Pgaqw" style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;" allowfullscreen></iframe>
   </div>
+</div>
 
-  <div id="demo-eyejack" class="modal-overlay" onclick="closeModal('demo-eyejack')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
-        <h2>📱 AR 擴增實境體驗流程</h2>
-        <p class="modal-subtitle">請拿出手機，跟著步驟操作：</p>
-
-        <div class="ar-steps" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-            
-            <div class="step-box" style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
-                <img src="https://via.placeholder.com/150?text=App+QR+Code" alt="下載 QR Code" style="width: 120px; height: 120px; margin: 0 auto;">
-                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">下載 EyeJack App</p>
-            </div>
-
-            <div class="step-box" style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
-                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描啟動圖</div>
-                <img src="https://via.placeholder.com/150?text=啟動辨識圖" alt="啟動圖" style="width: 120px; height: 120px; object-fit: cover; margin: 0 auto;">
-                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">打開 App 掃描這張圖</p>
-            </div>
-
-        </div>
-
-        <div style="margin-top: 20px; padding: 15px; background: #fff8e1; border-radius: 8px; font-size: 0.9rem; color: #856404;">
-            <strong>💡 體驗說明：</strong> 掃描成功後，你會看到 [描述一下會發生什麼事，例如：心臟會跳動、出現3D模型...]。
-        </div>
-    </div>
+<div id="demo-eyejack" class="modal-overlay" onclick="closeModal('demo-eyejack')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
+      <h2 style="margin-top:0;">📱 AR 擴增實境體驗流程</h2>
+      <p style="color:#666; margin-bottom:20px;">請拿出手機，跟著步驟操作：</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+              <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
+              <img src="https://via.placeholder.com/150?text=App+QR" alt="QR" style="width: 100px; height: 100px; margin: 0 auto;">
+              <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">EyeJack App</p>
+          </div>
+          <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+              <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描圖</div>
+              <img src="https://via.placeholder.com/150?text=Target+Image" alt="Target" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+              <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">掃描這張圖</p>
+          </div>
+      </div>
   </div>
-
-
-    
-
-
+</div>
 
 
     
@@ -520,6 +508,7 @@
 </body>
 </html>
   
+
 
 
 
