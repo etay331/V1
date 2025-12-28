@@ -532,49 +532,171 @@
 
 
     
-  <div id="project-1" class="modal-overlay" onclick="closeModal('project-1')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('project-1')">&times;</span>
-        <h2>🎨 衛教動畫設計專案</h2>
-        <p class="modal-subtitle">專案類型：2D 動畫 / 腳本企劃</p>
-        
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius:12px; margin: 15px 0;">
-            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        </div>
-        
-        <p>這裡寫下你的設計理念：為什麼要做這個動畫？解決了什麼溝通問題？...</p>
-    </div>
-  </div>
+<style>
+  /* 1. 區塊與網格設定 */
+  .portfolio-section {
+    max-width: 1200px; margin: 60px auto; padding: 20px;
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 自動排版 */
+    gap: 25px;
+  }
 
-
+  /* 2. 卡片樣式 */
+  .port-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s; display: flex; flex-direction: column;
+  }
+  .port-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
   
-  <div id="project-2" class="modal-overlay" onclick="closeModal('project-2')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('project-2')">&times;</span>
-        <h2>📱 AR 互動體驗與腳本</h2>
-        <p class="modal-subtitle">專案類型：AR 濾鏡 / 互動腳本</p>
-        
-        <div class="gallery-container">
-            <img src="https://via.placeholder.com/600x400?text=AR介面" class="gallery-item">
-            <img src="https://via.placeholder.com/600x400?text=使用者體驗" class="gallery-item">
-        </div>
-        <p class="scroll-hint">← 左右滑動看更多 →</p>
+  .port-img-box {
+    width: 100%; height: 180px; background-color: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .port-img-box img { width: 100%; height: 100%; object-fit: cover; }
+  
+  .port-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+  .port-tag {
+    font-size: 12px; color: #6a4f9e; background: #f3e5f5; width: fit-content;
+    padding: 4px 10px; border-radius: 50px; font-weight: bold; margin-bottom: 10px;
+  }
+  .port-title { font-size: 18px; font-weight: bold; margin: 0 0 8px 0; color: #333; }
+  .port-desc { font-size: 14px; color: #666; margin: 0 0 20px 0; line-height: 1.5; }
+  
+  /* 卡片上的按鈕 */
+  .port-btn {
+    margin-top: auto; /* 推到底部 */
+    background: white; border: 1px solid #333; color: #333;
+    padding: 8px 0; border-radius: 50px; font-size: 14px; font-weight: bold;
+    cursor: pointer; transition: 0.2s; width: 100%;
+  }
+  .port-btn:hover { background: #333; color: white; }
 
-        <p>這是一個結合實體展覽的 AR 體驗...</p>
+  /* 3. 隱藏項目的樣式 (收合用) */
+  .hidden-item { display: none; }
+
+  /* 4. 載入更多按鈕 */
+  .load-more-container { text-align: center; margin-top: 40px; }
+  .load-btn {
+    background: #333; color: white; border: none;
+    padding: 12px 35px; border-radius: 50px; font-size: 15px; font-weight: bold;
+    cursor: pointer; transition: 0.3s;
+  }
+  .load-btn:hover { transform: scale(1.05); background: #555; }
+
+  /* 5. 影片容器 (讓影片自適應大小) */
+  .video-container {
+    position: relative; padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0; overflow: hidden; border-radius: 12px; background: #000;
+  }
+  .video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+  }
+</style>
+
+<div class="portfolio-section">
+  <h2 style="font-size:28px; font-weight:800; color:#1a1a1a; margin-bottom:10px;">更多作品集</h2>
+  <p style="color:#888; margin-bottom:30px;">收錄各類專案，點擊按鈕可查看詳細內容或影片。</p>
+
+  <div class="portfolio-grid">
+    
+    <div class="port-card">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=影片專案" alt="Cover"></div>
+      <div class="port-content">
+        <span class="port-tag">衛教影片</span>
+        <h3 class="port-title">正確洗手衛教短片</h3>
+        <p class="port-desc">負責腳本撰寫與剪輯，推廣正確洗手步驟。</p>
+        <button class="port-btn" onclick="openModal('modal-video-1')">觀看影片 ►</button>
+      </div>
     </div>
+
+    <div class="port-card">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=活動專案" alt="Cover"></div>
+      <div class="port-content">
+        <span class="port-tag">活動企劃</span>
+        <h3 class="port-title">社區篩檢活動</h3>
+        <p class="port-desc">百人規模篩檢活動，負責動線規劃與現場引導。</p>
+        <button class="port-btn" onclick="openModal('modal-photo-1')">查看活動照片</button>
+      </div>
+    </div>
+
+    <div class="port-card hidden-item">
+      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=手冊設計" alt="Cover"></div>
+      <div class="port-content">
+        <span class="port-tag">平面設計</span>
+        <h3 class="port-title">糖尿病飲食手冊</h3>
+        <p class="port-desc">重新編排衛教資訊，提升長輩閱讀意願。</p>
+        <button class="port-btn" onclick="openModal('modal-pdf-1')">預覽手冊 PDF</button>
+      </div>
+    </div>
+
   </div>
 
-  <div id="project-3" class="modal-overlay" onclick="closeModal('project-3')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeModal('project-3')">&times;</span>
-        <h2>📖 高齡衛教手冊重設計</h2>
-        <p>針對高齡者視力退化進行的字體與排版優化...</p>
-        <img src="https://via.placeholder.com/600x400?text=手冊內頁" style="width:100%; border-radius:12px; margin-top:10px;">
+  <div class="load-more-container">
+    <button id="showMoreBtn" class="load-btn" onclick="showAllProjects()">查看更多作品 ↓</button>
+  </div>
+</div>
+
+<div id="modal-video-1" class="modal-overlay" onclick="closeModal('modal-video-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-video-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>🎥 正確洗手衛教短片</h2>
+      <p>這是我們小組製作的衛教推廣影片...</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
+</div>
 
+<div id="modal-photo-1" class="modal-overlay" onclick="closeModal('modal-photo-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-photo-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>📸 社區篩檢活動紀錄</h2>
+      
+      <div class="gallery-container">
+        <img src="https://via.placeholder.com/600x400?text=Photo+A" class="gallery-item">
+        <img src="https://via.placeholder.com/600x400?text=Photo+B" class="gallery-item">
+        <img src="https://via.placeholder.com/600x400?text=Photo+C" class="gallery-item">
+      </div>
+      <p class="scroll-hint">← 左右滑動看更多 →</p>
+    </div>
+  </div>
+</div>
 
+<div id="modal-pdf-1" class="modal-overlay" onclick="closeModal('modal-pdf-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-pdf-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>📄 糖尿病飲食手冊</h2>
+      <div class="pdf-container">
+        <iframe src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+  function showAllProjects() {
+    // 把所有隱藏的卡片打開
+    var hiddenItems = document.querySelectorAll('.hidden-item');
+    hiddenItems.forEach(function(item) {
+      item.style.display = 'flex';
+      // 淡入動畫
+      item.style.opacity = '0';
+      item.style.transition = 'opacity 0.5s';
+      setTimeout(() => item.style.opacity = '1', 50);
+    });
+    // 隱藏按鈕
+    document.getElementById('showMoreBtn').style.display = 'none';
+  }
+</script>
 
   
   <div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
@@ -691,94 +813,11 @@
   .load-btn:hover { background: #555; transform: scale(1.05); }
 </style>
 
-<div class="portfolio-section">
-  <h2 style="font-size:28px; font-weight:800; color:#1a1a1a; margin-bottom:10px;">更多作品集</h2>
-  <p style="color:#888; margin-bottom:30px;">這裡收錄了我在學期間參與的各類專案與設計。</p>
 
-  <div class="portfolio-grid">
-    
-    <div class="port-card" onclick="openModal('modal-gallery')">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案A" alt="專案A"></div>
-      <div class="port-content">
-        <span class="port-tag">UI 設計</span>
-        <h3 class="port-title">高齡友善介面設計</h3>
-        <p class="port-desc">針對高齡者視覺特性設計的 APP 介面優化專案。</p>
-      </div>
-    </div>
-
-    <div class="port-card" onclick="openModal('modal-pdf')">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案B" alt="專案B"></div>
-      <div class="port-content">
-        <span class="port-tag">衛教手冊</span>
-        <h3 class="port-title">糖尿病飲食指南</h3>
-        <p class="port-desc">以圖文並茂的方式重新排版衛教資訊，提升閱讀意願。</p>
-      </div>
-    </div>
-
-    <div class="port-card">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案C" alt="專案C"></div>
-      <div class="port-content">
-        <span class="port-tag">活動企劃</span>
-        <h3 class="port-title">社區健康篩檢活動</h3>
-        <p class="port-desc">統籌規劃百人規模的社區篩檢流程與動線設計。</p>
-      </div>
-    </div>
-
-    <div class="port-card">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案D" alt="專案D"></div>
-      <div class="port-content">
-        <span class="port-tag">影片製作</span>
-        <h3 class="port-title">正確洗手衛教短片</h3>
-        <p class="port-desc">負責腳本撰寫與後製剪輯，推廣正確洗手步驟。</p>
-      </div>
-    </div>
-
-    <div class="port-card hidden-item">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案E" alt="專案E"></div>
-      <div class="port-content">
-        <span class="port-tag">海報設計</span>
-        <h3 class="port-title">失智症宣導海報</h3>
-        <p class="port-desc">運用溫暖色調與簡單圖示，傳達失智症友善觀念。</p>
-      </div>
-    </div>
-
-    <div class="port-card hidden-item">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專案F" alt="專案F"></div>
-      <div class="port-content">
-        <span class="port-tag">網站架設</span>
-        <h3 class="port-title">個人作品集網站</h3>
-        <p class="port-desc">從零開始規劃與架設的響應式個人網站。</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="load-more-container">
-    <button id="showMoreBtn" class="load-btn" onclick="showAllProjects()">查看更多作品 ↓</button>
-  </div>
-</div>
-
-<script>
-  function showAllProjects() {
-    // 1. 找到所有被隱藏的卡片
-    var hiddenItems = document.querySelectorAll('.hidden-item');
-    
-    // 2. 把每一張都改成顯示 (display: flex)
-    hiddenItems.forEach(function(item) {
-      item.style.display = 'flex';
-      // 加一點簡單的淡入動畫效果
-      item.style.opacity = '0';
-      item.style.transition = 'opacity 0.5s';
-      setTimeout(() => item.style.opacity = '1', 50);
-    });
-
-    // 3. 隱藏按鈕自己 (因為都顯示完了)
-    document.getElementById('showMoreBtn').style.display = 'none';
-  }
-</script>
 </body>
 </html>
   
+
 
 
 
