@@ -205,41 +205,31 @@
        <div class="achievements">
 
 
-         <div class="experience-card" onclick="openModal('modal-1')" style="cursor: pointer;">
-    <div class="icon">🔬</div>
-    <div class="content">
-        <h3>114年度國科會大專生研究計畫</h3>
-        <p>主題：運用多媒體與遊戲教學提升兒童健康識能</p>
+<div class="experience-grid">
+
+    <div class="experience-card" onclick="openModal('modal-1')">
+        <div class="card-icon">🔬</div>
+        <div class="card-content">
+            <h3>114年度國科會計畫</h3>
+            <p>運用多媒體與遊戲教學提升兒童健康識能</p>
+        </div>
+        <div class="card-link">
+            看詳細內容 <span class="arrow">→</span>
+        </div>
     </div>
-</div>
 
-<div class="experience-card" onclick="openModal('modal-2')" style="cursor: pointer;">
-    <div class="icon">🏆</div>
-    <div class="content">
-        <h3>2025 NTUE 校園創業競賽 | 金獎</h3>
-        <p>獲獎作品：語觸世界 LingoTouch - 視語光點</p>
+    <div class="experience-card" onclick="openModal('modal-2')">
+        <div class="card-icon">🏆</div>
+        <div class="card-content">
+            <h3>校園創業競賽 | 金獎</h3>
+            <p>獲獎作品：語觸世界 LingoTouch</p>
+        </div>
+        <div class="card-link">
+            看比賽照片 <span class="arrow">→</span>
+        </div>
     </div>
-</div>
 
-<div class="experience-card" onclick="openModal('modal-3')" style="cursor: pointer;">
-    <div class="icon">✈️</div>
-    <div class="content">
-        <h3>學海築夢 | 印尼巨港海外實習</h3>
-        <p>於 Universitas Muhammadiyah Palembang 醫療機構實習</p>
     </div>
-</div>
-
-<div class="experience-card" onclick="openModal('modal-4')" style="cursor: pointer;">
-    <div class="icon">📚</div>
-    <div class="content">
-        <h3>勤學書卷獎 (連續兩學期)</h3>
-        <p>113學年度 第1學期 & 第2學期 系排前三</p>
-    </div>
-</div>
-  
-
-
-</div>
 
           <div class="note">
             <strong data-i18n="about.noteT">給實習單位：</strong>
@@ -534,6 +524,28 @@
 </body>
 </html>
 
+<div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
+        <h2>🔬 國科會大專生研究計畫</h2>
+        <p>這是我在大學期間投入最多的研究專案...</p>
+        </div>
+</div>
+
+<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
+        <h2>🏆 創業競賽金獎</h2>
+        
+        <div class="gallery-container">
+            <img src="https://via.placeholder.com/600x400?text=比賽現場" class="gallery-item" alt="照片1">
+            <img src="https://via.placeholder.com/600x400?text=領獎合照" class="gallery-item" alt="照片2">
+            <img src="https://via.placeholder.com/600x400?text=產品Demo" class="gallery-item" alt="照片3">
+        </div>
+        <p class="scroll-hint">← 左右滑動看更多照片 →</p>
+        <p style="margin-top: 20px;">這裡可以寫更多關於比賽的心得，或是評審的評語...</p>
+    </div>
+</div>
 
 
 
