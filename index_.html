@@ -716,6 +716,45 @@
     /* 防止因為同一排有長有短，導致短的圖片被強迫拉長 */
     align-self: flex-start; 
 }
+
+    /* --- 手機版特別設定 (解決留白與大小不一問題) --- */
+@media (max-width: 768px) {
+    .gallery-container {
+        /* 讓照片垂直置中，這樣就算有留白也會平均分佈在上下，比較好看 */
+        align-items: center; 
+        /* 固定容器高度，避免被最高的照片撐大 */
+        height: 60vh; 
+    }
+
+    .gallery-item {
+        /* 1. 強制固定高度 */
+        /* 設定為螢幕高度的 60%，這樣大家一樣高，不會忽大忽小 */
+        height: 100%; 
+        
+        /* 2. 寬度改為自動 */
+        /* 讓照片依照自己的比例縮放，不要強迫佔滿 85% */
+        width: auto;
+        flex: 0 0 auto;
+        
+        /* 3. 限制最大寬度 */
+        /* 避免寬螢幕照片太寬衝出螢幕 */
+        max-width: 95%;
+
+        /* 4. 顯示模式：完整顯示 (contain) */
+        /* 重要！因為有流程表這種有字的圖，用 cover 會切到字，所以用 contain */
+        object-fit: contain;
+        
+        /* 讓背景變白色，這樣尺寸不合時的留白會比較自然 */
+        background: #fff; 
+        
+        /* 增加一點圓角和陰影，讓它像一張卡片浮在中間 */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+}
+
+
+    
     
   .scroll-hint { text-align: center; color: #999; font-size: 12px; margin: 5px 0 20px 0; }
 
@@ -1031,6 +1070,7 @@
 </body>
 </html>
   
+
 
 
 
