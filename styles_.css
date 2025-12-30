@@ -1095,30 +1095,36 @@ p, li {
 }
 .gallery-container::-webkit-scrollbar { display: none; }
 
+/* --- 這裡維持電腦版的設定 (維持您原本覺得不錯的設定) --- */
 .gallery-item {
-    /* --- 1. 修改寬度 --- */
-    /* 原本是 100%，改為 60% 讓右邊露出下一張，且不會太寬 */
-    flex: 0 0 60%; 
-    max-width: 500px; /* 電腦版限制最大寬度 */
-
-    /* --- 2. 修改高度 (最重要！) --- */
-    /* 原本是 height: 300px (寫死)，現在改為 auto (自動) */
-    /* 這樣直圖就會變長，橫圖就會變扁，完全依照原圖 */
-    height: auto; 
-    
-    /* 避免直式照片在手機上太長，佔滿整個畫面滑不動 */
-    max-height: 80vh; 
-
-    /* --- 3. 修改顯示模式 --- */
-    /* 原本是 cover (裁切)，改為 contain 或直接拿掉 */
-    /* 因為 height 設為 auto 了，這行其實可以不用，但若有限制 max-height 則建議用 contain */
-    object-fit: contain; 
-
-    /* --- 其他維持不變 --- */
+    flex: 0 0 400px; /* 電腦版固定寬度，或用 60% */
+    max-width: 500px;
+    height: 250px;   /* 電腦版高度 */
+    object-fit: cover;
     border-radius: 12px;
     scroll-snap-align: center;
-    background: transparent; /* 建議改透明，不然照片比例不同時會有底色塊 */
-    align-self: flex-start; /* 讓圖片靠上對齊 */
+    background: #eee;
+    margin-right: 15px; /* 增加一點間距 */
+}
+
+/* --- 這裡開始是「專門給手機」的設定 --- */
+/* 當螢幕寬度小於 768px (一般手機直拿) 時，會執行下面的程式碼 */
+@media (max-width: 768px) {
+  .gallery-item {
+      /* 1. 寬度改為 90% */
+      /* 讓照片變大張，成為主角，只留 10% 空間提示右邊還有圖 */
+      flex: 0 0 90%; 
+      
+      /* 2. 強制鎖定 16:9 比例 */
+      /* 瀏覽器會自動算出完美的高度，不再忽大忽小 */
+      aspect-ratio: 16 / 9;
+      height: auto; 
+
+      /* 3. 確保照片完整顯示 (解決被喀到的問題) */
+      /* cover = 填滿格子 (可能會切到邊邊，但比較美觀) */
+      /* contain = 整張顯示 (會有留白，但絕對不會切到人) -> 怕切到請用這個 */
+      object-fit: cover; 
+  }
 }
 
 .scroll-hint {
@@ -1511,6 +1517,7 @@ p, li {
     height: 500px; /* 手機上稍微矮一點 */
   }
 }
+
 
 
 
