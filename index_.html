@@ -380,7 +380,6 @@
         <button class="port-btn" onclick="openModal('modal-pdf-1')">預覽手冊 PDF</button>
       </div>
     </div>
-  </div>
 
        <div class="port-card hidden-item">
       <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=手冊設計" alt="Cover"></div>
@@ -414,35 +413,8 @@
     </div>
 
 
-         <div class="port-card hidden-item">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專業選修" alt="Cover"></div>
-      <div class="port-content">
-        <span class="port-tag">專業倫理議題 </span>
-        <h3 class="port-title">當愛與自主衝突時，我們該聽誰的呢？ </h3>
-        <p class="port-desc">末期/重症生命維持治療撤除的倫理困境:病人自主 vs 家屬情感。</p>
-        <button class="port-btn" onclick="openModal('modal-video-1')">觀看影片 ►</button>
-      </div>
-    </div>
-
-
-         <div class="port-card hidden-item">
-      <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專業選修" alt="Cover"></div>
-      <div class="port-content">
-        <span class="port-tag">專業倫理議題 </span>
-        <h3 class="port-title">當愛與自主衝突時，我們該聽誰的呢？ </h3>
-        <p class="port-desc">末期/重症生命維持治療撤除的倫理困境:病人自主 vs 家屬情感。</p>
-        <button class="port-btn" onclick="openModal('modal-video-1')">觀看影片 ►</button>
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
+  </div>
+    
 
 
 
@@ -933,51 +905,123 @@
     </div>
 </div>
 
-
-
-
-
-    
 <style>
   /* 1. 區塊與網格設定 */
   .portfolio-section {
-    max-width: 1200px; margin: 60px auto; padding: 20px;
+    max-width: 1200px; 
+    margin: 60px auto; 
+    padding: 20px;
     font-family: "Microsoft JhengHei", sans-serif;
   }
+  
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 自動排版 */
+    /* 【修改點】電腦版強制分為 3 欄，每欄等寬 (1fr) */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 25px;
+  }
+
+  /* 【新增】RWD 響應式設定：螢幕變小時自動調整欄數 */
+  @media (max-width: 992px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr); /* 平板變 2 欄 */
+    }
+  }
+  @media (max-width: 600px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr; /* 手機變 1 欄 */
+    }
   }
 
   /* 2. 卡片樣式 */
   .port-card {
-    background: white; border-radius: 20px; overflow: hidden;
-    border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: 0.3s; display: flex; flex-direction: column;
+    background: white; 
+    border-radius: 20px; 
+    overflow: hidden;
+    border: 1px solid #eee; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s; 
+    display: flex; 
+    flex-direction: column;
+    height: 100%; /* 【修改點】確保同列卡片高度一致 */
   }
-  .port-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
   
+  .port-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+  }
+   
   .port-img-box {
-    width: 100%; height: 180px; background-color: #f0f0f0;
-    display: flex; align-items: center; justify-content: center;
+    width: 100%; 
+    height: 180px; /* 固定高度，避免圖片大小不一造成錯位 */
+    background-color: #f0f0f0;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-shrink: 0; /* 【修改點】防止圖片區塊被壓縮 */
   }
-  .port-img-box img { width: 100%; height: 100%; object-fit: cover; }
   
-  .port-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+  .port-img-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* 確保圖片填滿且不變形 */
+  }
+   
+  .port-content { 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; /* 讓內容區自動填滿剩餘高度 */
+  }
+  
   .port-tag {
-    font-size: 12px; color: #6a4f9e; background: #f3e5f5; width: fit-content;
-    padding: 4px 10px; border-radius: 50px; font-weight: bold; margin-bottom: 10px;
+    font-size: 12px; 
+    color: #6a4f9e; 
+    background: #f3e5f5; 
+    width: fit-content;
+    padding: 4px 10px; 
+    border-radius: 50px; 
+    font-weight: bold; 
+    margin-bottom: 10px;
   }
-  .port-title { font-size: 18px; font-weight: bold; margin: 0 0 8px 0; color: #333; }
-  .port-desc { font-size: 14px; color: #666; margin: 0 0 20px 0; line-height: 1.5; }
   
+  .port-title { 
+    font-size: 18px; 
+    font-weight: bold; 
+    margin: 0 0 8px 0; 
+    color: #333; 
+    /* 【建議】如果標題太長，限制顯示兩行 (可選) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .port-desc { 
+    font-size: 14px; 
+    color: #666; 
+    margin: 0 0 20px 0; 
+    line-height: 1.5; 
+    /* 【建議】限制描述文字高度，避免卡片長短不一 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+   
   /* 卡片上的按鈕 */
   .port-btn {
-    margin-top: auto; /* 推到底部 */
-    background: white; border: 1px solid #333; color: #333;
-    padding: 8px 0; border-radius: 50px; font-size: 14px; font-weight: bold;
-    cursor: pointer; transition: 0.2s; width: 100%;
+    margin-top: auto; /* 推到底部，確保按鈕對齊 */
+    background: white; 
+    border: 1px solid #333; 
+    color: #333;
+    padding: 8px 0; 
+    border-radius: 50px; 
+    font-size: 14px; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: 0.2s; 
+    width: 100%;
   }
   .port-btn:hover { background: #333; color: white; }
 
@@ -1002,6 +1046,11 @@
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
   }
 </style>
+
+
+
+    
+
 
 
   
@@ -1123,6 +1172,7 @@
 </body>
 </html>
   
+
 
 
 
