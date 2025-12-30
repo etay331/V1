@@ -1145,21 +1145,32 @@ p, li {
 }
 
 /* --- PDF 嵌入容器 (尺寸縮小版) --- */
+/* --- PDF 容器設定 (請替換原本的) --- */
 .pdf-container {
     position: relative;
     width: 100%;
+    max-width: 800px;     /* 電腦版最大寬度，可自行調整 */
     
-    /* ✅ 只要改這裡，HTML 不用動 */
-    height: 450px; 
+    /* 【關鍵修改】將比例改為 4:3，這樣電腦上看就會比較高，不會太扁 */
+    aspect-ratio: 4 / 3; 
     
-    margin-top: 15px;
-    border-radius: 12px;
-    overflow: hidden; 
-    border: 1px solid #eee; 
-    background-color: #f9f9f9; 
+    margin: 20px auto;    /* 置中 */
+    border-radius: 12px;  /* 圓角 */
+    overflow: hidden;     
+    border: 1px solid #ddd; /* 加個細邊框增加質感 */
+    background: #f0f0f0;
 }
 
-/* ...下略 iframe 設定... */
+/* --- 確保 iframe 填滿容器 --- */
+/* 這段務必要有，不然 iframe 高度可能會跑掉 */
+.pdf-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* 強制填滿爸爸 (4:3) 的高度 */
+    border: none;
+}
 
 /* --- 🚑 作品集 (Portfolio) 專用樣式 --- */
   .work__container {
@@ -1547,6 +1558,22 @@ p, li {
 }
 
 
+.gallery-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px; /* 控制照片間距 */
+    padding-bottom: 10px; 
+    
+    /* 【關鍵修改：加入這行】 */
+    /* align-items: flex-start; 意思是「靠上對齊」 */
+    /* 這樣矮的照片就會保持原樣，下方不會再被拉出空白 */
+    align-items: flex-start; 
+    
+    /* 確保左側沒有多餘邊距 */
+    padding-left: 0;
+    margin-left: 0;
+}
 
 
 
