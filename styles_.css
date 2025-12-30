@@ -1082,49 +1082,60 @@ p, li {
 
 
 /* --- 2. 照片輪播 (Gallery) 樣式 --- */
+/* --- 1. 照片容器 (外面的框框) --- */
 .gallery-container {
     display: flex;
-    overflow-x: auto; /* 橫向捲動 */
-    gap: 15px;
-    padding: 10px 0;
-    scroll-snap-type: x mandatory; /* 自動對齊 */
+    overflow-x: auto;       /* 允許左右滑動 */
+    scroll-snap-type: x mandatory; /* 滑動時會有磁吸效果 */
     
-    /* 隱藏卷軸 */
-    scrollbar-width: none; 
-    -webkit-overflow-scrolling: touch;
+    /* 【重要修改】使用 gap 來控制照片之間的距離 */
+    /* 這樣就不用在每張照片上寫 margin-right，解決手機第一張左邊留白問題 */
+    gap: 15px; 
+    
+    /* 【解決高低不一的空白】 */
+    /* 讓所有照片靠上方對齊，短照片下面就不會被強迫拉出空白 */
+    align-items: flex-start;
+    
+    padding-bottom: 10px;   /* 預留一點空間給滑動條 (如果有的話) */
+    
+    /* 確保容器最左邊沒有多餘的內距 */
+    padding-left: 0;
+    margin-left: 0;
 }
-.gallery-container::-webkit-scrollbar { display: none; }
 
-/* --- 這裡維持電腦版的設定 (維持您原本覺得不錯的設定) --- */
+/* --- 2. 照片單體 (裡面的每一張圖) --- */
 .gallery-item {
-    flex: 0 0 400px; /* 電腦版固定寬度，或用 60% */
-    max-width: 500px;
-    height: 250px;   /* 電腦版高度 */
-    object-fit: cover;
+    /* --- 電腦版設定 (預設) --- */
+    flex: 0 0 auto; /* 讓寬度自動，不強迫佔滿 */
+    width: auto;    
+    
+    /* 【修改點：讓電腦版照片再小一點】 */
+    /* 這裡控制電腦版照片的最大寬度，數字越小照片越小 */
+    max-width: 350px; 
+    
+    /* 維持原圖比例 */
+    height: auto;   
+    max-height: 60vh; /* 限制最高高度，避免直圖把視窗撐太高 */
+    object-fit: contain; /* 完整顯示，不裁切 */
+    
     border-radius: 12px;
-    scroll-snap-align: center;
-    background: #eee;
-    margin-right: 15px; /* 增加一點間距 */
+    background: transparent;
+    
+    /* 【解決手機第一張左邊留白】 */
+    /* 設定對齊點為「開始 (左邊)」，而不是中間 */
+    scroll-snap-align: start; 
 }
 
-/* --- 這裡開始是「專門給手機」的設定 --- */
-/* 當螢幕寬度小於 768px (一般手機直拿) 時，會執行下面的程式碼 */
+/* --- 3. 手機版特別設定 --- */
 @media (max-width: 768px) {
-  .gallery-item {
-      /* 1. 寬度改為 90% */
-      /* 讓照片變大張，成為主角，只留 10% 空間提示右邊還有圖 */
-      flex: 0 0 90%; 
-      
-      /* 2. 強制鎖定 16:9 比例 */
-      /* 瀏覽器會自動算出完美的高度，不再忽大忽小 */
-      aspect-ratio: 16 / 9;
-      height: auto; 
-
-      /* 3. 確保照片完整顯示 (解決被喀到的問題) */
-      /* cover = 填滿格子 (可能會切到邊邊，但比較美觀) */
-      /* contain = 整張顯示 (會有留白，但絕對不會切到人) -> 怕切到請用這個 */
-      object-fit: cover; 
-  }
+    .gallery-item {
+        /* 手機上讓照片寬一點，佔螢幕的 85%，露出右邊一點點 */
+        flex: 0 0 85%;
+        /* 手機版取消最大寬度限制，不然會太小 */
+        max-width: none; 
+        /* 手機版可以稍微放寬高度限制 */
+        max-height: 80vh;
+    }
 }
 
 .scroll-hint {
@@ -1534,6 +1545,7 @@ p, li {
     height: 100%;
     display: block;
 }
+
 
 
 
