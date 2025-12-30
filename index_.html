@@ -657,11 +657,28 @@
       display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;
       scroll-snap-type: x mandatory; /* 讓滑動有吸附感 */
   }
-  .gallery-item {
-      flex: 0 0 80%; /* 照片寬度佔 80%，讓右邊露出下一張 */
-      height: 250px; object-fit: cover; border-radius: 12px;
-      scroll-snap-align: center; background: #f0f0f0;
-  }
+  
+    .gallery-item {
+    /* 1. 設定寬度：從 80% 改為 60% (可依需求調整為 50%~70%) */
+    /* 這樣左右會露出更多空間，不會覺得太寬 */
+    flex: 0 0 60%; 
+    
+    /* 2. 加入最大寬度限制 */
+    /* 這是為了電腦版，避免在大螢幕上圖片變得像海報一樣巨大 */
+    max-width: 500px; 
+
+    /* 3. 設定 16:9 黃金比例 */
+    /* 瀏覽器會根據寬度自動算出高度，不用寫 height: 250px */
+    aspect-ratio: 16 / 9;
+    height: auto; 
+
+    /* 4. 維持圖片裁切與美觀 */
+    object-fit: cover; 
+    border-radius: 12px;
+    scroll-snap-align: center; 
+    background: #f0f0f0;
+}
+    
   .scroll-hint { text-align: center; color: #999; font-size: 12px; margin: 5px 0 20px 0; }
 
   /* 4. 視窗內的「PDF 容器」樣式 */
@@ -933,6 +950,7 @@
 </body>
 </html>
   
+
 
 
 
