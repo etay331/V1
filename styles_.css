@@ -1126,65 +1126,23 @@ p, li {
     font-size: 12px;
     color: #999;
 }
-/* --- PDF 嵌入容器 --- */
+
+/* --- PDF 嵌入容器 (尺寸縮小版) --- */
 .pdf-container {
     position: relative;
     width: 100%;
-    /* 設定一個適合閱讀的高度，通常 500px~600px 很剛好 */
-    height: 600px; 
+    
+    /* ✅ 只要改這裡，HTML 不用動 */
+    height: 450px; 
+    
     margin-top: 15px;
     border-radius: 12px;
-    overflow: hidden; /* 圓角不被切掉 */
-    border: 1px solid #eee; /* 淡淡的邊框 */
-    background-color: #f9f9f9; /* 載入前的底色 */
+    overflow: hidden; 
+    border: 1px solid #eee; 
+    background-color: #f9f9f9; 
 }
 
-.pdf-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; /* 去掉醜醜的預設邊框 */
-}
-
-/* 手機版調整：高度稍微小一點，以免佔滿整個手機畫面不好滑 */
-@media screen and (max-width: 768px) {
-    .pdf-container {
-        height: 450px;
-    }
-}
-
-/* --- 讓經歷卡片變雙欄 (Grid System) --- */
-.experience-grid {
-    display: grid;
-    /* 電腦版：分成兩欄，每欄一樣寬 */
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px; /* 卡片之間的間距 */
-}
-
-/* 讓卡片內容緊湊一點，不要那麼肥 */
-.experience-card {
-    padding: 20px; /* 原本可能是 30px，改小一點 */
-    min-height: 140px; /* 設定最小高度，讓它們看起來整齊 */
-}
-
-/* 標題字改小一點點，配合縮小的卡片 */
-.experience-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-.experience-card p {
-    font-size: 0.9rem;
-    margin-bottom: 10px; /* 縮小間距 */
-}
-
-/* --- 手機版 RWD (維持一欄) --- */
-@media screen and (max-width: 768px) {
-    .experience-grid {
-        grid-template-columns: 1fr; /* 手機變回直的一欄 */
-    }
-}
+/* ...下略 iframe 設定... */
 
 /* --- 🚑 作品集 (Portfolio) 專用樣式 --- */
   .work__container {
@@ -1553,6 +1511,7 @@ p, li {
     height: 500px; /* 手機上稍微矮一點 */
   }
 }
+
 
 
 
