@@ -1096,12 +1096,29 @@ p, li {
 .gallery-container::-webkit-scrollbar { display: none; }
 
 .gallery-item {
-    scroll-snap-align: center;
-    flex: 0 0 100%; /* 一次顯示一張，若要露出一點旁邊的改成 85% */
-    height: 300px;  /* 固定高度 */
-    object-fit: cover;
+    /* --- 1. 修改寬度 --- */
+    /* 原本是 100%，改為 60% 讓右邊露出下一張，且不會太寬 */
+    flex: 0 0 60%; 
+    max-width: 500px; /* 電腦版限制最大寬度 */
+
+    /* --- 2. 修改高度 (最重要！) --- */
+    /* 原本是 height: 300px (寫死)，現在改為 auto (自動) */
+    /* 這樣直圖就會變長，橫圖就會變扁，完全依照原圖 */
+    height: auto; 
+    
+    /* 避免直式照片在手機上太長，佔滿整個畫面滑不動 */
+    max-height: 80vh; 
+
+    /* --- 3. 修改顯示模式 --- */
+    /* 原本是 cover (裁切)，改為 contain 或直接拿掉 */
+    /* 因為 height 設為 auto 了，這行其實可以不用，但若有限制 max-height 則建議用 contain */
+    object-fit: contain; 
+
+    /* --- 其他維持不變 --- */
     border-radius: 12px;
-    background: #eee;
+    scroll-snap-align: center;
+    background: transparent; /* 建議改透明，不然照片比例不同時會有底色塊 */
+    align-self: flex-start; /* 讓圖片靠上對齊 */
 }
 
 .scroll-hint {
@@ -1536,6 +1553,7 @@ p, li {
     height: 500px; /* 手機上稍微矮一點 */
   }
 }
+
 
 
 
