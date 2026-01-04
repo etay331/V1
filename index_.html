@@ -1,384 +1,1499 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Care We Care Studio | Vivian</title>
-    <meta name="description" content="Vivian｜健康教育 × 數位互動作品集">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Care We Care Studio｜Vivian</title>
+  <meta name="description" content="Vivian｜健康教育 × 數位互動作品集" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-web@1/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700\&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles\_.css" />
+
+
+  <style>
+  /* 1. 區塊容器 */
+  .exp-section {
+    font-family: "Microsoft JhengHei", sans-serif;
+    max-width: 1200px;
+    margin: 40px auto; /* 與上方區塊保持距離 */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* 2. 雙欄卡片設定 */
+  .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 電腦版雙欄 */
+      gap: 20px;
+  }
+  @media screen and (max-width: 768px) {
+      .experience-grid { grid-template-columns: 1fr; } /* 手機版單欄 */
+  }
+
+  /* 3. 卡片外觀 */
+  .experience-card {
+      background: white;
+      padding: 25px;
+      border-radius: 24px; /* 大圓角 */
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  .experience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-color: #ffd700; /* 金色邊框 */
+  }
+ 
+  .card-icon { font-size: 32px; margin-bottom: 5px; }
+  .card-title { font-size: 18px; font-weight: bold; margin: 0; color: #333; }
+  .card-text { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+ 
+  .card-link {
+      margin-top: auto; /* 推到最底部 */
+      font-size: 13px;
+      font-weight: bold;
+      color: #aaa;
+      display: flex; align-items: center; gap: 5px;
+  }
+  .experience-card:hover .card-link { color: #333; }
+
+  /* 4. PDF 容器樣式 */
+  .pdf-box {
+      width: 100%;
+      height: 70vh; /* 視窗高度的 70% */
+      border-radius: 12px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+  }
+</style>
+
+
 <body>
 
-    <div class="bg">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
-        <div class="blob b3"></div>
-    </div>
+<style>
 
-    <div class="progress" id="progress"></div>
+&nbsp; /\* 1. 導覽列容器：超透明磨砂質感 \*/
 
-    <header class="header">
-        <div class="container header__inner">
-            <a href="#home" class="brand">
-                <div class="brand__logo">⭐</div>
-                <div class="brand__text">
-                    <span>Care We Care</span>
-                    <small>關心我們在乎的</small>
-                </div>
-            </a>
-            
-            <button class="burger" id="burger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+&nbsp; .header-frosted {
 
-            <nav class="nav" id="mainNav">
-                <a href="#about" data-i18n="nav.about">關於我</a>
-                <a href="#portfolio" data-i18n="nav.portfolio">作品集</a>
-                <a href="#demo" data-i18n="nav.interactive">互動DEMO</a>
-                <a href="#guestbook" data-i18n="nav.guestbook">留言板</a>
-                <a href="#contact" class="btn btn--sm" data-i18n="nav.contact">聯絡我</a>
-                <button id="langToggle" class="btn btn--ghost btn--sm">EN</button>
-            </nav>
-        </div>
-        
-        <div class="mobile" id="mobileNav" hidden>
-            <a href="#about" data-i18n="nav.about">關於我</a>
-            <a href="#portfolio" data-i18n="nav.portfolio">作品集</a>
-            <a href="#demo" data-i18n="nav.interactive">互動DEMO</a>
-            <a href="#guestbook" data-i18n="nav.guestbook">留言板</a>
-            <a href="#contact" data-i18n="nav.contact">聯絡我</a>
-            <button id="mobileLangToggle" class="btn btn--ghost" style="width:100%">Switch Language</button>
-        </div>
-    </header>
+&nbsp;   position: sticky; top: 0; z-index: 1000;
 
-    <main id="home">
-        
-        <section class="hero container">
-            <div class="hero__left">
-                <span class="pill" data-i18n="hero.pill">張煒䕒的個人網頁</span>
-                <h1 class="hero__title" data-i18n-html="hero.h1">衛教不該只是單向傳遞<br/>而是一場有溫度的對話</h1>
-                <p class="lead" data-i18n="hero.lead">面對疾病時，人們需要的不只是資訊，還有理解。我運用動畫、AR 與互動網頁，把冰冷的醫學名詞，變成能安撫焦慮、引發興趣的陪伴。</p>
-                <div class="hero__cta">
-                    <a class="btn" href="#portfolio" data-i18n="hero.cta.portfolio">看作品集</a>
-                    <a class="btn btn--ghost" href="#demo" data-i18n="hero.cta.demo">玩互動小遊戲</a>
-                </div>
-            </div>
-            <div class="hero__right">
-                <div class="hero__visual">
-                    <div class="card-container">
-                        <div class="image-box">
-                            <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="活動照片">
-                        </div>
-                        <div class="text-pill">
-                            <span>💗</span><span data-i18n="hero.tag">2025 文山親角親子衛教</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+&nbsp;   width: 100%;
 
-        <section class="section container" id="about">
-            <div class="section__head split">
-                <div><h2 class="big" data-i18n="sec.about">關於我</h2></div>
-                <a class="btn btn--ghost" href="#contact" data-i18n="about.cta">Let’s Chat →</a>
-            </div>
-            
-            <div class="about">
-                <div class="card about__left">
-                    <div class="about__top">
-                        <img class="avatar" src="assets/profile.jpg" onerror="this.src='https://via.placeholder.com/150'" alt="Profile">
-                        <div>
-                            <h3 data-i18n="about.name">Vivian｜健康教育 × 數位互動</h3>
-                            <p class="muted" data-i18n="about.intro">具護理背景，喜歡把專業知識做成「好懂、好記、願意分享」的內容。</p>
-                            <div class="chips">
-                                <span class="chip" data-i18n="about.tag1">互動式衛教</span>
-                                <span class="chip" data-i18n="about.tag2">多媒體教材</span>
-                                <span class="chip" data-i18n="about.tag3">AR / 體驗設計</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="credentials-wrap">
-                        <h3 class="cre-title" data-i18n="about.skills">專業認證 & 技能</h3>
-                        <div class="cre-tags">
-                            <span class="cre-tag main">⚕️ <span data-i18n="skill.nurse">護理師證書</span></span>
-                            <span class="cre-tag tech">🤖 SSE–AI Prompt Engineer</span>
-                            <span class="cre-tag tech">🎓 Google Certified Educator L1</span>
-                            <span class="cre-tag mkt">📊 Google Analytics</span>
-                        </div>
-                    </div>
+&nbsp;   
 
-                    <div class="volunteer-section" style="margin-top:20px; border-top:1px dashed var(--line); padding-top:20px;">
-                        <h3 class="cre-title" data-i18n="about.exp">經歷 / 服務 / 成績</h3>
-                        <ul class="list muted">
-                            <li data-i18n="exp.li1">衛生股長 (113-1) | 管理班級健康狀況</li>
-                            <li data-i18n="exp.li2">系學會秘書長 (113-2) | 校慶擺攤統籌</li>
-                            <li data-i18n="exp.li3">勤學書卷獎 | 113-1、113-2</li>
-                        </ul>
-                    </div>
-                </div>
+&nbsp;   /\* 🔥 關鍵：這裡改成 0.3 (30% 不透明度)，會非常通透 \*/
 
-                <div class="card about__right">
-                    <h3 data-i18n="about.journey">我的經歷</h3>
-                    <p class="muted" data-i18n="about.journeySub">從學術研究到創新創業挑戰，我的成長軌跡。</p>
+&nbsp;   background: rgba(255, 255, 255, 0.3);
 
-                    <div class="achievements">
-                        <div class="experience-card" onclick="openModal('modal-1')">
-                            <div class="card-icon">🔬</div>
-                            <div class="card-content">
-                                <h3 data-i18n="exp1.title">114年度國科會大專生研究計畫</h3>
-                            </div>
-                            <div class="card-link"><span data-i18n="common.more">看更多</span> <span class="arrow">→</span></div>
-                        </div>
-                        
-                        <div class="experience-card" onclick="openModal('modal-2')">
-                            <div class="card-icon">🏆</div>
-                            <div class="card-content">
-                                <h3 data-i18n="exp2.title">2025 NTUE 校園創業競賽 | 金獎</h3>
-                            </div>
-                            <div class="card-link"><span data-i18n="common.more">看更多</span> <span class="arrow">→</span></div>
-                        </div>
+&nbsp;   
 
-                         <div class="experience-card" onclick="openModal('modal-3')">
-                            <div class="card-icon">✈️</div>
-                            <div class="card-content">
-                                <h3 data-i18n="exp3.title">新南向學海築夢</h3>
-                            </div>
-                            <div class="card-link"><span data-i18n="common.more">看更多</span> <span class="arrow">→</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+&nbsp;   /\* 毛玻璃模糊效果 (數值越大越模糊) \*/
 
-        <section class="section container" id="portfolio">
-            <div class="section__head">
-                <h2 class="big" data-i18n="pf.title">更多作品集</h2>
-                <p class="muted" data-i18n="pf.sub">收錄各類專案，點擊按鈕可查看詳細內容或影片。</p>
-            </div>
+&nbsp;   backdrop-filter: blur(16px);
 
-            <div class="portfolio-grid">
-                
-                <div class="port-card">
-                    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=E-Book" alt="Cover"></div>
-                    <div class="port-content">
-                        <span class="port-tag" data-i18n="tag.ebook">電子書</span>
-                        <h3 class="port-title" data-i18n="w1.title">從心出發-預立醫囑</h3>
-                        <p class="port-desc" data-i18n="w1.desc">負責製作素材、腳本企劃，推廣預立醫囑概念。</p>
-                        <button class="btn btn--soft btn--sm" style="width:100%; margin-top:10px;" onclick="openModal('modal-video-1')" data-i18n="btn.video">觀看影片 ►</button>
-                    </div>
-                </div>
+&nbsp;   -webkit-backdrop-filter: blur(16px);
 
-                <div class="port-card">
-                    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=Ocean" alt="Cover"></div>
-                    <div class="port-content">
-                        <span class="port-tag" data-i18n="tag.marketing">行銷競賽</span>
-                        <h3 class="port-title" data-i18n="w2.title">心之所向，海之所淨</h3>
-                        <p class="port-desc" data-i18n="w2.desc">結合創新與海洋環境永續宣導教育。</p>
-                        <button class="btn btn--soft btn--sm" style="width:100%; margin-top:10px;" onclick="openModal('modal-photo-1')" data-i18n="btn.photos">查看照片</button>
-                    </div>
-                </div>
+&nbsp;   
 
-                <div class="port-card">
-                    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=Design" alt="Cover"></div>
-                    <div class="port-content">
-                        <span class="port-tag" data-i18n="tag.design">文宣設計</span>
-                        <h3 class="port-title" data-i18n="w3.title">重拾食慾，重拾活力</h3>
-                        <p class="port-desc" data-i18n="w3.desc">將複雜的文字設計成圖文並茂的三折頁及動畫。</p>
-                        <button class="btn btn--soft btn--sm" style="width:100%; margin-top:10px;" onclick="openModal('modal-photo-1')" data-i18n="btn.photos">查看照片</button>
-                    </div>
-                </div>
+&nbsp;   /\* 底部邊框改得更淡，幾乎看不見 \*/
 
-                <div class="port-card hidden-item">
-                    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=PDF" alt="Cover"></div>
-                    <div class="port-content">
-                        <span class="port-tag" data-i18n="tag.manual">手冊設計</span>
-                        <h3 class="port-title" data-i18n="w4.title">我的名片</h3>
-                        <p class="port-desc" data-i18n="w4.desc">獨一無二的個人品牌設計。</p>
-                        <button class="btn btn--soft btn--sm" style="width:100%; margin-top:10px;" onclick="openModal('modal-pdf-1')" data-i18n="btn.pdf">預覽 PDF</button>
-                    </div>
-                </div>
+&nbsp;   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
-                 <div class="port-card hidden-item">
-                    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=Teaching" alt="Cover"></div>
-                    <div class="port-content">
-                        <span class="port-tag" data-i18n="tag.teaching">教學設計</span>
-                        <h3 class="port-title" data-i18n="w5.title">教案規劃 & 教學活動</h3>
-                        <p class="port-desc" data-i18n="w5.desc">以情境模擬教學法設計出常見傷口的模擬卡牌。</p>
-                        <button class="btn btn--soft btn--sm" style="width:100%; margin-top:10px;" onclick="openModal('modal-pdf-1')" data-i18n="btn.pdf">預覽 PDF</button>
-                    </div>
-                </div>
+&nbsp;   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 
-            </div>
-            
-            <div class="load-more-container">
-                <button id="showMoreBtn" class="btn" onclick="showAllProjects()" data-i18n="btn.loadmore">查看更多作品 ↓</button>
-            </div>
-        </section>
+&nbsp;   
 
-        <section class="section container" id="demo">
-            <div class="section__head">
-                <h2 class="big" data-i18n="demo.title">互動 Demo</h2>
-                <p class="muted" data-i18n="demo.sub">繽紛客製手玩：停留更久、內容更生動。</p>
-            </div>
-            
-            <div class="cards-flex-container">
-                <div class="demo-card">
-                    <div class="tag-row"><span class="tag-pill-outline">GAME</span><span class="tag-pill-purple" data-i18n="demo.tag1">衛教問答</span></div>
-                    <h3 class="card-h3" data-i18n="demo.g.title">互動衛教小遊戲</h3>
-                    <p class="card-p" data-i18n="demo.g.desc">將衛教知識轉化為趣味的問答互動，讓使用者在遊戲中學習，提升學習動機與成效。</p>
-                    <button class="btn btn--soft float-right-btn" onclick="openModal('demo-lumi')" data-i18n="demo.g.btn">開始挑戰 ►</button>
-                </div>
-                
-                <div class="demo-card">
-                    <div class="tag-row"><span class="tag-pill-outline">TOOL</span><span class="tag-pill-blue" data-i18n="demo.tag2">AR 體驗</span></div>
-                    <h3 class="card-h3" data-i18n="demo.ar.title">AR 擴增實境展示</h3>
-                    <p class="card-p" data-i18n="demo.ar.desc">透過手機鏡頭，讓平面教材「動」起來。</p>
-                    <div class="btn-row-group">
-                        <button class="wide-btn" onclick="openModal('demo-eyejack')" data-i18n="demo.ar.btn1">APP 下載</button>
-                        <button class="wide-btn" onclick="openModal('demo-eyejack')" data-i18n="demo.ar.btn2">操作步驟</button>
-                    </div>
-                    <div class="dashed-hint"><span>✨ <span data-i18n="demo.hint">提示：點上方按鈕開啟 AR 說明</span></span></div>
-                </div>
-            </div>
-        </section>
+&nbsp;   font-family: "Microsoft JhengHei", sans-serif;
 
-        <section class="section container" id="guestbook">
-            <div class="section__head" style="text-align: center;">
-                <h2 class="big" data-i18n="guest.title">留言板</h2>
-                <p class="muted" data-i18n="guest.sub">歡迎在這裡留下您的想法、鼓勵或建議！</p>
-            </div>
-            <div class="padlet-wrapper">
-                <div class="padlet-box">
-                    <iframe src="https://padlet.com/embed/sqes8yxcdx437ua8" allow="camera;microphone;geolocation;display-capture;clipboard-write"></iframe>
-                </div>
-            </div>
-        </section>
+&nbsp; }
 
-        <section id="contact"></section> <footer class="footer">
-            <div class="container footer__inner">
-                <p class="muted tiny">© <span id="year">2026</span> Care We Care Studio · Made with pastel power ✨</p>
-                <a href="#" class="tiny muted" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" data-i18n="footer.top">回到頂部 ↑</a>
-            </div>
-        </footer>
 
-    </main>
 
-    <div id="modal-1" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
-            <div class="modal-inner-scroll">
-                <h4 style="margin-top:0;" data-i18n="m1.topic">主題: 運用多媒體與遊戲教學提升弱勢家庭之兒童保健健康識能</h4>
-                <div class="gallery-container">
-                    <img src="https://etay331.github.io/V1/plan1.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                    <img src="https://etay331.github.io/V1/plan2.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                    <img src="https://etay331.github.io/V1/plan3.png" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                </div>
-                <p class="scroll-hint" data-i18n="common.scroll">← 左右滑動看更多 →</p>
-                <h3 style="margin-top:30px;" data-i18n="m1.ppt">📄 大專生計畫分享簡報</h3>
-                <div class="pdf-container">
-                    <iframe src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+&nbsp; .header-inner {
 
-    <div id="modal-2" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
-            <div class="modal-inner-scroll">
-                <h4 style="margin-top:0;" data-i18n="m2.title">🏆 語觸視界 | LigoTouch</h4>
-                <div class="gallery-container">
-                    <img src="https://etay331.github.io/V1/team.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                    <img src="https://etay331.github.io/V1/awardteam.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                </div>
-                <p class="scroll-hint" data-i18n="common.scroll">← 左右滑動看更多 →</p>
-                <h3 style="margin-top:30px;" data-i18n="m2.ppt">📄 比賽簡報</h3>
-                <div class="pdf-container">
-                    <iframe src="https://drive.google.com/file/d/1yte6PbSbtVl-qnNoLxa-3LqDVwJAAWgD/preview"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+&nbsp;   max-width: 1200px; margin: 0 auto;
 
-    <div id="modal-3" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
-            <div class="modal-inner-scroll">
-                <h4 style="margin-top:0;" data-i18n="m3.title">印尼巨港 UMP 參訪</h4>
-                <div class="gallery-container">
-                    <img src="https://etay331.github.io/V1/inall.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                    <img src="https://etay331.github.io/V1/inhsp.jpg" class="gallery-item" onerror="this.src='https://via.placeholder.com/300x400'">
-                </div>
-                <h3 style="margin-top:30px;" data-i18n="m3.video">📄 成果影片</h3>
-                <div class="yt-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/uEfc3owRZXs" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+&nbsp;   display: flex; justify-content: space-between; align-items: center;
 
-    <div id="modal-video-1" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-video-1')">&times;</span>
-            <h2 data-i18n="v1.title">🎥 正確洗手衛教短片</h2>
-            <div class="yt-video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
+&nbsp;   padding: 12px 20px;
 
-    <div id="modal-photo-1" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-photo-1')">&times;</span>
-            <h2 data-i18n="p1.title">📸 活動紀錄</h2>
-            <div class="gallery-container">
-                <img src="https://via.placeholder.com/600x400?text=Photo+A" class="gallery-item">
-                <img src="https://via.placeholder.com/600x400?text=Photo+B" class="gallery-item">
-            </div>
-        </div>
-    </div>
+&nbsp; }
 
-    <div id="modal-pdf-1" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('modal-pdf-1')">&times;</span>
-            <h2 data-i18n="pdf1.title">📄 糖尿病飲食手冊</h2>
-            <div class="pdf-container">
-                <iframe src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
-            </div>
-        </div>
-    </div>
 
-    <div id="demo-lumi" class="modal-overlay">
-        <div class="modal-content" style="height:85vh;" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
-            <h2 data-i18n="demo.g.title">🎮 互動衛教小遊戲</h2>
-            <iframe src="https://app.lumi.education/run/4Pgaqw" style="width:100%; height:90%; border:none; border-radius:12px; background:#f0f0f0;" allowfullscreen></iframe>
-        </div>
-    </div>
 
-    <div id="demo-eyejack" class="modal-overlay">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
-            <h2 data-i18n="demo.ar.steps">📱 AR 步驟</h2>
-            <div class="grid2">
-                <div style="background:#f9f9f9; padding:15px; border-radius:12px; text-align:center;">
-                    <strong>Step 1</strong>
-                    <p>Download App</p>
-                </div>
-                <div style="background:#f9f9f9; padding:15px; border-radius:12px; text-align:center;">
-                    <strong>Step 2</strong>
-                    <p>Scan Image</p>
-                </div>
-            </div>
-        </div>
-    </div>
+&nbsp; /\* 2. Logo 設計 \*/
 
-    <script src="script.js"></script>
+&nbsp; .brand-group {
+
+&nbsp;   display: flex; align-items: center; gap: 15px; text-decoration: none;
+
+&nbsp; }
+
+&nbsp; .brand-icon-box {
+
+&nbsp;   width: 48px; height: 48px;
+
+&nbsp;   background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);
+
+&nbsp;   border-radius: 14px;
+
+&nbsp;   display: flex; align-items: center; justify-content: center;
+
+&nbsp;   font-size: 22px;
+
+&nbsp;   box-shadow: 0 4px 10px rgba(233, 30, 99, 0.05);
+
+&nbsp; }
+
+&nbsp; .brand-text-col { display: flex; flex-direction: column; justify-content: center; }
+
+&nbsp; .brand-title { font-size: 18px; font-weight: 800; color: #222; line-height: 1.2; letter-spacing: 0.5px; }
+
+&nbsp; .brand-subtitle { font-size: 13px; color: #666; font-weight: normal; margin-top: 2px; }
+
+
+
+&nbsp; /\* 3. 電腦版選單 \*/
+
+&nbsp; .nav-menu {
+
+&nbsp;   display: flex; align-items: center; gap: 25px; margin: 0; padding: 0; list-style: none;
+
+&nbsp; }
+
+&nbsp; .nav-link {
+
+&nbsp;   text-decoration: none; color: #444; font-weight: bold; font-size: 14px; transition: 0.2s;
+
+&nbsp; }
+
+&nbsp; .nav-link:hover { color: #000; }
+
+
+
+&nbsp; /\* 按鈕樣式 \*/
+
+&nbsp; .contact-pill {
+
+&nbsp;   background-color: rgba(241, 243, 245, 0.8); /\* 按鈕也稍微透一點 \*/
+
+&nbsp;   padding: 8px 24px; border-radius: 50px; color: #333 !important;
+
+&nbsp; }
+
+&nbsp; .contact-pill:hover { background-color: #e9ecef; }
+
+&nbsp; 
+
+&nbsp; .en-btn {
+
+&nbsp;   border: 1px solid #ddd; width: 34px; height: 34px; border-radius: 50%;
+
+&nbsp;   display: flex; align-items: center; justify-content: center;
+
+&nbsp;   font-size: 12px; font-weight: bold; color: #555; text-decoration: none;
+
+&nbsp;   transition: 0.2s; background: rgba(255,255,255,0.5);
+
+&nbsp; }
+
+&nbsp; .en-btn:hover { border-color: #333; background: #333; color: white; }
+
+
+
+&nbsp; /\* 4. 手機版漢堡按鈕 (預設隱藏) \*/
+
+&nbsp; .hamburger {
+
+&nbsp;   display: none; cursor: pointer; font-size: 24px; color: #333; user-select: none;
+
+&nbsp; }
+
+
+
+&nbsp; /\* ================= 手機版 RWD (螢幕小於 768px) ================= \*/
+
+&nbsp; @media screen and (max-width: 768px) {
+
+&nbsp;   .header-inner { padding: 10px 20px; }
+
+&nbsp;   
+
+&nbsp;   /\* 顯示漢堡按鈕 \*/
+
+&nbsp;   .hamburger { display: block; }
+
+
+
+&nbsp;   /\* 選單變成下拉式 \*/
+
+&nbsp;   .nav-menu {
+
+&nbsp;     position: absolute; top: 100%; left: 0; width: 100%;
+
+&nbsp;     /\* 手機版選單背景：90% 不透明，避免看不清楚字 \*/
+
+&nbsp;     background: rgba(255, 255, 255, 0.9); 
+
+&nbsp;     backdrop-filter: blur(15px);
+
+&nbsp;     flex-direction: column; gap: 0;
+
+&nbsp;     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+&nbsp;     
+
+&nbsp;     /\* 關鍵：預設高度為 0 (藏起來) \*/
+
+&nbsp;     max-height: 0; overflow: hidden; 
+
+&nbsp;     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+&nbsp;     border-bottom: 1px solid rgba(0,0,0,0.05);
+
+&nbsp;   }
+
+&nbsp;   
+
+&nbsp;   /\* 選單打開時的樣式 (由 JS 控制) \*/
+
+&nbsp;   .nav-menu.active {
+
+&nbsp;     max-height: 450px; /\* 給足夠高度讓它滑出來 \*/
+
+&nbsp;   }
+
+&nbsp;   
+
+&nbsp;   /\* 連結樣式調整 \*/
+
+&nbsp;   .nav-menu li { width: 100%; text-align: center; border-top: 1px solid rgba(0,0,0,0.03); }
+
+&nbsp;   .nav-link, .contact-pill, .en-btn {
+
+&nbsp;     display: block; width: 100%; padding: 15px 0; background: none; border-radius: 0; border: none;
+
+&nbsp;   }
+
+&nbsp;   .en-btn { width: 100%; height: auto; }
+
+&nbsp; }
+
+
+<header class="header-frosted">
+  <div class="header-inner">
+ 
+    <a href="#home" class="brand-group">
+      <div class="brand-icon-box">
+        <span style="color: #FBC02D;">⭐</span>
+      </div>
+      <div class="brand-text-col">
+        <span class="brand-title">Care We Care</span>
+        <span class="brand-subtitle">關心我們在乎的</span>
+      </div>
+    </a>
+
+    <div class="hamburger" onclick="toggleNav()">☰</div>
+
+    <ul class="nav-menu" id="mainNav">
+      <li><a href="#about" class="nav-link">關於我</a></li>
+      <li><a href="#portfolio" class="nav-link">作品集</a></li>
+      <li><a href="#demo" class="nav-link">互動DEMO</a></li>
+      <li><a href="#contact" class="nav-link contact-pill">聯絡我</a></li>
+      <li><a href="#en" class="en-btn">EN</a></li>
+    </ul>
+
+  </div>
+</header>
+
+<script>
+
+&nbsp; // 切換選單開關
+
+&nbsp; function toggleNav() {
+
+&nbsp;   var menu = document.getElementById("mainNav");
+
+&nbsp;   menu.classList.toggle("active");
+
+&nbsp; }
+
+ 
+</body>
+
+ 
+ </head>
+ 
+ 
+
+  <main id="home">
+ 
+    <section class="hero container">
+      <div class="hero\_\_left">
+        <p class="pill">張煒䕒的個人網頁</p>
+        <h1 class="hero\_\_title">衛教不該只是單向傳遞<br/>而是一場有溫度的對話</h1>
+        <p class="lead">面對疾病時，人們需要的不只是資訊，還有理解。我運用動畫、AR 與互動網頁，把冰冷的醫學名詞，變成能安撫焦慮、引發興趣的陪伴。</p>
+        <div class="hero\_\_cta">
+          <a class="btn" href="#portfolio">看作品集</a>
+          <a class="btn btn--ghost" href="#interactive">玩互動小遊戲</a>
+        </div>
+      </div>
+      <div class="hero\_\_right">
+        <div class="hero\_\_visual">
+          <div class="card-container">
+              <div class="image-box">
+                  <img src="https://etay331.github.io/V1/my-best-work.jpg" alt="活動照片">
+              </div>
+              <div class="text-pill">
+                  <span>💗</span><span>2025 文山親角親子衛教</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section\_\_head split">
+        <div><h2 class="big">關於我</h2></div>
+        <a class="btn btn--ghost" href="#contact">Let’s Chat →</a>
+      </div>
+
+      <div class="about">
+        <div class="card about\_\_left">
+          <div class="about\_\_top">
+            <img class="avatar" src="assets/profile.jpg" alt="Profile photo" />
+            <div>
+              <h3>Vivian｜健康教育 × 數位互動</h3>
+              <p class="muted">具護理背景，喜歡把專業知識做成「好懂、好記、願意分享」的內容。</p>
+              <div class="chips">
+                <span class="chip">互動式衛教</span>
+                <span class="chip">多媒體教材</span>
+                <span class="chip">AR / 體驗設計</span>
+                <span class="chip">研究與成效評估</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="credentials-wrap">
+            <h3 class="cre-title">專業認證 & 技能 </h3>
+            <div class="cre-tags" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="cre-tag main">⚕️ 護理師證書</span>
+              <span class="cre-tag tech">🤖 SSE–AI Prompt Engineer（AI提示詞工程師） </span>
+              <span class="cre-tag tech">🎓 Google Certified Educator Level 1（Google 教育家）</span>
+              <span class="cre-tag mkt">📊 Google Analytics 認證 </span>
+              <span class="cre-tag mkt">📱 Google Ads 應用程式認證 </span>
+              <span class="cre-tag mkt">💡 初階行銷企劃證照</span>
+            </div>
+          </div>
+ 
+          <div class="volunteer-section" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #eee;">
+             <h3 class="cre-title">班級 & 社團幹部 / 服務學習 / 學業成績 </h3>
+ 
+                <h4>衛生股長 (113-1) | 管理班級健康狀況</h4>
+            <h4><strong>班級代表</strong> (113-2~114-1) | 協助系上活動溝通協調</h4>
+       <h4><strong>系學會秘書長</strong> (113-2~114-1) | 期末歐趴&校慶擺攤</h4>
+                <h4><strong>活動志工</strong> | 畢典支援、新生輔導、泰國學校參訪、社區篩檢</h4>
+              <h4><strong>勤學書卷獎</strong> | 113-1、113-2</h4>
+ 
+            </ul>
+          </div>
+          <div class="divider"></div>
+        </div>
+
+        <div class="card about\_\_right">
+          <h3>我的經歷</h3>
+          <p class="muted">從學術研究到創新創業挑戰，我的成長軌跡。</p>
+ 
+          <div class="experience-grid">
+            <div class="experience-card" onclick="openModal('modal-1')">
+                <div class="card-icon">🔬</div>
+                <div class="card-content">
+                    <h3>114年度國科會大專生研究計畫</h3>
+                </div>
+                <div class="card-link">看更多 <span class="arrow">→</span></div>
+            </div>
+ 
+            <div class="experience-card" onclick="openModal('modal-2')">
+                <div class="card-icon">🏆</div>
+                <div class="card-content">
+                    <h3>2025 NTUE 校園創業競賽 | 金獎</h3>
+                </div>
+                <div class="card-link">看更多 <span class="arrow">→</span></div>
+            </div>
+
+
+             <div class="experience-card" onclick="openModal('modal-3')">
+                <div class="card-icon"> ✈️ </div>
+                <div class="card-content">
+                    <h3>新南向學海築夢</h3>
+                </div>
+                <div class="card-link">看更多 <span class="arrow">→</span></div>
+            </div>
+
+ 
+ 
+ </div> </div> </div> </section>
+
+
+    <div class="portfolio-section">
+  <h2 style="font-size:28px; font-weight:800; color:#1a1a1a; margin-bottom:10px;">更多作品集</h2>
+  <p style="color:#888; margin-bottom:30px;">收錄各類專案，點擊按鈕可查看詳細內容或影片。</p>
+
+
+
+<div class="portfolio-grid">
+ 
+  <div class="port-card">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專業選修" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">電子書</span>
+      <h3 class="port-title">從心出發-預立醫囑</h3>
+      <p class="port-desc">負責製作素材、腳本企劃，推廣預立醫囑概念。</p>
+      <button class="port-btn" onclick="openModal('modal-video-1')">觀看影片 ►</button>
+    </div>
+  </div>
+
+  <div class="port-card">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專業選修" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">海科盃行銷競賽 </span>
+      <h3 class="port-title">心之所向，海之所淨</h3>
+      <p class="port-desc">結合創新與海洋環境永續宣導教育 </p>
+      <button class="port-btn" onclick="openModal('modal-photo-1')">查看活動照片</button>
+    </div>
+  </div>
+
+  <div class="port-card">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=活動專案" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">文宣設計</span>
+      <h3 class="port-title">重拾食慾，重拾活力</h3>
+      <p class="port-desc">將複雜的文字設計成圖文並茂的三折頁及動畫。</p>
+      <button class="port-btn" onclick="openModal('modal-photo-1')">查看活動照片</button>
+    </div>
+  </div>
+
+  <div class="port-card hidden-item">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=手冊設計" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">多媒體導論</span>
+      <h3 class="port-title">我的名片</h3>
+      <p class="port-desc">獨一無二。</p>
+      <button class="port-btn" onclick="openModal('modal-pdf-1')">預覽手冊 PDF</button>
+    </div>
+  </div>
+
+  <div class="port-card hidden-item">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=手冊設計" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">教學設計</span>
+      <h3 class="port-title">教案規劃&教學活動 </h3>
+      <p class="port-desc">以情境模擬教學法設計出常見傷口的模擬卡牌。</p>
+      <button class="port-btn" onclick="openModal('modal-pdf-1')">預覽手冊 PDF</button>
+    </div>
+  </div>
+
+  <div class="port-card hidden-item">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=活動專案" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">網頁設計</span>
+      <h3 class="port-title">樂齡好食光</h3>
+      <p class="port-desc">主題是老人營養。Vibe Coding+人工改改改。</p>
+      <button class="port-btn" onclick="openModal('modal-photo-1')">查看活動照片</button>
+    </div>
+  </div>
+
+  <div class="port-card hidden-item">
+    <div class="port-img-box"><img src="https://via.placeholder.com/300x200?text=專業選修" alt="Cover"></div>
+    <div class="port-content">
+      <span class="port-tag">專業倫理議題 </span>
+      <h3 class="port-title">當愛與自主衝突時，我們該聽誰的呢？ </h3>
+      <p class="port-desc">末期/重症生命維持治療撤除的倫理困境:病人自主 vs 家屬情感。</p>
+      <button class="port-btn" onclick="openModal('modal-video-1')">觀看影片 ►</button>
+    </div>
+  </div>
+
+</div> 
+
+
+
+  <div class="load-more-container">
+    <button id="showMoreBtn" class="load-btn" onclick="showAllProjects()">查看更多作品 ↓</button>
+  </div>
+</div>
+
+<div id="modal-video-1" class="modal-overlay" onclick="closeModal('modal-video-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-video-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>🎥 正確洗手衛教短片</h2>
+      <p>這是我們小組製作的衛教推廣影片...</p>
+ 
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-photo-1" class="modal-overlay" onclick="closeModal('modal-photo-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-photo-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>📸 社區篩檢活動紀錄</h2>
+ 
+      <div class="gallery-container">
+        <img src="https://via.placeholder.com/600x400?text=Photo+A" class="gallery-item">
+        <img src="https://via.placeholder.com/600x400?text=Photo+B" class="gallery-item">
+        <img src="https://via.placeholder.com/600x400?text=Photo+C" class="gallery-item">
+      </div>
+      <p class="scroll-hint">← 左右滑動看更多 →</p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-pdf-1" class="modal-overlay" onclick="closeModal('modal-pdf-1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('modal-pdf-1')">&times;</span>
+    <div class="modal-inner-scroll">
+      <h2>📄 糖尿病飲食手冊</h2>
+      <div class="pdf-container">
+        <iframe src="https://drive.google.com/file/d/1XgXzF6jQ64lIe4yWpT8vM9gXk5JzTzTz/preview"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+&nbsp; function showAllProjects() {
+
+&nbsp;   // 把所有隱藏的卡片打開
+
+&nbsp;   var hiddenItems = document.querySelectorAll('.hidden-item');
+
+&nbsp;   hiddenItems.forEach(function(item) {
+
+&nbsp;     item.style.display = 'flex';
+
+&nbsp;     // 淡入動畫
+
+&nbsp;     item.style.opacity = '0';
+
+&nbsp;     item.style.transition = 'opacity 0.5s';
+
+&nbsp;     setTimeout(() => item.style.opacity = '1', 50);
+
+&nbsp;   });
+
+&nbsp;   // 隱藏按鈕
+
+&nbsp;   document.getElementById('showMoreBtn').style.display = 'none';
+
+&nbsp; }
+
+
+
+
+
+ 
+
+<style>
+
+&nbsp; /\* 區塊容器：修改這裡讓它變乖 \*/
+
+&nbsp; .interact-section {
+
+&nbsp;   font-family: "Microsoft JhengHei", sans-serif;
+
+&nbsp;   padding: 20px;     /\* 上下左右留點空間 \*/
+
+&nbsp;   max-width: 1200px; /\* 限制最大寬度，跟其他區塊一樣 \*/
+
+&nbsp;   margin: 0 auto;    /\* 讓區塊自動置中 \*/
+
+&nbsp; }
+
+
+
+&nbsp; /\* 標題與副標題 \*/
+
+&nbsp; .interact-title { font-size: 28px; font-weight: 800; color: #1a1a1a; margin: 0 0 8px 0; }
+
+&nbsp; .interact-subtitle { color: #888; font-size: 14px; margin: 0 0 30px 0; }
+
+&nbsp; 
+
+&nbsp; /\* 卡片排版 \*/
+
+&nbsp; .cards-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
+&nbsp; 
+
+&nbsp; /\* 單張卡片 \*/
+
+&nbsp; .style-card {
+
+&nbsp;   background: #fff; border-radius: 24px; padding: 25px; flex: 1 1 300px;
+
+&nbsp;   box-shadow: 0 5px 20px rgba(220, 200, 210, 0.3);
+
+&nbsp;   display: flex; flex-direction: column; border: 1px solid #fcfcfc;
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; /\* 標籤與文字 \*/
+
+&nbsp; .tag-group { display: flex; gap: 8px; margin-bottom: 15px; }
+
+&nbsp; .tag-outline { border: 1px solid #e0e0e0; background: #fff; color: #666; border-radius: 50px; padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+
+&nbsp; .tag-fill-pink { background-color: #fbecec; color: #c0392b; border-radius: 50px; padding: 3px 10px; font-size: 11px; font-weight: bold; }
+
+&nbsp; .tag-fill-blue { background-color: #e3f2fd; color: #1565c0; border-radius: 50px; padding: 3px 10px; font-size: 11px; font-weight: bold; }
+
+&nbsp; .card-h { font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: #222; }
+
+&nbsp; .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+
+&nbsp; 
+
+&nbsp; /\* 按鈕樣式 \*/
+
+&nbsp; .btn-round { align-self: flex-end; background: #fff; border: 1px solid #ddd; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: bold; color: #333; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s; }
+
+&nbsp; .btn-round:hover { background: #f5f5f5; transform: translateY(-2px); }
+
+&nbsp; .btn-group-row { display: flex; gap: 10px; margin-bottom: 15px; }
+
+&nbsp; .btn-block { flex: 1; background: #fff; border: 1px solid #ddd; padding: 10px 0; border-radius: 50px; font-size: 12px; font-weight: bold; color: #333; cursor: pointer; text-align: center; transition: 0.2s; }
+
+&nbsp; .btn-block:hover { background: #fafafa; border-color: #bbb; }
+
+&nbsp; .hint-dashed { background: linear-gradient(90deg, #fffcf5, #fcf5ff); border: 2px dashed #d1c4e9; border-radius: 12px; padding: 10px; font-size: 12px; color: #5e35b1; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
+
+
+
+&nbsp; /\* 彈跳視窗 (Modal) 樣式 \*/
+
+&nbsp; .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+
+&nbsp; .modal-overlay.active { display: flex; }
+
+&nbsp; .modal-content { background: white; border-radius: 16px; position: relative; width: 90%; max-width: 900px; height: 85vh; box-shadow: 0 20px 50px rgba(0,0,0,0.3); overflow: hidden; animation: popIn 0.3s ease-out; display: flex; flex-direction: column; }
+
+&nbsp; @keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+&nbsp; .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #aaa; cursor: pointer; z-index: 10; font-weight: bold; }
+
+&nbsp; .close-btn:hover { color: #333; }
+
+
+<div class="interact-section">
+  <h2 class="interact-title">互動 Demo</h2>
+  <p class="interact-subtitle">繽紛客製手玩：停留更久、內容更生動。</p>
+
+  <div class="cards-row">
+    <div class="style-card">
+      <div class="tag-group"><span class="tag-outline">GAME</span><span class="tag-fill-pink">衛教問答</span></div>
+      <h3 class="card-h">互動衛教小遊戲</h3>
+      <p class="card-desc">將衛教知識轉化為趣味的問答互動，讓使用者在遊戲中學習，提升學習動機與成效。</p>
+      <button class="btn-round" onclick="openModal('demo-lumi')">開始挑戰 ►</button>
+    </div>
+
+    <div class="style-card">
+      <div class="tag-group"><span class="tag-outline">TOOL</span><span class="tag-fill-blue">AR 體驗</span></div>
+      <h3 class="card-h">AR 擴增實境展示</h3>
+      <p class="card-desc">透過手機鏡頭，讓平面教材「動」起來。您可以點擊下方按鈕查看步驟或直接體驗。</p>
+      <div class="btn-group-row">
+        <button class="btn-block" onclick="openModal('demo-eyejack')">APP 下載</button>
+        <button class="btn-block" onclick="openModal('demo-eyejack')">操作步驟</button>
+        <button class="btn-block" onclick="openModal('demo-eyejack')">開始掃描</button>
+      </div>
+      <div class="hint-dashed"><span>✨ 提示：點上方按鈕開啟 AR 說明</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
+    <div style="padding: 20px; height: 100%; box-sizing: border-box;">
+        <h2 style="margin:0 0 15px 0;">🎮 互動衛教小遊戲</h2>
+        <iframe src="https://app.lumi.education/run/4Pgaqw" style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="demo-eyejack" class="modal-overlay" onclick="closeModal('demo-eyejack')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal('demo-eyejack')">&times;</span>
+    <div style="padding: 25px; overflow-y: auto; height: 100%; box-sizing: border-box;">
+        <h2 style="margin-top:0;">📱 AR 擴增實境體驗流程</h2>
+        <p style="color:#666; margin-bottom:20px;">請拿出手機，跟著步驟操作：</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 1. 下載 App</div>
+                <img src="https://via.placeholder.com/150?text=App+QR" alt="QR" style="width: 100px; height: 100px; margin: 0 auto;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">EyeJack App</p>
+            </div>
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 12px; text-align: center;">
+                <div style="font-weight: bold; color: #4a148c; margin-bottom: 10px;">Step 2. 掃描圖</div>
+                <img src="https://via.placeholder.com/150?text=Target+Image" alt="Target" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">掃描這張圖</p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+&nbsp; function openModal(id) { document.getElementById(id).classList.add('active'); }
+
+&nbsp; function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+
+
+    <section class="section container" id="guestbook" style="margin: 60px auto;">
+ 
+  <div class="section\_\_head" style="text-align: center;">
+    <h2 style="font-size:28px; font-weight:800; margin-bottom:10px;">留言板</h2>
+    <p style="color:#888; margin-bottom:30px;">歡迎在這裡留下您的想法、鼓勵或建議！</p>
+  </div>
+
+<section class="section container" id="guestbook" style="margin: 60px auto;">
+ 
+  <div class="padlet-wrapper">
+    <div class="padlet-box" style="background: transparent; box-shadow: none; border: none;">
+ 
+      <div class="padlet-embed" style="border:none; border-radius:20px; box-sizing:border-box; overflow:hidden; position:relative; width:100%; background:transparent;">
+ 
+          <iframe
+            src="https://padlet.com/embed/sqes8yxcdx437ua8"
+            frameborder="0"
+            allow="camera;microphone;geolocation;display-capture;clipboard-write"
+            style="width:100%; height:600px; display:block; padding:0; margin:0;">
+          </iframe>
+ 
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+</section>
+
+
+ 
+
+
+<style>
+
+&nbsp; .padlet-box {
+
+&nbsp;   width: 100%;
+
+&nbsp;   /\* 這裡設定高度，如果 Padlet 跑版，可以把這裡改成 height: auto; \*/
+
+&nbsp;   height: 600px; 
+
+&nbsp;   border-radius: 24px;
+
+&nbsp;   overflow: hidden;
+
+&nbsp;   border: 1px solid #eee;
+
+&nbsp;   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+&nbsp;   background: #fff;
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; /\* 確保 Padlet 貼進來後會自動撐滿 \*/
+
+&nbsp; .padlet-box iframe, 
+
+&nbsp; .padlet-box div {
+
+&nbsp;   width: 100% !important;
+
+&nbsp;   height: 100% !important;
+
+&nbsp;   display: block;
+
+&nbsp; }
+
+
+
+
+ 
+
+    <footer class="footer" style="margin-top: 60px; padding: 40px 0; background-color: #f9f9f9; text-align: center;">
+      <div class="container footer\_\_inner">
+        <p style="color:#888; font-size:0.9rem;">© <span id="year">2025</span> Care We Care Studio · Made with pastel power ✨</p>
+        <a href="#top" style="display:inline-block; margin-top:10px; color:#555; text-decoration:none;">回到頂部 ↑</a>
+      </div>
+    </footer>
+
+  <style>
+  /* 1. 區塊排版設定 */
+  .exp-section-wrapper {
+    font-family: "Microsoft JhengHei", sans-serif;
+    max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;
+  }
+  .exp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media screen and (max-width: 768px) { .exp-grid { grid-template-columns: 1fr; } }
+
+  /* 2. 卡片樣式 */
+  .exp-card {
+      background: white; padding: 25px; border-radius: 24px; border: 1px solid #eee;
+      cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 10px;
+      min-height: 160px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  .exp-card:hover {
+      transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #ffd700;
+  }
+  .exp-icon { font-size: 32px; margin-bottom: 5px; }
+  .exp-title { font-size: 18px; font-weight: bold; margin: 0; color: #333; }
+  .exp-desc { font-size: 14px; color: #666; margin: 0; line-height: 1.5; flex-grow: 1; }
+  .exp-link { margin-top: auto; font-size: 13px; font-weight: bold; color: #aaa; display: flex; align-items: center; gap: 5px; }
+  .exp-card:hover .exp-link { color: #333; }
+
+  /* 3. 視窗內的「照片輪播」樣式 (新增的) */
+  .gallery-container {
+      display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;
+      scroll-snap-type: x mandatory;/* 讓滑動有吸附感 */
+    align-items: flex-start; /*意思是「靠上對齊」*/
+  }
+ 
+   .gallery-item {
+    /* 1. 寬度設定：維持佔比 60% (手機) / 限制最大寬度 (電腦) */
+    flex: 0 0 60%;
+    max-width: 500px;
+
+    /* 2. 高度設定：改為自動 */
+    /* 這樣 16:9 的圖會扁長，9:16 的圖會瘦高，完全還原照片原貌 */
+    height: auto;
+ 
+    /* 3. 確保圖片不會被裁切 */
+    /* 因為高度是 auto，圖片會完整顯示，不需要 cover 了 */
+    object-fit: contain;
+ 
+    /* 4. 其他外觀設定 */
+    border-radius: 12px;
+    scroll-snap-align: center;
+    background: transparent; /* 背景透明，避免圖片比例不同時出現底色 */
+ 
+    /* 5. 重要的排版細節 */
+    /* 防止因為同一排有長有短，導致短的圖片被強迫拉長 */
+    align-self: flex-start;
+}
+
+    /* --- 手機版特別設定 (解決留白與大小不一問題) --- */
+@media (max-width: 768px) {
+    .gallery-container {
+        /* 讓照片垂直置中，這樣就算有留白也會平均分佈在上下，比較好看 */
+        align-items: center;
+        /* 固定容器高度，避免被最高的照片撐大 */
+        height: 60vh;
+    }
+
+    .gallery-item {
+        /* 1. 強制固定高度 */
+        /* 設定為螢幕高度的 60%，這樣大家一樣高，不會忽大忽小 */
+        height: 100%;
+ 
+        /* 2. 寬度改為自動 */
+        /* 讓照片依照自己的比例縮放，不要強迫佔滿 85% */
+        width: auto;
+        flex: 0 0 auto;
+ 
+        /* 3. 限制最大寬度 */
+        /* 避免寬螢幕照片太寬衝出螢幕 */
+        max-width: 95%;
+
+        /* 4. 顯示模式：完整顯示 (contain) */
+        /* 重要！因為有流程表這種有字的圖，用 cover 會切到字，所以用 contain */
+        object-fit: contain;
+ 
+        /* 讓背景變白色，這樣尺寸不合時的留白會比較自然 */
+        background: #fff;
+ 
+        /* 增加一點圓角和陰影，讓它像一張卡片浮在中間 */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+}
+
+
+ 
+ 
+  .scroll-hint { text-align: center; color: #999; font-size: 12px; margin: 5px 0 20px 0; }
+
+  /* 4. 視窗內的「PDF 容器」樣式 */
+    /* --- PDF 容器設定 (請替換原本的) --- */
+.pdf-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;     /* 電腦版最大寬度，可自行調整 */
+ 
+    /* 【關鍵修改】將比例改為 4:3，這樣電腦上看就會比較高，不會太扁 */
+    aspect-ratio: 4 / 3;
+ 
+    margin: 20px auto;    /* 置中 */
+    border-radius: 12px;  /* 圓角 */
+    overflow: hidden;
+    border: 1px solid #ddd; /* 加個細邊框增加質感 */
+    background: #f0f0f0;
+}
+
+/* --- 確保 iframe 填滿容器 --- */
+/* 這段務必要有，不然 iframe 高度可能會跑掉 */
+.pdf-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* 強制填滿爸爸 (4:3) 的高度 */
+    border: none;
+}
+ 
+</style>
+
+
+
+    <div id="modal-1" class="modal-overlay" onclick="closeModal('modal-1')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
+ 
+        <div class="modal-inner-scroll">
+            <h4 style="margin-top:0;"> 主題:運用多媒體與遊戲教學提升弱勢家庭之兒童保健健康識能—以家扶基金會機構為例 </h4>
+ 
+            <div class="gallery-container">
+                <img src="https://etay331.github.io/V1/plan1.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/plan2.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/plan3.png" class="gallery-item">
+              <img src="https://etay331.github.io/V1/plan\_time.png" class="gallery-item">
+              <img src="https://etay331.github.io/V1/plan\_ps.jpg" class="gallery-item">
+            </div>
+            <p class="scroll-hint">← 左右滑動看更多照片 → (電腦按Shift+滑鼠滾輪)</p>
+            <h3 style="margin-top:30px;">📄 大專生計畫分享簡報</h3>
+          <p style="margin-top:15px; color:#666; line-height:1.6;">
+                參加醫教系碩士班2025年論文發表會，分享大專生計畫</p>
+ 
+            <div class="pdf-container">
+                <iframe src="https://drive.google.com/file/d/15jc6-We4LIUXaLlLKLsK84HhZPTToOs5/preview" allow="autoplay"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+ 
+<div id="modal-2" class="modal-overlay" onclick="closeModal('modal-2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
+ 
+        <div class="modal-inner-scroll">
+            <h4 style="margin-top:0;">🏆 語觸視界|LigoTouch </h4>
+ 
+            <div class="gallery-container">
+                <img src="https://etay331.github.io/V1/team.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/awardteam.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/awardplp.jpg" class="gallery-item">
+            </div>
+            <p class="scroll-hint">← 左右滑動看更多照片 → (電腦按Shift+滑鼠滾輪) </p>
+ 
+            <h3 style="margin-top:30px;">📄 比賽簡報</h3>
+           <p style="margin-top:15px; color:#666; line-height:1.6;">
+                獲獎的創業計畫「視語光點」是一個為失語症家庭設計的AR溝通工具
+            </p>
+            <div class="pdf-container">
+                <iframe src="https://drive.google.com/file/d/1yte6PbSbtVl-qnNoLxa-3LqDVwJAAWgD/preview" allow="autoplay"></iframe>
+            </div>
+ 
+        </div>
+    </div>
+</div>
+
+<div id="modal-3" class="modal-overlay" onclick="closeModal('modal-3')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
+ 
+        <div class="modal-inner-scroll">
+            <h4 style="margin-top:0;">印尼巨港Universitas Muhammadiyah Palembang(UMP)</h4>
+ 
+            <div class="gallery-container">
+                <img src="https://etay331.github.io/V1/inall.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/inhsp.jpg" class="gallery-item">
+                <img src="https://etay331.github.io/V1/inlocal.jpg" class="gallery-item">
+              <img src="https://etay331.github.io/V1/inscl.jpg" class="gallery-item">
+            </div>
+            <p class="scroll-hint">← 左右滑動看更多照片 → (電腦按Shift+滑鼠滾輪) </p>
+           <h3 style="margin-top:30px;">📄 成果影片</h3>
+             <p style="margin-top:15px; color:#666; line-height:1.6;">
+                一起來看看我在印尼的27天吧~
+            </p>
+
+          <div class="yt-video-wrapper">
+    <iframe
+        src="https://www.youtube.com/embed/uEfc3owRZXs"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+</div>
+ 
+ 
+ 
+        </div>
+    </div>
+</div>
+
+<style>
+
+&nbsp; /\* 1. 區塊與網格設定 \*/
+
+&nbsp; .portfolio-section {
+
+&nbsp;   max-width: 1200px; 
+
+&nbsp;   margin: 60px auto; 
+
+&nbsp;   padding: 20px;
+
+&nbsp;   font-family: "Microsoft JhengHei", sans-serif;
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .portfolio-grid {
+
+&nbsp;   display: grid;
+
+&nbsp;   /\* 【修改點】電腦版強制分為 3 欄，每欄等寬 (1fr) \*/
+
+&nbsp;   grid-template-columns: repeat(3, 1fr); 
+
+&nbsp;   gap: 25px;
+
+&nbsp; }
+
+
+
+&nbsp; /\* 【新增】RWD 響應式設定：螢幕變小時自動調整欄數 \*/
+
+&nbsp; @media (max-width: 992px) {
+
+&nbsp;   .portfolio-grid {
+
+&nbsp;     grid-template-columns: repeat(2, 1fr); /\* 平板變 2 欄 \*/
+
+&nbsp;   }
+
+&nbsp; }
+
+&nbsp; @media (max-width: 600px) {
+
+&nbsp;   .portfolio-grid {
+
+&nbsp;     grid-template-columns: 1fr; /\* 手機變 1 欄 \*/
+
+&nbsp;   }
+
+&nbsp; }
+
+
+
+&nbsp; /\* 2. 卡片樣式 \*/
+
+&nbsp; .port-card {
+
+&nbsp;   background: white; 
+
+&nbsp;   border-radius: 20px; 
+
+&nbsp;   overflow: hidden;
+
+&nbsp;   border: 1px solid #eee; 
+
+&nbsp;   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+&nbsp;   transition: 0.3s; 
+
+&nbsp;   display: flex; 
+
+&nbsp;   flex-direction: column;
+
+&nbsp;   height: 100%; /\* 【修改點】確保同列卡片高度一致 \*/
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .port-card:hover { 
+
+&nbsp;   transform: translateY(-5px); 
+
+&nbsp;   box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+
+&nbsp; }
+
+&nbsp;  
+
+&nbsp; .port-img-box {
+
+&nbsp;   width: 100%; 
+
+&nbsp;   height: 180px; /\* 固定高度，避免圖片大小不一造成錯位 \*/
+
+&nbsp;   background-color: #f0f0f0;
+
+&nbsp;   display: flex; 
+
+&nbsp;   align-items: center; 
+
+&nbsp;   justify-content: center;
+
+&nbsp;   flex-shrink: 0; /\* 【修改點】防止圖片區塊被壓縮 \*/
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .port-img-box img { 
+
+&nbsp;   width: 100%; 
+
+&nbsp;   height: 100%; 
+
+&nbsp;   object-fit: cover; /\* 確保圖片填滿且不變形 \*/
+
+&nbsp; }
+
+&nbsp;  
+
+&nbsp; .port-content { 
+
+&nbsp;   padding: 20px; 
+
+&nbsp;   display: flex; 
+
+&nbsp;   flex-direction: column; 
+
+&nbsp;   flex-grow: 1; /\* 讓內容區自動填滿剩餘高度 \*/
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .port-tag {
+
+&nbsp;   font-size: 12px; 
+
+&nbsp;   color: #6a4f9e; 
+
+&nbsp;   background: #f3e5f5; 
+
+&nbsp;   width: fit-content;
+
+&nbsp;   padding: 4px 10px; 
+
+&nbsp;   border-radius: 50px; 
+
+&nbsp;   font-weight: bold; 
+
+&nbsp;   margin-bottom: 10px;
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .port-title { 
+
+&nbsp;   font-size: 18px; 
+
+&nbsp;   font-weight: bold; 
+
+&nbsp;   margin: 0 0 8px 0; 
+
+&nbsp;   color: #333; 
+
+&nbsp;   /\* 【建議】如果標題太長，限制顯示兩行 (可選) \*/
+
+&nbsp;   display: -webkit-box;
+
+&nbsp;   -webkit-line-clamp: 2;
+
+&nbsp;   -webkit-box-orient: vertical;
+
+&nbsp;   overflow: hidden;
+
+&nbsp; }
+
+&nbsp; 
+
+&nbsp; .port-desc { 
+
+&nbsp;   font-size: 14px; 
+
+&nbsp;   color: #666; 
+
+&nbsp;   margin: 0 0 20px 0; 
+
+&nbsp;   line-height: 1.5; 
+
+&nbsp;   /\* 【建議】限制描述文字高度，避免卡片長短不一 \*/
+
+&nbsp;   display: -webkit-box;
+
+&nbsp;   -webkit-line-clamp: 3;
+
+&nbsp;   -webkit-box-orient: vertical;
+
+&nbsp;   overflow: hidden;
+
+&nbsp; }
+
+&nbsp;  
+
+&nbsp; /\* 卡片上的按鈕 \*/
+
+&nbsp; .port-btn {
+
+&nbsp;   margin-top: auto; /\* 推到底部，確保按鈕對齊 \*/
+
+&nbsp;   background: white; 
+
+&nbsp;   border: 1px solid #333; 
+
+&nbsp;   color: #333;
+
+&nbsp;   padding: 8px 0; 
+
+&nbsp;   border-radius: 50px; 
+
+&nbsp;   font-size: 14px; 
+
+&nbsp;   font-weight: bold;
+
+&nbsp;   cursor: pointer; 
+
+&nbsp;   transition: 0.2s; 
+
+&nbsp;   width: 100%;
+
+&nbsp; }
+
+&nbsp; .port-btn:hover { background: #333; color: white; }
+
+
+
+&nbsp; /\* 3. 隱藏項目的樣式 (收合用) \*/
+
+&nbsp; .hidden-item { display: none; }
+
+
+
+&nbsp; /\* 4. 載入更多按鈕 \*/
+
+&nbsp; .load-more-container { text-align: center; margin-top: 40px; }
+
+&nbsp; .load-btn {
+
+&nbsp;   background: #333; color: white; border: none;
+
+&nbsp;   padding: 12px 35px; border-radius: 50px; font-size: 15px; font-weight: bold;
+
+&nbsp;   cursor: pointer; transition: 0.3s;
+
+&nbsp; }
+
+&nbsp; .load-btn:hover { transform: scale(1.05); background: #555; }
+
+
+
+&nbsp; /\* 5. 影片容器 (讓影片自適應大小) \*/
+
+&nbsp; .video-container {
+
+&nbsp;   position: relative; padding-bottom: 56.25%; /\* 16:9 比例 \*/
+
+&nbsp;   height: 0; overflow: hidden; border-radius: 12px; background: #000;
+
+&nbsp; }
+
+&nbsp; .video-container iframe {
+
+&nbsp;   position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+
+&nbsp; }
+
+
+
+
+ 
+
+
+
+ 
+  <div id="demo-lumi" class="modal-overlay" onclick="closeModal('demo-lumi')">
+    <div class="modal-content" onclick="event.stopPropagation()" style="width: 95%; max-width: 900px; height: 80vh;">
+        <span class="close-btn" onclick="closeModal('demo-lumi')">&times;</span>
+        <h2>🎮 互動衛教小遊戲</h2>
+ 
+        <iframe
+            src="https://lumi.education/你的作品連結"
+            style="width: 100%; height: 90%; border: none; border-radius: 12px; background: #f0f0f0;"
+            allowfullscreen>
+        </iframe>
+    </div>
+  </div>
+
+ 
+  <script src="./script\_.js" defer></script>
+
+  <script>
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "flex";
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+        }
+    }
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = "none"; }, 300);
+        }
+    }
+  </script>
+<style>
+
+&nbsp; /\* --- 救命補丁：強制讓視窗可以上下捲動 --- \*/
+
+&nbsp; .modal-content {
+
+&nbsp;     /\* 原本是 hidden (隱藏)，現在強制改成 auto (太長就給捲軸) \*/
+
+&nbsp;     overflow-y: auto !important;
+
+&nbsp;     
+
+&nbsp;     /\* 確保視窗排版是正常的由上而下 \*/
+
+&nbsp;     display: block !important;
+
+&nbsp;     
+
+&nbsp;     /\* 高度設定：最高只能佔螢幕的 90%，剩下的給捲軸 \*/
+
+&nbsp;     max-height: 90vh !important; 
+
+&nbsp;     height: auto !important;
+
+&nbsp; }
+
+
+
+&nbsp; /\* 調整關閉按鈕的位置，讓它即便捲動也看得到 (選用) \*/
+
+&nbsp; .close-btn {
+
+&nbsp;     position: sticky !important;
+
+&nbsp;     top: 10px;
+
+&nbsp;     float: right;
+
+&nbsp;     z-index: 100;
+
+&nbsp;     background: white; /\* 避免文字疊在一起 \*/
+
+&nbsp;     border-radius: 50%;
+
+&nbsp;     padding: 0 8px;
+
+&nbsp; }
+
+
+
+    <style>
+  /* 1. 區塊設定 */
+  .portfolio-section {
+    max-width: 1200px; margin: 60px auto; padding: 20px;
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
+ 
+  /* 2. 網格排版 (預設顯示) */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 自動填滿，卡片最小280px */
+    gap: 25px;
+  }
+
+  /* 3. 卡片樣式 (保持一致的風格) */
+  .port-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s; cursor: pointer;
+    display: flex; flex-direction: column;
+  }
+  .port-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+ 
+  .port-img-box {
+    width: 100%; height: 180px; background-color: #f0f0f0;
+    display: flex; align-items: center; justify-content: center; color: #999;
+  }
+  .port-img-box img { width: 100%; height: 100%; object-fit: cover; }
+ 
+  .port-content { padding: 20px; }
+  .port-tag {
+    font-size: 12px; color: #6a4f9e; background: #f3e5f5;
+    padding: 4px 10px; border-radius: 50px; font-weight: bold;
+    display: inline-block; margin-bottom: 10px;
+  }
+  .port-title { font-size: 18px; font-weight: bold; margin: 0 0 8px 0; color: #333; }
+  .port-desc { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+
+  /* 4. 關鍵功能：隱藏多餘卡片的樣式 */
+  .hidden-item {
+    display: none; /* 預設隱藏 */
+  }
+
+  /* 5. 「查看更多」按鈕區塊 */
+  .load-more-container {
+    text-align: center; margin-top: 40px;
+  }
+  .load-btn {
+    background: #333; color: white; border: none;
+    padding: 12px 35px; border-radius: 50px; font-size: 15px; font-weight: bold;
+    cursor: pointer; transition: 0.3s; letter-spacing: 1px;
+  }
+  .load-btn:hover { background: #555; transform: scale(1.05); }
+</style>
+
+
 </body>
 </html>
