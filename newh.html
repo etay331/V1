@@ -316,7 +316,9 @@
             <img src="assets/profile.jpg" class="avatar" alt="Vivian"> 
             <div>
               <h3 data-i18n="about.name">Vivian｜健康教育 × 數位互動</h3>
-             
+             <button class="btn" onclick="openModal('modal-self-intro')" style="font-size: 13px; padding: 6px 15px; margin-top: 10px; background: #fff; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                 ▶️ 1分鐘自我介紹影片
+              </button>
             </div>
           </div>
          
@@ -390,6 +392,10 @@
            </div>
         </div> </div> </section>
 
+
+
+
+    
 <section class="container section" id="portfolio">
       <h2 style="font-size: 2rem;" data-i18n="nav.portfolio">作品集</h2>
       <p style="color:#888;" data-i18n="port.subtitle">收錄各類專案，點擊卡片查看詳細內容。</p>
@@ -517,6 +523,19 @@
     <div class="modal-content" id="dynamic-content-area">
       </div>
   </div>
+
+  <div id="modal-self-intro" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal-self-intro')">&times;</span>
+      <h3>🎬 1分鐘自我介紹</h3>
+      
+      <div class="video-container" style="margin-top: 20px;">
+        <iframe src="https://www.youtube.com/embed/bsRruBnZe2M" title="Self Intro Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      
+    </div>
+  </div>
+  <div id="modal-dynamic" class="modal-overlay">
 
   <script>
     // ================= DATA (資料庫) =================
@@ -796,6 +815,7 @@
 </body>
 
 </html>
+
 
 
 
