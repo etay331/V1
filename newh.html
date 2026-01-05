@@ -159,16 +159,16 @@
       min-height: 85vh; /* 稍微增加高度 */
     }
     .hero__left { padding-right: 20px; }
-    .hero__title { 
-      /* 修改 1：調整字體大小範圍 */
-      /* 原本最小是 2rem 或 2.2rem，改為 1.75rem (約 28px)，確保手機塞得下 */
-      font-size: clamp(1.75rem, 5vw, 3rem); 
+    .hero__title {
+      /* 修改 1：把最小字體從 1.75rem 再改小到 1.4rem (約 22px) */
+      /* 這樣確保 iPhone SE 這種窄螢幕也能一行塞進 10 個字 */
+      font-size: clamp(1.4rem, 5vw, 3rem); 
       
       line-height: 1.3; 
       margin-bottom: 24px;
       
-      /* 修改 2：加入自動平衡斷行 (神奇語法) */
-      text-wrap: balance;  
+      /* 修改 2：拿掉 text-wrap: balance */
+      /* 讓它自然排列，不要強制中間斷行 */
     }
     .hero__lead { font-size: 1.1rem; color: var(--muted); margin-bottom: 36px; }
     .hero__cta { display: flex; gap: 15px; }
@@ -613,4 +613,5 @@
 
 </body>
 </html>
+
 
