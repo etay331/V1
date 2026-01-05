@@ -212,60 +212,85 @@
     }
     .tag:hover { background: #fff0f5; color: #d63384; border-color: #ffd6f0; }
 
-    /* --- 經歷區塊標題與列表 --- */
+   /* =========================================
+       ★ 經歷區塊專用樣式 (修復版)
+       ========================================= */
+    /* 1. 列表容器 */
+    .exp-list { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+    }
+
+    /* 2. 標題樣式 */
     .exp-header {
       font-size: 1.2rem; font-weight: 700; color: #333;
-      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
     }
     .exp-header::before {
       content: ''; display: block; width: 6px; height: 24px;
       background: #ffd700; border-radius: 4px;
     }
 
-    .exp-list { display: flex; flex-direction: column; gap: 20px; }
-
-    /* --- 升級版經歷卡片 --- */
+    /* 3. 卡片本體 (關鍵：Flex 佈局讓左右分開) */
     .exp-card {
       background: #fff; 
-      padding: 30px; /* 加大內距，讓卡片變大 */
+      padding: 25px 30px; /* 增加內距 */
       border-radius: 20px;
-      border: 2px solid #f0f0f0; /* 邊框加粗一點 */
+      border: 2px solid #f0f0f0; 
       box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-      display: flex; align-items: center; justify-content: space-between; /* 讓內容跟箭頭分開 */
+      
+      /* ★ 這一行最重要！讓左邊內容與右邊按鈕分開 */
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      
       transition: all 0.3s ease;
       cursor: pointer;
       position: relative; overflow: hidden;
     }
 
-    /* 懸停效果：浮起 + 邊框變色 */
+    /* 懸停效果 */
     .exp-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-5px);
       border-color: #ffd6f0;
-      box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15); /* 粉色系陰影 */
+      box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15);
     }
 
-    /* 左側內容區 */
-    .exp-content { display: flex; align-items: center; gap: 20px; }
+    /* 4. 左側內容區 (圖示+文字) */
+    .exp-content { 
+      display: flex; 
+      align-items: center; 
+      gap: 20px; /* 圖示跟文字的距離 */
+    }
     
     .exp-icon-box { 
-      width: 60px; height: 60px; /* 圖示變大 */
+      width: 55px; height: 55px; 
       background: #fff0f5; color: #d63384;
       border-radius: 16px; 
       display: flex; align-items: center; justify-content: center; 
-      font-size: 28px; flex-shrink: 0;
+      font-size: 26px; flex-shrink: 0;
       transition: 0.3s;
     }
-    .exp-card:hover .exp-icon-box { background: #d63384; color: #fff; } /* 滑鼠移過去圖示變色 */
+    .exp-card:hover .exp-icon-box { background: #d63384; color: #fff; }
 
-    /* 右側按鈕 (CTA) */
+    /* 5. 右側按鈕 (View More) */
     .exp-action {
-      font-size: 14px; font-weight: bold; color: #d63384;
+      font-size: 13px; font-weight: bold; color: #d63384;
       background: rgba(214, 51, 132, 0.1);
       padding: 8px 16px; border-radius: 50px;
-      transition: 0.3s; white-space: nowrap;
+      transition: 0.3s; white-space: nowrap; /* 禁止文字換行 */
+      margin-left: 15px; /* 避免手機版跟左邊太近 */
     }
     .exp-card:hover .exp-action {
       background: #d63384; color: #fff;
+    }
+
+    /* ★ 手機版適配：如果螢幕太小，讓按鈕掉下來或變小 */
+    @media (max-width: 480px) {
+      .exp-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+      .exp-action { align-self: flex-end; width: 100%; text-align: center; }
+      .exp-content { width: 100%; }
     }
     
     @media (max-width: 900px) {
@@ -428,19 +453,19 @@
       </div>
     </div>
 
-    <div class="section-wrapper bg-white" id="about">
+ <div class="section-wrapper bg-white" id="about">
       <div class="container reveal">
         <div class="section-header" style="text-align:left; margin-bottom:40px;">
           <h2 data-i18n="nav.about">關於我</h2>
         </div>
         
         <div class="about-layout">
+          
           <div class="profile-wrap">
              <div class="profile-header">
                 <img src="https://etay331.github.io/V1/ncwc.jpg" class="avatar">
                 <div>
-                   <h3 data-i18n="about.name">Vivian</h3>
-                   <span style="color:#666; font-size:14px;">健康教育 × 數位互動</span>
+                   <h3 data-i18n="about.name">Vivian｜健康教育 × 數位互動</h3>
                    <button class="btn" onclick="openModal('modal-self-intro')" style="margin-top:8px; padding:5px 15px; font-size:12px;">▶ 1分鐘自我介紹</button>
                 </div>
              </div>
@@ -448,24 +473,41 @@
              <div class="info-block">
                 <div class="info-title" data-i18n="about.education">學歷</div>
                 <div class="tags">
-                   <span class="tag" data-i18n="about.edu_master">✨ 國立中山大學｜醫務管理碩士班 (錄取)</span>
-                   <span class="tag" data-i18n="about.edu_bachelor_1">📖 國北護｜醫護教育系</span>
-                   <span class="tag">🎓 輔英科大｜護理科</span>
+                   <span class="tag" style="background:#fff0f5; color:#d63384; border-color:#ffd6f0;" data-i18n="about.edu_master">
+                     ✨ 錄取｜國立中山大學｜醫務管理碩士班
+                   </span>
+                   <span class="tag" data-i18n="about.edu_bachelor_1">
+                     📖 在學｜國立臺北護理健康大學｜醫護教育暨數位學習系
+                   </span>
+                   <span class="tag" data-i18n="about.edu_bachelor_2">
+                     🎓 畢業｜輔英科技大學｜護理科
+                   </span>
                 </div>
              </div>
              
              <div class="info-block">
-                <div class="info-title" data-i18n="about.skills">專業技能</div>
+                <div class="info-title" data-i18n="about.skills">專業認證 & 技能</div>
                 <div class="tags">
                    <span class="tag">⚕️ 護理師證書</span>
-                   <span class="tag">🤖 AI Prompt Engineer</span>
-                   <span class="tag">🎓 Google Certified Educator</span>
-                   <span class="tag">📊 Google Analytics</span>
+                   <span class="tag">🤖 SSE–AI Prompt Engineer</span>
+                   <span class="tag">💡 初階行銷企劃證照</span>
+                   <span class="tag">🎓 Google Certified Educator Level 1</span>
+                   <span class="tag">📊 Google Analytics 認證</span>
+                   <span class="tag">📱 Google Ads 應用程式認證</span>
+                </div>
+             </div>
+
+             <div class="info-block">
+                <div class="info-title" data-i18n="about.school">校內表現 & 榮譽</div>
+                <div class="tags">
+                   <span class="tag" data-i18n="about.leader">🤝 衛生股長 | 班級代表</span>
+                   <span class="tag" data-i18n="about.service">❤️ 醫教系系學會秘書長</span>
+                   <span class="tag" data-i18n="about.score">🏆 勤學書卷獎 (113-1、113-2)</span>
                 </div>
              </div>
           </div>
 
-        <div class="exp-list">
+          <div class="exp-list">
              <div class="exp-header" data-i18n="about.exp">我的經歷</div>
 
              <div class="exp-card" onclick="openModal('modal-research')">
@@ -501,6 +543,8 @@
                 <div class="exp-action">View More →</div>
              </div>
           </div>
+          </div> </div>
+    </div>
 
     <div class="section-wrapper bg-pink" id="portfolio">
       <div class="container reveal">
@@ -686,6 +730,7 @@
 
 </body>
 </html>
+
 
 
 
