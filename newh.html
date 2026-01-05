@@ -212,21 +212,60 @@
     }
     .tag:hover { background: #fff0f5; color: #d63384; border-color: #ffd6f0; }
 
-    /* 右側：經歷卡片 (需要一點陰影因為背景是白的) */
-    .exp-list { display: flex; flex-direction: column; gap: 20px; }
-    .exp-card {
-      background: #fff; padding: 20px 25px; border-radius: 16px;
-      border: 1px solid #eee; 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* 輕微陰影 */
-      display: flex; align-items: center; gap: 20px;
-      transition: 0.3s; cursor: pointer;
+    /* --- 經歷區塊標題與列表 --- */
+    .exp-header {
+      font-size: 1.2rem; font-weight: 700; color: #333;
+      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
     }
-    .exp-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: #ffd6f0; }
+    .exp-header::before {
+      content: ''; display: block; width: 6px; height: 24px;
+      background: #ffd700; border-radius: 4px;
+    }
+
+    .exp-list { display: flex; flex-direction: column; gap: 20px; }
+
+    /* --- 升級版經歷卡片 --- */
+    .exp-card {
+      background: #fff; 
+      padding: 30px; /* 加大內距，讓卡片變大 */
+      border-radius: 20px;
+      border: 2px solid #f0f0f0; /* 邊框加粗一點 */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      display: flex; align-items: center; justify-content: space-between; /* 讓內容跟箭頭分開 */
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+
+    /* 懸停效果：浮起 + 邊框變色 */
+    .exp-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: #ffd6f0;
+      box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15); /* 粉色系陰影 */
+    }
+
+    /* 左側內容區 */
+    .exp-content { display: flex; align-items: center; gap: 20px; }
     
     .exp-icon-box { 
-      width: 50px; height: 50px; background: #fff0f5; 
-      border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;
-      flex-shrink: 0;
+      width: 60px; height: 60px; /* 圖示變大 */
+      background: #fff0f5; color: #d63384;
+      border-radius: 16px; 
+      display: flex; align-items: center; justify-content: center; 
+      font-size: 28px; flex-shrink: 0;
+      transition: 0.3s;
+    }
+    .exp-card:hover .exp-icon-box { background: #d63384; color: #fff; } /* 滑鼠移過去圖示變色 */
+
+    /* 右側按鈕 (CTA) */
+    .exp-action {
+      font-size: 14px; font-weight: bold; color: #d63384;
+      background: rgba(214, 51, 132, 0.1);
+      padding: 8px 16px; border-radius: 50px;
+      transition: 0.3s; white-space: nowrap;
+    }
+    .exp-card:hover .exp-action {
+      background: #d63384; color: #fff;
     }
     
     @media (max-width: 900px) {
@@ -426,32 +465,42 @@
              </div>
           </div>
 
-          <div class="exp-list">
+        <div class="exp-list">
+             <div class="exp-header" data-i18n="about.exp">我的經歷</div>
+
              <div class="exp-card" onclick="openModal('modal-research')">
-                <div class="exp-icon-box">🔬</div>
-                <div>
-                   <div style="font-weight:bold;" data-i18n="exp.1.title">國科會大專生研究計畫</div>
-                   <div style="font-size:13px; color:#888;" data-i18n="exp.1.desc">互動式衛教研究</div>
+                <div class="exp-content">
+                  <div class="exp-icon-box">🔬</div>
+                  <div>
+                     <div style="font-size:1.1rem; font-weight:bold; margin-bottom:4px;" data-i18n="exp.1.title">國科會大專生計畫</div>
+                     <div style="font-size:14px; color:#888;" data-i18n="exp.1.desc">互動式衛教研究</div>
+                  </div>
                 </div>
+                <div class="exp-action">View More →</div>
              </div>
+
              <div class="exp-card" onclick="openModal('modal-award')">
-                <div class="exp-icon-box">🏆</div>
-                <div>
-                   <div style="font-weight:bold;" data-i18n="exp.2.title">校園創業競賽金獎</div>
-                   <div style="font-size:13px; color:#888;" data-i18n="exp.2.desc">視語光點 LigoTouch</div>
+                <div class="exp-content">
+                  <div class="exp-icon-box">🏆</div>
+                  <div>
+                     <div style="font-size:1.1rem; font-weight:bold; margin-bottom:4px;" data-i18n="exp.2.title">校園創業競賽金獎</div>
+                     <div style="font-size:14px; color:#888;" data-i18n="exp.2.desc">視語光點 LigoTouch</div>
+                  </div>
                 </div>
+                <div class="exp-action">View More →</div>
              </div>
+
              <div class="exp-card" onclick="openModal('modal-indonesia')">
-                <div class="exp-icon-box">✈️</div>
-                <div>
-                   <div style="font-weight:bold;" data-i18n="exp.3.title">新南向學海築夢</div>
-                   <div style="font-size:13px; color:#888;" data-i18n="exp.3.desc">印尼 UMP 參訪</div>
+                <div class="exp-content">
+                  <div class="exp-icon-box">✈️</div>
+                  <div>
+                     <div style="font-size:1.1rem; font-weight:bold; margin-bottom:4px;" data-i18n="exp.3.title">新南向學海築夢</div>
+                     <div style="font-size:14px; color:#888;" data-i18n="exp.3.desc">印尼 UMP 參訪</div>
+                  </div>
                 </div>
+                <div class="exp-action">View More →</div>
              </div>
           </div>
-        </div>
-      </div>
-    </div>
 
     <div class="section-wrapper bg-pink" id="portfolio">
       <div class="container reveal">
@@ -637,6 +686,7 @@
 
 </body>
 </html>
+
 
 
 
