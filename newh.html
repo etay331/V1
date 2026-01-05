@@ -322,6 +322,29 @@
     
     .gallery-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scroll-snap-type: x mandatory; }
     .gallery-row img { height: 250px; border-radius: 12px; scroll-snap-align: start; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    /* =========================================
+       ★ 強制修正手機版標題斷行問題
+       ========================================= */
+    @media (max-width: 768px) {
+      .hero__title {
+        /* 1. 強制設定一個絕對塞得下的大小 (約 24px) */
+        font-size: 1.5rem !important; 
+        
+        /* 2. 禁止它自己亂換行，除了 <br> 以外不准斷 */
+        white-space: nowrap !important; 
+        
+        /* 3. 確保行距緊湊一點 */
+        line-height: 1.4 !important;
+        
+        /* 4. 稍微縮減左右邊距，偷一點空間給文字 */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    
   </style>
 </head>
 
@@ -613,5 +636,6 @@
 
 </body>
 </html>
+
 
 
