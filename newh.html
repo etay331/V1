@@ -159,16 +159,17 @@
       min-height: 85vh; /* 稍微增加高度 */
     }
     .hero__left { padding-right: 20px; }
-    .hero__title {
-      /* 修改 1：把最小字體從 1.75rem 再改小到 1.4rem (約 22px) */
-      /* 這樣確保 iPhone SE 這種窄螢幕也能一行塞進 10 個字 */
-      font-size: clamp(1.4rem, 5vw, 3rem); 
+.hero__title {
+      /* 1. 稍微縮小最大字體 (從 3rem 改為 2.5rem) */
+      /* 避免筆電螢幕較窄時，字太大去撞到右邊的圖片 */
+      font-size: clamp(1.5rem, 4vw, 2.5rem); 
       
-      line-height: 1.3; 
+      /* 2. 關鍵指令：電腦版也不准亂換行 */
+      /* 這樣它就只會依照你在 HTML 打的 <br> 來換行 */
+      white-space: nowrap; 
+      
+      line-height: 1.4;
       margin-bottom: 24px;
-      
-      /* 修改 2：拿掉 text-wrap: balance */
-      /* 讓它自然排列，不要強制中間斷行 */
     }
     .hero__lead { font-size: 1.1rem; color: var(--muted); margin-bottom: 36px; }
     .hero__cta { display: flex; gap: 15px; }
@@ -476,7 +477,7 @@
           <div class="demo-container">
              <div class="demo-item">
                 <div class="demo-visual">
-                   <img src="https://via.placeholder.com/800x600?text=Insert+GAME+GIF" alt="Game">
+                   <img src="https://etay331.github.io/V1/lumi.gif" alt="Game">
                 </div>
                 <div class="demo-info">
                    <span class="demo-badge">GAME</span>
@@ -488,7 +489,7 @@
              
              <div class="demo-item">
                 <div class="demo-visual">
-                   <img src="https://via.placeholder.com/800x600?text=Insert+AR+GIF" alt="AR">
+                   <img src="https://etay331.github.io/V1/ejcut.gif" alt="AR">
                 </div>
                 <div class="demo-info">
                    <span class="demo-badge" style="background:#f3e5f5; color:#7b1fa2;">AR Tool</span>
@@ -636,6 +637,7 @@
 
 </body>
 </html>
+
 
 
 
